@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+html.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+/* Legal / policy: key lines — bold + 5px larger than base 16px → 21px */
+.legal-emphasis {
+  font-weight: 700;
+  font-size: 1.3125rem;
+  line-height: 1.5;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .btn-motion {
+    @apply transition-all duration-200 ease-out active:scale-[0.97] motion-safe:hover:scale-[1.02];
+  }
+
+  .btn-primary {
+    @apply btn-motion inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-900/20 hover:bg-indigo-500 dark:shadow-indigo-950/40;
+  }
+
+  .btn-ghost {
+    @apply btn-motion inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white/80 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100 dark:border-zinc-600 dark:bg-zinc-800/80 dark:text-zinc-100 dark:hover:bg-zinc-700;
+  }
+}

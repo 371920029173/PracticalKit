@@ -1,0 +1,394 @@
+{
+  "brand": "PracticalKit",
+  "nav": {
+    "home": "Home",
+    "pdf": "PDF",
+    "image": "Image",
+    "data": "JSON / XML / YAML",
+    "text": "Text",
+    "qr": "QR Code",
+    "units": "Units",
+    "time": "Timestamp",
+    "calc": "Calculator",
+    "encoding": "Base64 / URL",
+    "password": "Password",
+    "translate": "Translate",
+    "code": "Code",
+    "money": "FX rates",
+    "markdown": "Markdown",
+    "random": "Random / ID",
+    "color": "Color",
+    "videoGif": "Video",
+    "audio": "Audio convert",
+    "regex": "Regex",
+    "rgbv3d": "RGBV3D",
+    "hash": "SHA hash",
+    "jwt": "JWT decoder",
+    "csvJson": "CSV ↔ JSON",
+    "slug": "Slug / URL",
+    "htmlEntities": "HTML entities",
+    "cssMin": "CSS minify",
+    "lorem": "Lorem ipsum",
+    "jsonDiff": "JSON diff",
+    "unicode": "Unicode",
+    "cidr": "CIDR / subnet",
+    "functionPlot": "Function plotter",
+    "cron": "Cron helper",
+    "httpStatus": "HTTP status",
+    "apiSnippet": "API snippets",
+    "about": "About",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "disclaimer": "Disclaimer",
+    "contact": "Contact"
+  },
+  "navGroup": {
+    "documents": "Documents",
+    "media": "Media",
+    "dataDev": "Data & developer",
+    "daily": "Daily utilities",
+    "math": "Math",
+    "extras": "More tools",
+    "legal": "Legal & compliance"
+  },
+  "langNames": {
+    "en": "English (English)",
+    "zh": "Chinese (简体中文)",
+    "ru": "Russian (Русский)",
+    "es": "Spanish (Español)"
+  },
+  "legalStrip": {
+    "title": "Transparency & policies (AdSense / publishers)",
+    "subtitle": "Read Privacy, Terms, and Disclaimer — especially for cookies, ads, and third-party APIs."
+  },
+  "home": {
+    "welcomeTitle": "Welcome to PracticalKit",
+    "welcomeLead": "A calm, browser-first toolbox for PDFs, images, data, and everyday conversions. We prefer local processing so your files stay on your device whenever the tool allows it.",
+    "welcomeCta": "Explore tools",
+    "toolsSectionTitle": "All tools",
+    "lead": "Browser-first utilities for everyday work. Processing stays in your device when possible; see each tool for details.",
+    "privacyNote": "Designed for Pages/CDN hosting. Prefer client-side processing to keep your files off servers."
+  },
+  "common": {
+    "run": "Run",
+    "copy": "Copy",
+    "clear": "Clear",
+    "download": "Download",
+    "upload": "Upload files",
+    "result": "Result",
+    "error": "Something went wrong",
+    "processing": "Working…",
+    "lang": "Language",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "aboutPage": {
+    "title": "About PracticalKit",
+    "p1": "PracticalKit is a browser-first toolbox for daily tasks such as PDF, image, data, text, and lightweight media utilities.",
+    "p2": "Our default design goal is local processing when feasible, with static hosting for speed, reliability, and lower operational risk.",
+    "p3": "Some tools call third-party APIs. Those tools display their own notices. Please avoid uploading confidential files to any online tool."
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "p1": "We do not require account registration to use the core tools.",
+    "p2": "For most tools, processing is completed in your browser and files are not sent to our servers by default.",
+    "p3": "We may collect basic analytics, crash, and anti-abuse telemetry to keep the service stable and secure.",
+    "p4": "Ads are provided by Google AdSense and may use cookies or similar technologies based on your region and consent settings.",
+    "p5": "Third-party APIs are used only on pages that explicitly mention them. Review each provider's policy before submitting sensitive data."
+  },
+  "termsPage": {
+    "title": "Terms of Use",
+    "p1": "The service is provided as-is without warranty. Tool outputs should be reviewed before legal, medical, financial, or safety-critical use.",
+    "p2": "You must not use this site for illegal content, abuse, scraping attacks, malware distribution, or other harmful activity.",
+    "p3": "You are responsible for the files and content you process. Ensure you have permission to upload and transform that content.",
+    "p4": "We may update, suspend, or remove tools to keep the service compliant, secure, and sustainable."
+  },
+  "disclaimerPage": {
+    "title": "Disclaimer",
+    "p1": "This website provides general-purpose utility tools and does not provide professional legal, tax, financial, medical, or engineering advice.",
+    "p2": "Compression ratios and conversion quality can vary by input characteristics, especially for noisy images or videos.",
+    "p3": "No guarantee is made that every file format edge case is supported. Keep backups of your original files."
+  },
+  "contactPage": {
+    "title": "Contact",
+    "p1": "For business, copyright, abuse, or policy requests, contact us at:",
+    "email": "371920029173abcd@gmail.com",
+    "p2": "When reporting a bug, include browser version, locale, tool page, and reproducible steps."
+  },
+  "pdf": {
+    "title": "PDF tools",
+    "merge": "Merge",
+    "split": "Split into one PDF per page",
+    "compress": "Re-save (may shrink some files)",
+    "toImages": "Pages to PNG (zip)",
+    "toWord": "Extract text to .docx",
+    "pickPdf": "Choose PDF files",
+    "splitBtn": "Split & download zip",
+    "mergeBtn": "Merge & download",
+    "toImagesBtn": "Render & zip"
+  },
+  "image": {
+    "title": "Image tools",
+    "compress": "Compress (lossy)",
+    "convert": "Convert format",
+    "convertHint": "Includes PNG, JPEG, WebP, AVIF (when supported), and RGBV3D (.rgbv3d) lossless export.",
+    "ocr": "OCR (Tesseract.js)",
+    "pickImage": "Choose image",
+    "targetFormat": "Output format"
+  },
+  "data": {
+    "title": "JSON / XML / YAML",
+    "format": "Format",
+    "minify": "Minify",
+    "validate": "Validate"
+  },
+  "text": {
+    "title": "Text utilities",
+    "stats": "Stats",
+    "dedupe": "Deduplicate lines",
+    "blank": "Remove empty lines",
+    "case": "Case transforms",
+    "han": "Chinese Traditional ↔ Simplified"
+  },
+  "qr": {
+    "title": "QR code",
+    "gen": "Generate",
+    "scan": "Decode from image"
+  },
+  "units": {
+    "title": "Unit converter",
+    "length": "Length",
+    "mass": "Mass",
+    "temp": "Temperature",
+    "speed": "Speed",
+    "area": "Area",
+    "volume": "Volume"
+  },
+  "time": {
+    "title": "Unix time",
+    "now": "Now",
+    "toDate": "Timestamp → local",
+    "toTs": "Local → seconds/ms"
+  },
+  "calc": {
+    "title": "Calculator",
+    "expr": "Expression (mathjs)",
+    "sciNote": "Use sqrt, sin, cos, log, pi, e, …"
+  },
+  "encoding": {
+    "title": "Encoders",
+    "b64": "Base64",
+    "url": "URL encode/decode"
+  },
+  "password": {
+    "title": "Password generator",
+    "len": "Length",
+    "symbols": "Symbols"
+  },
+  "translate": {
+    "title": "Translate (MyMemory free API)",
+    "from": "From",
+    "to": "To",
+    "disclaimer": "Third-party API — do not send secrets."
+  },
+  "code": {
+    "title": "Code tools",
+    "highlight": "Highlight",
+    "diff": "Diff"
+  },
+  "money": {
+    "title": "FX (open.er-api.com demo)",
+    "base": "Base",
+    "refresh": "Refresh"
+  },
+  "markdown": {
+    "title": "Markdown",
+    "preview": "Preview"
+  },
+  "random": {
+    "title": "Random / identifiers",
+    "uuid": "UUID v4",
+    "bytes": "Random hex",
+    "serial": "Serial pattern (####)"
+  },
+  "color": {
+    "title": "Color picker",
+    "hex": "HEX",
+    "rgb": "RGB"
+  },
+  "videoGif": {
+    "title": "Video convert",
+    "note": "Loads ffmpeg.wasm on demand — first run downloads ~25MB.",
+    "outputLabel": "Output format",
+    "fmtGif": "GIF",
+    "fmtMp4": "MP4 (H.264)",
+    "fmtWebm": "WebM (VP9)"
+  },
+  "audio": {
+    "title": "Audio convert",
+    "note": "Experimental ffmpeg.wasm path; keep files small.",
+    "pick": "Choose audio or video",
+    "fmtMp3": "MP3",
+    "fmtWav": "WAV",
+    "fmtAac": "AAC",
+    "fmtM4a": "M4A (AAC)",
+    "fmtOgg": "OGG (Vorbis)",
+    "fmtFlac": "FLAC",
+    "fmtOpus": "Opus (OGG)"
+  },
+  "regex": {
+    "title": "Regex tester",
+    "pattern": "Pattern",
+    "flags": "Flags",
+    "haystack": "Text"
+  },
+  "rgbv3d": {
+    "title": "RGBV3D lossless",
+    "body": "Lossless RGB container (.rgbv3d) ships in the sibling folder rgbv3d-ecosystem. Browser viewer is bundled there; this page links to the format notes in PROJECT_OUTLINE.md when you self-host the viewer static files.",
+    "encodeLead": "Encode raster images to the vector-primary lossless profile in your browser.",
+    "encodeSection": "Encode to .rgbv3d",
+    "browseSection": "Browse / decode",
+    "browseLead": "Decode a .rgbv3d file and preview the image below — no server upload.",
+    "encodeOnly": "Encode and decode run locally in your browser.",
+    "pickFile": "Image file (PNG, JPEG, WebP, …)",
+    "pickRgbv3d": "Open .rgbv3d to preview",
+    "clearPreview": "Clear preview",
+    "dirBits": "Direction codebook",
+    "dirBits8": "8-bit (smaller header)",
+    "dirBits9": "9-bit (finer direction grid)",
+    "bytes": "Uncompressed RGB vs .rgbv3d",
+    "ofRaw": "of raw RGB",
+    "errorLoad": "Could not read the image.",
+    "errorDecode": "Could not decode this .rgbv3d file.",
+    "downloadCli": "Video containers and benchmarks: build rgbv3d-ecosystem/packages/cli (npm run build)."
+  },
+  "hashPage": {
+    "title": "SHA hash",
+    "note": "SHA-256 / 384 / 512 in your browser. Text or file.",
+    "algo": "Algorithm",
+    "textIn": "Text",
+    "fileIn": "File",
+    "run": "Hash",
+    "digest": "Hex digest",
+    "empty": "Empty input or file."
+  },
+  "jwtPage": {
+    "title": "JWT decoder",
+    "note": "Decodes header and payload (Base64URL). Does not verify signatures.",
+    "paste": "Paste JWT",
+    "decode": "Decode",
+    "invalid": "Invalid JWT structure.",
+    "header": "Header",
+    "payload": "Payload"
+  },
+  "csvJsonPage": {
+    "title": "CSV ↔ JSON",
+    "note": "Simple CSV with quoted fields supported. For large files use desktop tools.",
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV",
+    "csv": "CSV",
+    "json": "JSON",
+    "convert": "Convert",
+    "err": "Conversion failed"
+  },
+  "slugPage": {
+    "title": "Slug / URL segment",
+    "note": "Lowercase, diacritics stripped, spaces to hyphens.",
+    "input": "Text",
+    "output": "Slug",
+    "run": "Generate"
+  },
+  "htmlEntitiesPage": {
+    "title": "HTML entities",
+    "note": "Encode & decode common HTML entities.",
+    "encode": "Encode",
+    "decode": "Decode",
+    "input": "Input",
+    "output": "Output"
+  },
+  "cssMinPage": {
+    "title": "CSS minify",
+    "note": "Removes comments and extra whitespace. Check output before production.",
+    "input": "CSS",
+    "output": "Minified",
+    "run": "Minify"
+  },
+  "loremPage": {
+    "title": "Lorem ipsum",
+    "note": "Placeholder text for layout.",
+    "paragraphs": "Paragraphs",
+    "words": "Words per paragraph",
+    "run": "Generate"
+  },
+  "jsonDiffPage": {
+    "title": "JSON diff",
+    "note": "Compares pretty-printed JSON (sorted keys). Large files may be slow.",
+    "a": "JSON A",
+    "b": "JSON B",
+    "run": "Diff",
+    "parseErr": "Invalid JSON"
+  },
+  "unicodePage": {
+    "title": "Unicode inspector",
+    "note": "Code points per character (UTF-16 aware for astral planes).",
+    "input": "Text",
+    "run": "Inspect",
+    "output": "Code points"
+  },
+  "cidrPage": {
+    "title": "CIDR / IPv4 subnet",
+    "note": "IPv4 calculator only. For educational use.",
+    "input": "CIDR (e.g. 192.168.1.0/24)",
+    "run": "Calculate",
+    "network": "Network",
+    "broadcast": "Broadcast",
+    "mask": "Subnet mask",
+    "hosts": "Usable hosts",
+    "hostsTotal": "addresses in block",
+    "invalid": "Invalid CIDR"
+  },
+  "functionPlotPage": {
+    "title": "Function plotter",
+    "note": "Plot a math expression on a custom range.",
+    "expr": "Expression f(x)",
+    "xMin": "X min",
+    "xMax": "X max",
+    "yMin": "Y min",
+    "yMax": "Y max",
+    "plot": "Plot",
+    "invalid": "Invalid expression or range."
+  },
+  "cronPage": {
+    "title": "Cron helper",
+    "note": "Build and read 5-field cron schedules.",
+    "expr": "Cron expression",
+    "run": "Parse",
+    "invalid": "Invalid cron expression.",
+    "min": "Minute",
+    "hour": "Hour",
+    "dom": "Day of month",
+    "mon": "Month",
+    "dow": "Day of week",
+    "explain": "Explanation"
+  },
+  "httpStatusPage": {
+    "title": "HTTP status",
+    "note": "Find the meaning of an HTTP status code quickly.",
+    "input": "Status code",
+    "search": "Search",
+    "notFound": "Status code not found."
+  },
+  "apiSnippetPage": {
+    "title": "API snippets",
+    "note": "Generate request snippets for quick testing.",
+    "url": "URL",
+    "method": "Method",
+    "headers": "Headers",
+    "body": "Body",
+    "run": "Generate",
+    "curl": "cURL",
+    "fetch": "fetch"
+  }
+}

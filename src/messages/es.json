@@ -1,0 +1,394 @@
+{
+  "brand": "PracticalKit",
+  "nav": {
+    "home": "Inicio",
+    "pdf": "PDF",
+    "image": "Imagen",
+    "data": "JSON / XML / YAML",
+    "text": "Texto",
+    "qr": "Código QR",
+    "units": "Unidades",
+    "time": "Marca de tiempo",
+    "calc": "Calculadora",
+    "encoding": "Base64 / URL",
+    "password": "Contraseña",
+    "translate": "Traducir",
+    "code": "Código",
+    "money": "Tipo de cambio",
+    "markdown": "Markdown",
+    "random": "Aleatorio / ID",
+    "color": "Color",
+    "videoGif": "Vídeo",
+    "audio": "Audio",
+    "regex": "Regex",
+    "rgbv3d": "RGBV3D",
+    "hash": "SHA hash",
+    "jwt": "Decodificador JWT",
+    "csvJson": "CSV ↔ JSON",
+    "slug": "Slug / URL",
+    "htmlEntities": "Entidades HTML",
+    "cssMin": "CSS minify",
+    "lorem": "Lorem ipsum",
+    "jsonDiff": "JSON diff",
+    "unicode": "Unicode",
+    "cidr": "CIDR / subred",
+    "functionPlot": "Gráfica de funciones",
+    "cron": "Cron",
+    "httpStatus": "Estado HTTP",
+    "apiSnippet": "Snippet API",
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "disclaimer": "Descargo",
+    "contact": "Contacto"
+  },
+  "navGroup": {
+    "documents": "Documentos",
+    "media": "Medios",
+    "dataDev": "Datos y desarrollo",
+    "daily": "Uso diario",
+    "math": "Matemáticas",
+    "extras": "Más herramientas",
+    "legal": "Legal y cumplimiento"
+  },
+  "langNames": {
+    "en": "Inglés (English)",
+    "zh": "Chino (简体中文)",
+    "ru": "Ruso (Русский)",
+    "es": "Español (Español)"
+  },
+  "legalStrip": {
+    "title": "Transparencia y políticas (AdSense / editores)",
+    "subtitle": "Antes de usar funciones con anuncios, lee Privacidad, Términos y Descargo — especialmente cookies, anuncios y APIs de terceros."
+  },
+  "home": {
+    "welcomeTitle": "Bienvenido a PracticalKit",
+    "welcomeLead": "Utilidades en el navegador para PDF, imágenes, datos y conversiones cotidianas. Cuando es posible, el procesamiento es local en tu dispositivo.",
+    "welcomeCta": "Ver herramientas",
+    "toolsSectionTitle": "Todas las herramientas",
+    "lead": "Utilidades en el navegador. Cuando es posible, el procesamiento es local; revisa cada herramienta.",
+    "privacyNote": "Pensado para hosting estático; preferimos procesamiento en el cliente."
+  },
+  "common": {
+    "run": "Ejecutar",
+    "copy": "Copiar",
+    "clear": "Limpiar",
+    "download": "Descargar",
+    "upload": "Subir archivos",
+    "result": "Resultado",
+    "error": "Error",
+    "processing": "Procesando…",
+    "lang": "Idioma",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "aboutPage": {
+    "title": "Acerca de PracticalKit",
+    "p1": "PracticalKit es un conjunto de utilidades en navegador para PDF, imágenes, datos, texto y tareas ligeras de medios.",
+    "p2": "Nuestro objetivo por defecto es procesar localmente cuando sea posible y usar hosting estático para velocidad y estabilidad.",
+    "p3": "Algunas herramientas usan APIs de terceros y lo indican en su página. No subas información confidencial."
+  },
+  "privacyPage": {
+    "title": "Política de privacidad",
+    "p1": "No se requiere registro para usar la mayoría de herramientas.",
+    "p2": "En la mayoría de casos, el procesamiento ocurre en tu navegador y no enviamos archivos a nuestros servidores por defecto.",
+    "p3": "Podemos recopilar analítica básica, fallos y telemetría antiabuso para mantener la seguridad y estabilidad.",
+    "p4": "Los anuncios de Google AdSense pueden usar cookies según tu región y tu consentimiento.",
+    "p5": "Las APIs de terceros solo se usan en páginas que lo indican explícitamente. Revisa sus políticas antes de enviar datos sensibles."
+  },
+  "termsPage": {
+    "title": "Términos de uso",
+    "p1": "El servicio se ofrece tal cual, sin garantías. Verifica resultados antes de uso legal, médico, financiero o crítico.",
+    "p2": "No debes usar este sitio para actividades ilegales, abuso, malware o acciones dañinas.",
+    "p3": "Eres responsable de los archivos y contenido que procesas y de tener permisos para hacerlo.",
+    "p4": "Podemos actualizar, suspender o retirar herramientas para mantener cumplimiento, seguridad y sostenibilidad."
+  },
+  "disclaimerPage": {
+    "title": "Descargo de responsabilidad",
+    "p1": "Este sitio ofrece utilidades generales y no constituye asesoría profesional legal, fiscal, financiera, médica o de ingeniería.",
+    "p2": "La tasa de compresión y la calidad de conversión dependen del contenido de entrada, sobre todo en imágenes o videos con ruido.",
+    "p3": "No se garantiza cobertura de todos los casos límite de formatos. Conserva siempre tus archivos originales."
+  },
+  "contactPage": {
+    "title": "Contacto",
+    "p1": "Para negocio, copyright, abuso o temas de política, contáctanos en:",
+    "email": "371920029173abcd@gmail.com",
+    "p2": "Al reportar errores incluye navegador, idioma, página de herramienta y pasos de reproducción."
+  },
+  "pdf": {
+    "title": "Herramientas PDF",
+    "merge": "Unir",
+    "split": "Separar por página",
+    "compress": "Re-guardar",
+    "toImages": "Páginas a PNG (zip)",
+    "toWord": "Texto a .docx",
+    "pickPdf": "Elegir PDF",
+    "splitBtn": "Separar zip",
+    "mergeBtn": "Unir",
+    "toImagesBtn": "Render zip"
+  },
+  "image": {
+    "title": "Imagen",
+    "compress": "Comprimir",
+    "convert": "Convertir",
+    "convertHint": "Incluye PNG, JPEG, WebP, AVIF (si el navegador lo permite) y RGBV3D (.rgbv3d) sin pérdida.",
+    "ocr": "OCR (Tesseract.js)",
+    "pickImage": "Elegir imagen",
+    "targetFormat": "Formato de salida"
+  },
+  "data": {
+    "title": "JSON / XML / YAML",
+    "format": "Formatear",
+    "minify": "Minificar",
+    "validate": "Validar"
+  },
+  "text": {
+    "title": "Texto",
+    "stats": "Estadísticas",
+    "dedupe": "Líneas únicas",
+    "blank": "Quitar vacías",
+    "case": "Mayúsculas",
+    "han": "Chino trad/simp"
+  },
+  "qr": {
+    "title": "QR",
+    "gen": "Generar",
+    "scan": "Desde imagen"
+  },
+  "units": {
+    "title": "Unidades",
+    "length": "Longitud",
+    "mass": "Masa",
+    "temp": "Temperatura",
+    "speed": "Velocidad",
+    "area": "Área",
+    "volume": "Volumen"
+  },
+  "time": {
+    "title": "Unix",
+    "now": "Ahora",
+    "toDate": "Unix → fecha",
+    "toTs": "Fecha → unix"
+  },
+  "calc": {
+    "title": "Calculadora",
+    "expr": "Expresión (mathjs)",
+    "sciNote": "sqrt, sin, cos, log, pi, e…"
+  },
+  "encoding": {
+    "title": "Codificación",
+    "b64": "Base64",
+    "url": "URL"
+  },
+  "password": {
+    "title": "Generador",
+    "len": "Longitud",
+    "symbols": "Símbolos"
+  },
+  "translate": {
+    "title": "Traducir (MyMemory)",
+    "from": "De",
+    "to": "A",
+    "disclaimer": "API de terceros — no secretos."
+  },
+  "code": {
+    "title": "Código",
+    "highlight": "Resaltar",
+    "diff": "Diff"
+  },
+  "money": {
+    "title": "FX",
+    "base": "Base",
+    "refresh": "Refrescar"
+  },
+  "markdown": {
+    "title": "Markdown",
+    "preview": "Vista previa"
+  },
+  "random": {
+    "title": "Aleatorio",
+    "uuid": "UUID v4",
+    "bytes": "hex",
+    "serial": "Serie ####"
+  },
+  "color": {
+    "title": "Color",
+    "hex": "HEX",
+    "rgb": "RGB"
+  },
+  "videoGif": {
+    "title": "Vídeo",
+    "note": "ffmpeg.wasm; primera carga ~25MB.",
+    "outputLabel": "Formato de salida",
+    "fmtGif": "GIF",
+    "fmtMp4": "MP4 (H.264)",
+    "fmtWebm": "WebM (VP9)"
+  },
+  "audio": {
+    "title": "Audio",
+    "note": "Experimental; archivos pequeños.",
+    "pick": "Elegir audio o vídeo",
+    "fmtMp3": "MP3",
+    "fmtWav": "WAV",
+    "fmtAac": "AAC",
+    "fmtM4a": "M4A (AAC)",
+    "fmtOgg": "OGG (Vorbis)",
+    "fmtFlac": "FLAC",
+    "fmtOpus": "Opus (OGG)"
+  },
+  "regex": {
+    "title": "Regex",
+    "pattern": "Patrón",
+    "flags": "Flags",
+    "haystack": "Texto"
+  },
+  "rgbv3d": {
+    "title": "RGBV3D sin pérdida",
+    "body": "Contenedor .rgbv3d en rgbv3d-ecosystem; visor en el paquete viewer.",
+    "encodeLead": "Codifica imágenes raster en el navegador al perfil vector-v2 sin pérdida.",
+    "encodeSection": "Codificar a .rgbv3d",
+    "browseSection": "Ver / decodificar",
+    "browseLead": "Abre un .rgbv3d y previsualiza la imagen abajo — sin subir al servidor.",
+    "encodeOnly": "Codificación y decodificación se ejecutan localmente en tu navegador.",
+    "pickFile": "Imagen (PNG, JPEG, WebP…)",
+    "pickRgbv3d": "Abrir .rgbv3d para vista previa",
+    "clearPreview": "Quitar vista previa",
+    "dirBits": "Libro de códigos de dirección",
+    "dirBits8": "8 bits",
+    "dirBits9": "9 bits",
+    "bytes": "RGB sin comprimir vs .rgbv3d",
+    "ofRaw": "del RGB bruto",
+    "errorLoad": "No se pudo leer la imagen.",
+    "errorDecode": "No se pudo decodificar este archivo .rgbv3d.",
+    "downloadCli": "Contenedores de vídeo y benchmarks: compila rgbv3d-ecosystem/packages/cli (npm run build)."
+  },
+  "hashPage": {
+    "title": "SHA hash",
+    "note": "SHA-256/384/512 en el navegador. Texto o archivo.",
+    "algo": "Algoritmo",
+    "textIn": "Texto",
+    "fileIn": "Archivo",
+    "run": "Hash",
+    "digest": "Digest hex",
+    "empty": "Entrada vacía."
+  },
+  "jwtPage": {
+    "title": "Decodificador JWT",
+    "note": "Decodifica header y payload (Base64URL). No verifica firma.",
+    "paste": "Pega el JWT",
+    "decode": "Decodificar",
+    "invalid": "JWT inválido.",
+    "header": "Header",
+    "payload": "Payload"
+  },
+  "csvJsonPage": {
+    "title": "CSV ↔ JSON",
+    "note": "CSV simple con campos entre comillas. Archivos grandes: usa escritorio.",
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV",
+    "csv": "CSV",
+    "json": "JSON",
+    "convert": "Convertir",
+    "err": "Error de conversión"
+  },
+  "slugPage": {
+    "title": "Slug / segmento URL",
+    "note": "Minúsculas, sin acentos, espacios a guiones.",
+    "input": "Texto",
+    "output": "Slug",
+    "run": "Generar"
+  },
+  "htmlEntitiesPage": {
+    "title": "Entidades HTML",
+    "note": "Codificar y decodificar entidades comunes.",
+    "encode": "Codificar",
+    "decode": "Decodificar",
+    "input": "Entrada",
+    "output": "Salida"
+  },
+  "cssMinPage": {
+    "title": "CSS minify",
+    "note": "Quita comentarios y espacios extra.",
+    "input": "CSS",
+    "output": "Minificado",
+    "run": "Minificar"
+  },
+  "loremPage": {
+    "title": "Lorem ipsum",
+    "note": "Texto de relleno.",
+    "paragraphs": "Párrafos",
+    "words": "Palabras por párrafo",
+    "run": "Generar"
+  },
+  "jsonDiffPage": {
+    "title": "JSON diff",
+    "note": "Compara JSON formateado (claves ordenadas).",
+    "a": "JSON A",
+    "b": "JSON B",
+    "run": "Diff",
+    "parseErr": "JSON inválido"
+  },
+  "unicodePage": {
+    "title": "Inspector Unicode",
+    "note": "Puntos de código por carácter.",
+    "input": "Texto",
+    "run": "Inspeccionar",
+    "output": "Códigos"
+  },
+  "cidrPage": {
+    "title": "CIDR / subred IPv4",
+    "note": "Solo IPv4.",
+    "input": "CIDR (ej. 192.168.1.0/24)",
+    "run": "Calcular",
+    "network": "Red",
+    "broadcast": "Broadcast",
+    "mask": "Máscara",
+    "hosts": "Hosts usables",
+    "hostsTotal": "direcciones en bloque",
+    "invalid": "CIDR inválido"
+  },
+  "functionPlotPage": {
+    "title": "Gráfica de funciones",
+    "note": "Traza y = f(x) dentro de un rango definido.",
+    "expr": "Expresión f(x)",
+    "xMin": "X mínimo",
+    "xMax": "X máximo",
+    "yMin": "Y mínimo",
+    "yMax": "Y máximo",
+    "plot": "Graficar",
+    "invalid": "Expresión o rango inválido"
+  },
+  "cronPage": {
+    "title": "Expresión Cron",
+    "note": "Construye una expresión cron y revisa su significado.",
+    "expr": "Expresión cron",
+    "run": "Validar",
+    "invalid": "Expresión cron inválida",
+    "min": "Minuto",
+    "hour": "Hora",
+    "dom": "Día del mes",
+    "mon": "Mes",
+    "dow": "Día de la semana",
+    "explain": "Explicación"
+  },
+  "httpStatusPage": {
+    "title": "Estado HTTP",
+    "note": "Busca códigos de estado HTTP por número o texto.",
+    "input": "Código o descripción",
+    "search": "Buscar",
+    "notFound": "Estado no encontrado"
+  },
+  "apiSnippetPage": {
+    "title": "Snippet API",
+    "note": "Genera una solicitud y obtén ejemplos en curl y fetch.",
+    "url": "URL",
+    "method": "Método",
+    "headers": "Encabezados",
+    "body": "Cuerpo",
+    "run": "Generar",
+    "curl": "curl",
+    "fetch": "fetch"
+  }
+}

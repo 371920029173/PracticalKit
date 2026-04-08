@@ -1,0 +1,394 @@
+{
+  "brand": "实用工具箱",
+  "nav": {
+    "home": "首页",
+    "pdf": "PDF",
+    "image": "图片",
+    "data": "JSON/XML/YAML",
+    "text": "文本",
+    "qr": "二维码",
+    "units": "单位换算",
+    "time": "时间戳",
+    "calc": "计算器",
+    "encoding": "Base64/URL",
+    "password": "密码",
+    "translate": "翻译",
+    "code": "代码",
+    "money": "汇率",
+    "markdown": "Markdown",
+    "random": "随机/编号",
+    "color": "取色",
+    "videoGif": "视频",
+    "audio": "音频转换",
+    "regex": "正则",
+    "rgbv3d": "RGBV3D",
+    "hash": "SHA 哈希",
+    "jwt": "JWT 解码",
+    "csvJson": "CSV ↔ JSON",
+    "slug": "Slug / URL",
+    "htmlEntities": "HTML 实体",
+    "cssMin": "CSS 压缩",
+    "lorem": "Lorem 文本",
+    "jsonDiff": "JSON 对比",
+    "unicode": "Unicode",
+    "cidr": "CIDR 子网",
+    "functionPlot": "函数图像",
+    "cron": "Cron 表达式",
+    "httpStatus": "HTTP 状态码",
+    "apiSnippet": "API 代码片段",
+    "about": "关于",
+    "privacy": "隐私",
+    "terms": "条款",
+    "disclaimer": "免责声明",
+    "contact": "联系"
+  },
+  "navGroup": {
+    "documents": "文档",
+    "media": "媒体",
+    "dataDev": "数据与开发",
+    "daily": "日常工具",
+    "math": "数学工具",
+    "extras": "更多工具",
+    "legal": "法律与合规"
+  },
+  "langNames": {
+    "en": "English（英语）",
+    "zh": "中文（简体）",
+    "ru": "俄语（Русский）",
+    "es": "西班牙语（Español）"
+  },
+  "legalStrip": {
+    "title": "透明度与政策（AdSense / 发布商）",
+    "subtitle": "使用含广告的功能前，请阅读隐私政策、服务条款与免责声明，尤其是 Cookie、广告与第三方接口。"
+  },
+  "home": {
+    "welcomeTitle": "欢迎使用 PracticalKit",
+    "welcomeLead": "面向日常工作的浏览器工具集：PDF、图片、数据与各类转换。在可行时优先本地处理，让你的文件尽量留在本机。",
+    "welcomeCta": "进入工具列表",
+    "toolsSectionTitle": "全部工具",
+    "lead": "面向日常工作的浏览器工具；尽量在本地处理，具体见各工具说明。",
+    "privacyNote": "面向静态托管；优先客户端处理，减少文件经过服务器。"
+  },
+  "common": {
+    "run": "执行",
+    "copy": "复制",
+    "clear": "清空",
+    "download": "下载",
+    "upload": "上传文件",
+    "result": "结果",
+    "error": "出错了",
+    "processing": "处理中…",
+    "lang": "语言",
+    "themeLight": "浅色",
+    "themeDark": "深色",
+    "menu": "菜单",
+    "close": "关闭"
+  },
+  "aboutPage": {
+    "title": "关于 PracticalKit",
+    "p1": "PracticalKit 是一个以浏览器端为主的实用工具站，覆盖 PDF、图片、数据、文本和轻量媒体工具。",
+    "p2": "默认目标是在可行情况下尽量本地处理，并采用静态托管提升速度、稳定性与可维护性。",
+    "p3": "部分工具会调用第三方 API，相关页面会单独提示。请勿上传机密文件。"
+  },
+  "privacyPage": {
+    "title": "隐私政策",
+    "p1": "使用本站核心工具通常不需要注册账号。",
+    "p2": "多数工具默认在浏览器内完成处理，文件不会上传到我们的服务器。",
+    "p3": "我们可能收集基础访问统计、崩溃与反滥用数据，用于保障服务稳定与安全。",
+    "p4": "广告由 Google AdSense 提供，可能会根据地区和同意状态使用 Cookie 或类似技术。",
+    "p5": "仅在明确说明的页面会调用第三方 API；提交敏感内容前请阅读对应服务商政策。"
+  },
+  "termsPage": {
+    "title": "使用条款",
+    "p1": "本服务按“现状”提供，不作任何担保。用于法律、医疗、金融等关键场景前请自行复核结果。",
+    "p2": "禁止将本站用于违法内容、攻击滥用、恶意软件传播或其他有害行为。",
+    "p3": "你需对上传与处理的文件负责，并确保你对相关内容拥有合法权限。",
+    "p4": "为确保合规与安全，我们可能更新、暂停或下线部分功能。"
+  },
+  "disclaimerPage": {
+    "title": "免责声明",
+    "p1": "本站提供通用工具，不构成法律、税务、金融、医疗或工程等专业建议。",
+    "p2": "压缩率和转换质量会随输入特征变化，噪声图像/视频尤其明显。",
+    "p3": "不保证覆盖所有文件格式边界情况，请务必保留原始文件备份。"
+  },
+  "contactPage": {
+    "title": "联系我们",
+    "p1": "商务、版权、滥用举报或政策沟通，请联系：",
+    "email": "371920029173abcd@gmail.com",
+    "p2": "反馈问题时请附带浏览器版本、语言、工具页面和可复现步骤。"
+  },
+  "pdf": {
+    "title": "PDF 工具",
+    "merge": "合并",
+    "split": "按页拆分",
+    "compress": "重打包（部分文件会变小）",
+    "toImages": "页面转 PNG（zip）",
+    "toWord": "提取文本为 .docx",
+    "pickPdf": "选择 PDF",
+    "splitBtn": "拆分并下载 zip",
+    "mergeBtn": "合并并下载",
+    "toImagesBtn": "渲染并打包"
+  },
+  "image": {
+    "title": "图片工具",
+    "compress": "压缩（有损）",
+    "convert": "格式转换",
+    "convertHint": "支持 PNG、JPEG、WebP、AVIF（浏览器支持时）以及 RGBV3D（.rgbv3d）无损导出。",
+    "ocr": "OCR（Tesseract.js）",
+    "pickImage": "选择图片",
+    "targetFormat": "输出格式"
+  },
+  "data": {
+    "title": "JSON / XML / YAML",
+    "format": "格式化",
+    "minify": "压缩",
+    "validate": "校验"
+  },
+  "text": {
+    "title": "文本工具",
+    "stats": "统计",
+    "dedupe": "行去重",
+    "blank": "删空行",
+    "case": "大小写",
+    "han": "繁简转换"
+  },
+  "qr": {
+    "title": "二维码",
+    "gen": "生成",
+    "scan": "从图片解码"
+  },
+  "units": {
+    "title": "单位换算",
+    "length": "长度",
+    "mass": "质量",
+    "temp": "温度",
+    "speed": "速度",
+    "area": "面积",
+    "volume": "体积"
+  },
+  "time": {
+    "title": "Unix 时间",
+    "now": "当前",
+    "toDate": "时间戳 → 本地时间",
+    "toTs": "本地时间 → 秒/毫秒"
+  },
+  "calc": {
+    "title": "计算器",
+    "expr": "表达式（mathjs）",
+    "sciNote": "可用 sqrt、sin、cos、log、pi、e 等"
+  },
+  "encoding": {
+    "title": "编码工具",
+    "b64": "Base64",
+    "url": "URL 编解码"
+  },
+  "password": {
+    "title": "密码生成",
+    "len": "长度",
+    "symbols": "符号"
+  },
+  "translate": {
+    "title": "翻译（MyMemory 免费接口）",
+    "from": "源语言",
+    "to": "目标语言",
+    "disclaimer": "第三方接口，勿提交机密内容。"
+  },
+  "code": {
+    "title": "代码工具",
+    "highlight": "高亮",
+    "diff": "对比"
+  },
+  "money": {
+    "title": "汇率（open.er-api.com）",
+    "base": "基准货币",
+    "refresh": "刷新"
+  },
+  "markdown": {
+    "title": "Markdown",
+    "preview": "预览"
+  },
+  "random": {
+    "title": "随机 / 标识",
+    "uuid": "UUID v4",
+    "bytes": "随机 hex",
+    "serial": "序列号模式 ####"
+  },
+  "color": {
+    "title": "取色 / 转换",
+    "hex": "HEX",
+    "rgb": "RGB"
+  },
+  "videoGif": {
+    "title": "视频转换",
+    "note": "按需加载 ffmpeg.wasm，首次约 25MB 下载。",
+    "outputLabel": "输出格式",
+    "fmtGif": "GIF",
+    "fmtMp4": "MP4（H.264）",
+    "fmtWebm": "WebM（VP9）"
+  },
+  "audio": {
+    "title": "音频转换",
+    "note": "实验性 ffmpeg.wasm；请使用较小文件。",
+    "pick": "选择音频或视频",
+    "fmtMp3": "MP3",
+    "fmtWav": "WAV",
+    "fmtAac": "AAC",
+    "fmtM4a": "M4A（AAC）",
+    "fmtOgg": "OGG（Vorbis）",
+    "fmtFlac": "FLAC",
+    "fmtOpus": "Opus（OGG）"
+  },
+  "regex": {
+    "title": "正则测试",
+    "pattern": "模式",
+    "flags": "标记",
+    "haystack": "文本"
+  },
+  "rgbv3d": {
+    "title": "RGBV3D 无损",
+    "body": "无损 RGB 容器（.rgbv3d）在 rgbv3d-ecosystem 中提供；浏览器预览见该包的 viewer。自托管时可放静态文件。",
+    "encodeLead": "在浏览器中将光栅图编码为向量主路径无损格式。",
+    "encodeSection": "编码为 .rgbv3d",
+    "browseSection": "浏览 / 解码",
+    "browseLead": "打开 .rgbv3d 文件，在下方预览解码结果（不上传服务器）。",
+    "encodeOnly": "编码与解码均在浏览器本地完成。",
+    "pickFile": "图片文件（PNG/JPEG/WebP 等）",
+    "pickRgbv3d": "打开 .rgbv3d 预览",
+    "clearPreview": "清除预览",
+    "dirBits": "方向码本",
+    "dirBits8": "8 位（开销更小）",
+    "dirBits9": "9 位（方向更细）",
+    "bytes": "未压缩 RGB 与 .rgbv3d",
+    "ofRaw": "占原始 RGB",
+    "errorLoad": "无法读取该图片。",
+    "errorDecode": "无法解码该 .rgbv3d 文件。",
+    "downloadCli": "视频容器与基准测试：构建 rgbv3d-ecosystem/packages/cli（npm run build）。"
+  },
+  "hashPage": {
+    "title": "SHA 哈希",
+    "note": "在浏览器中计算 SHA-256 / 384 / 512。支持文本或文件。",
+    "algo": "算法",
+    "textIn": "文本",
+    "fileIn": "文件",
+    "run": "计算",
+    "digest": "十六进制摘要",
+    "empty": "输入为空。"
+  },
+  "jwtPage": {
+    "title": "JWT 解码",
+    "note": "解析 Header 与 Payload（Base64URL）。不验证签名。",
+    "paste": "粘贴 JWT",
+    "decode": "解码",
+    "invalid": "JWT 结构无效。",
+    "header": "Header",
+    "payload": "Payload"
+  },
+  "csvJsonPage": {
+    "title": "CSV ↔ JSON",
+    "note": "支持引号字段的 CSV。超大文件请用桌面工具。",
+    "csvToJson": "CSV → JSON",
+    "jsonToCsv": "JSON → CSV",
+    "csv": "CSV",
+    "json": "JSON",
+    "convert": "转换",
+    "err": "转换失败"
+  },
+  "slugPage": {
+    "title": "Slug / URL 段",
+    "note": "小写、去重音、空格变连字符。",
+    "input": "文本",
+    "output": "Slug",
+    "run": "生成"
+  },
+  "htmlEntitiesPage": {
+    "title": "HTML 实体",
+    "note": "编码与解码常见 HTML 实体。",
+    "encode": "编码",
+    "decode": "解码",
+    "input": "输入",
+    "output": "输出"
+  },
+  "cssMinPage": {
+    "title": "CSS 压缩",
+    "note": "去除注释与多余空白。上线前请再检查。",
+    "input": "CSS",
+    "output": "压缩后",
+    "run": "压缩"
+  },
+  "loremPage": {
+    "title": "Lorem ipsum",
+    "note": "排版占位文本。",
+    "paragraphs": "段落数",
+    "words": "每段词数",
+    "run": "生成"
+  },
+  "jsonDiffPage": {
+    "title": "JSON 对比",
+    "note": "比较排序键后的格式化 JSON。大文件可能较慢。",
+    "a": "JSON A",
+    "b": "JSON B",
+    "run": "对比",
+    "parseErr": "JSON 无效"
+  },
+  "unicodePage": {
+    "title": "Unicode 查看",
+    "note": "按字符列出码位（含辅助平面）。",
+    "input": "文本",
+    "run": "解析",
+    "output": "码位"
+  },
+  "cidrPage": {
+    "title": "CIDR / IPv4 子网",
+    "note": "仅 IPv4 计算器。",
+    "input": "CIDR（如 192.168.1.0/24）",
+    "run": "计算",
+    "network": "网络地址",
+    "broadcast": "广播地址",
+    "mask": "子网掩码",
+    "hosts": "可用主机数",
+    "hostsTotal": "块内地址总数",
+    "invalid": "无效的 CIDR"
+  },
+  "functionPlotPage": {
+    "title": "函数图像",
+    "note": "输入表达式并设置坐标范围进行绘图。",
+    "expr": "表达式",
+    "xMin": "X 最小值",
+    "xMax": "X 最大值",
+    "yMin": "Y 最小值",
+    "yMax": "Y 最大值",
+    "plot": "绘制",
+    "invalid": "表达式或范围无效"
+  },
+  "cronPage": {
+    "title": "Cron 表达式",
+    "note": "解析并解释标准 Cron 表达式。",
+    "expr": "表达式",
+    "run": "解析",
+    "invalid": "无效的 Cron 表达式",
+    "min": "分钟",
+    "hour": "小时",
+    "dom": "日",
+    "mon": "月",
+    "dow": "周",
+    "explain": "解释"
+  },
+  "httpStatusPage": {
+    "title": "HTTP 状态码",
+    "note": "按状态码或关键字快速查询说明。",
+    "input": "输入状态码或关键词",
+    "search": "查询",
+    "notFound": "未找到匹配的状态码"
+  },
+  "apiSnippetPage": {
+    "title": "API 代码片段",
+    "note": "根据请求参数生成常见调用示例。",
+    "url": "请求 URL",
+    "method": "请求方法",
+    "headers": "请求头",
+    "body": "请求体",
+    "run": "生成",
+    "curl": "cURL",
+    "fetch": "fetch"
+  }
+}
