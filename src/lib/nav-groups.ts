@@ -83,6 +83,7 @@ export const NAV_GROUPS: NavGroup[] = [
     labelKey: "legal",
     links: [
       { href: "/about/", labelKey: "about" },
+      { href: "/blog/", labelKey: "blog" },
       { href: "/privacy/", labelKey: "privacy" },
       { href: "/terms/", labelKey: "terms" },
       { href: "/disclaimer/", labelKey: "disclaimer" },

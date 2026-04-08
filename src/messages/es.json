@@ -40,7 +40,8 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "disclaimer": "Descargo",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "blog": "Blog"
   },
   "navGroup": {
     "documents": "Documentos",
@@ -67,7 +68,10 @@
     "welcomeCta": "Ver herramientas",
     "toolsSectionTitle": "Todas las herramientas",
     "lead": "Utilidades en el navegador. Cuando es posible, el procesamiento es local; revisa cada herramienta.",
-    "privacyNote": "Pensado para hosting estático; preferimos procesamiento en el cliente."
+    "privacyNote": "Pensado para hosting estático; preferimos procesamiento en el cliente.",
+    "editorialTitle": "Quién mantiene el sitio",
+    "editorialBody": "PracticalKit lo mantiene un editor individual (un solo responsable). Son utilidades pequeñas y enfocadas en el navegador: PDF, imágenes, datos, tareas típicas de desarrollo y medios ligeros.\n\nEl objetivo es rapidez, claridad y privacidad por defecto (procesamiento local cuando el navegador lo permite). El sitio se actualiza con frecuencia; los cambios mayores se anuncian en el blog / changelog.",
+    "editorialUpdate": "Ritmo de actualización: mejoras pequeñas de forma continua; funciones grandes se anuncian en el blog."
   },
   "common": {
     "run": "Ejecutar",
@@ -88,7 +92,9 @@
     "title": "Acerca de PracticalKit",
     "p1": "PracticalKit es un conjunto de utilidades en navegador para PDF, imágenes, datos, texto y tareas ligeras de medios.",
     "p2": "Nuestro objetivo por defecto es procesar localmente cuando sea posible y usar hosting estático para velocidad y estabilidad.",
-    "p3": "Algunas herramientas usan APIs de terceros y lo indican en su página. No subas información confidencial."
+    "p3": "Algunas herramientas usan APIs de terceros y lo indican en su página. No subas información confidencial.",
+    "p4": "Operador: PracticalKit es operado por un editor individual (único responsable), no una empresa registrada, salvo que se indique lo contrario aquí en el futuro.",
+    "p5": "Para asuntos legales, derechos de autor o abuso, usa la página de contacto; los tiempos de respuesta pueden variar. Incluye detalles suficientes."
   },
   "privacyPage": {
     "title": "Política de privacidad",
@@ -96,7 +102,9 @@
     "p2": "En la mayoría de casos, el procesamiento ocurre en tu navegador y no enviamos archivos a nuestros servidores por defecto.",
     "p3": "Podemos recopilar analítica básica, fallos y telemetría antiabuso para mantener la seguridad y estabilidad.",
     "p4": "Los anuncios de Google AdSense pueden usar cookies según tu región y tu consentimiento.",
-    "p5": "Las APIs de terceros solo se usan en páginas que lo indican explícitamente. Revisa sus políticas antes de enviar datos sensibles."
+    "p5": "Las APIs de terceros solo se usan en páginas que lo indican explícitamente. Revisa sus políticas antes de enviar datos sensibles.",
+    "p6": "Analítica: podemos usar Google Analytics 4 (GA4) con anonimización de IP solo tras aceptar cookies no esenciales (si se muestra el banner). Ayuda a entender el uso y el rendimiento.",
+    "p7": "Cookies: la preferencia de tema puede requerir cookies esenciales. Las cookies analíticas (p. ej. GA) son opcionales y respetan el banner. Puedes borrar datos del sitio para practicalkit.com o usar controles del navegador."
   },
   "termsPage": {
     "title": "Términos de uso",
@@ -116,6 +124,44 @@
     "p1": "Para negocio, copyright, abuso o temas de política, contáctanos en:",
     "email": "371920029173abcd@gmail.com",
     "p2": "Al reportar errores incluye navegador, idioma, página de herramienta y pasos de reproducción."
+  },
+  "cookieConsent": {
+    "bannerAria": "Consentimiento de cookies",
+    "message": "Podemos usar cookies analíticas opcionales (Google Analytics) para mejorar el sitio. Puedes aceptar o rechazar. Más información:",
+    "privacyLink": "Política de privacidad",
+    "accept": "Aceptar analítica",
+    "decline": "Rechazar"
+  },
+  "blogPage": {
+    "title": "Blog y changelog",
+    "lead": "Notas breves: enfoque de las herramientas y cambios recientes.",
+    "posts": [
+      {
+        "title": "Por qué importa el enfoque en el navegador",
+        "date": "2026-04-08",
+        "body": "Cuando una herramienta corre en el navegador, tus archivos a menudo no salen del dispositivo. No aplica a todas las páginas (algunas usan APIs de terceros con aviso), pero es el objetivo por defecto de PracticalKit.\n\nSi dudas, lee el aviso en la herramienta y evita subir datos sensibles a servicios online sin necesidad."
+      },
+      {
+        "title": "PNG, WebP o AVIF para capturas",
+        "date": "2026-04-07",
+        "body": "PNG es sin pérdidas y predecible. WebP y AVIF suelen ser más pequeños, pero el resultado depende del codificador y del navegador.\n\nPara archivo o píxeles exactos, prioriza PNG; para web, prueba WebP/AVIF y compara visualmente."
+      },
+      {
+        "title": "Flujo práctico para JSON diff",
+        "date": "2026-04-06",
+        "body": "Al comparar configuraciones o respuestas de API, formatea ambos lados y compara línea a línea. Un orden estable de claves reduce ruido.\n\nNuestra herramienta ordena claves de objetos de forma recursiva para ver cambios reales."
+      },
+      {
+        "title": "RGBV3D en la web: solo sin pérdidas",
+        "date": "2026-04-05",
+        "body": "La herramienta RGBV3D aquí está pensada para flujos sin pérdidas. Para máxima compatibilidad al compartir, exporta PNG/WebP desde la herramienta de imagen tras decodificar.\n\nGuarda siempre los originales al probar formatos nuevos."
+      },
+      {
+        "title": "Notas de lanzamiento",
+        "date": "2026-04-04",
+        "body": "PracticalKit arranca como sitio estático multilingüe con páginas legales, blog y utilidades en el cliente. Seguiremos iterando con feedback real.\n\nContacta si encuentras errores o temas de política."
+      }
+    ]
   },
   "pdf": {
     "title": "Herramientas PDF",

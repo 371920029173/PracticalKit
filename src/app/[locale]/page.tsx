@@ -2,6 +2,7 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 const tiles = [
+  ["/blog/", "blog"],
   ["/pdf/", "pdf"],
   ["/image/", "image"],
   ["/data/", "data"],
@@ -60,6 +61,15 @@ export default async function HomePage({
           <p className="text-sm text-slate-500 dark:text-zinc-500">
             {t("privacyNote")}
           </p>
+          <div className="mt-6 space-y-3 rounded-xl border border-slate-200/80 bg-white/60 p-5 text-left text-base leading-relaxed text-slate-700 shadow-sm dark:border-zinc-700/80 dark:bg-zinc-900/40 dark:text-zinc-200">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+              {t("editorialTitle")}
+            </h2>
+            <p className="whitespace-pre-wrap">{t("editorialBody")}</p>
+            <p className="text-sm text-slate-600 dark:text-zinc-400">
+              {t("editorialUpdate")}
+            </p>
+          </div>
           <Link
             href="#tools"
             prefetch={false}

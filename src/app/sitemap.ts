@@ -42,6 +42,7 @@ const routes = [
   "terms",
   "disclaimer",
   "about",
+  "blog",
   "contact",
 ] as const;
 

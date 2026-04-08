@@ -19,6 +19,10 @@ export default async function PrivacyPage({
         {t("p4")}
       </p>
       <p className="text-slate-700 dark:text-zinc-300">{t("p5")}</p>
+      <p className="legal-emphasis text-slate-900 dark:text-zinc-100">
+        {t("p6")}
+      </p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p7")}</p>
     </div>
   );
 }

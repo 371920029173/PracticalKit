@@ -40,7 +40,8 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "disclaimer": "Disclaimer",
-    "contact": "Contact"
+    "contact": "Contact",
+    "blog": "Blog"
   },
   "navGroup": {
     "documents": "Documents",
@@ -67,7 +68,10 @@
     "welcomeCta": "Explore tools",
     "toolsSectionTitle": "All tools",
     "lead": "Browser-first utilities for everyday work. Processing stays in your device when possible; see each tool for details.",
-    "privacyNote": "Designed for Pages/CDN hosting. Prefer client-side processing to keep your files off servers."
+    "privacyNote": "Designed for Pages/CDN hosting. Prefer client-side processing to keep your files off servers.",
+    "editorialTitle": "Who runs this site",
+    "editorialBody": "PracticalKit is maintained by a solo publisher who builds small, focused browser utilities for everyday work — PDFs, images, data formats, developer helpers, and light media tasks.\n\nThe goal is simple: fast pages, clear UX, and privacy-friendly defaults (client-side processing whenever the tool allows it). The site is updated as new utilities ship or existing ones improve; see the Blog for a short changelog and practical notes.",
+    "editorialUpdate": "Update cadence: small improvements ship continuously; larger tool additions are announced in Blog / changelog."
   },
   "common": {
     "run": "Run",
@@ -88,7 +92,9 @@
     "title": "About PracticalKit",
     "p1": "PracticalKit is a browser-first toolbox for daily tasks such as PDF, image, data, text, and lightweight media utilities.",
     "p2": "Our default design goal is local processing when feasible, with static hosting for speed, reliability, and lower operational risk.",
-    "p3": "Some tools call third-party APIs. Those tools display their own notices. Please avoid uploading confidential files to any online tool."
+    "p3": "Some tools call third-party APIs. Those tools display their own notices. Please avoid uploading confidential files to any online tool.",
+    "p4": "Operator: PracticalKit is operated by an individual publisher (sole maintainer), not a registered company, unless otherwise stated here in the future.",
+    "p5": "For legal, copyright, or abuse notices, use the Contact page. Response times may vary; please include enough detail to investigate."
   },
   "privacyPage": {
     "title": "Privacy Policy",
@@ -96,7 +102,9 @@
     "p2": "For most tools, processing is completed in your browser and files are not sent to our servers by default.",
     "p3": "We may collect basic analytics, crash, and anti-abuse telemetry to keep the service stable and secure.",
     "p4": "Ads are provided by Google AdSense and may use cookies or similar technologies based on your region and consent settings.",
-    "p5": "Third-party APIs are used only on pages that explicitly mention them. Review each provider's policy before submitting sensitive data."
+    "p5": "Third-party APIs are used only on pages that explicitly mention them. Review each provider's policy before submitting sensitive data.",
+    "p6": "Analytics: we may use Google Analytics 4 (GA4) with IP anonymization enabled, only after you accept non-essential cookies via the banner (where shown). GA helps us understand which pages are used and how the site performs.",
+    "p7": "Cookies: essential cookies may be needed for theme or UI preferences. Marketing/analytics cookies (such as GA) are optional and respect your choice in the cookie banner. You can change your mind by clearing site data for practicalkit.com or using browser controls."
   },
   "termsPage": {
     "title": "Terms of Use",
@@ -116,6 +124,44 @@
     "p1": "For business, copyright, abuse, or policy requests, contact us at:",
     "email": "371920029173abcd@gmail.com",
     "p2": "When reporting a bug, include browser version, locale, tool page, and reproducible steps."
+  },
+  "cookieConsent": {
+    "bannerAria": "Cookie consent",
+    "message": "We use optional analytics cookies (Google Analytics) to improve the site. You can accept or decline.",
+    "privacyLink": "Privacy Policy",
+    "accept": "Accept analytics",
+    "decline": "Decline"
+  },
+  "blogPage": {
+    "title": "Blog & changelog",
+    "lead": "Short, practical notes: how we think about tools, and what changed recently.",
+    "posts": [
+      {
+        "title": "Why browser-first matters",
+        "date": "2026-04-08",
+        "body": "When a tool runs in your browser, your files often never leave your device. That is not a guarantee for every page (some tools use third-party APIs when labeled), but it is the default design goal for PracticalKit.\n\nWhen in doubt, read the notice on the tool page and avoid uploading sensitive data to any online service."
+      },
+      {
+        "title": "Choosing PNG, WebP, or AVIF for screenshots",
+        "date": "2026-04-07",
+        "body": "PNG is lossless and predictable. WebP and AVIF can be much smaller, but encoder support and visual differences vary by browser.\n\nFor archival or pixel-perfect needs, prefer PNG or a dedicated lossless workflow; for web delivery, try WebP/AVIF and compare visually."
+      },
+      {
+        "title": "JSON diff: a practical workflow",
+        "date": "2026-04-06",
+        "body": "When comparing configs or API payloads, pretty-print both sides and diff line-by-line. Stable key ordering helps reduce noisy differences.\n\nOur JSON diff tool sorts object keys recursively so you can focus on real content changes."
+      },
+      {
+        "title": "RGBV3D on the web: lossless only",
+        "date": "2026-04-05",
+        "body": "The RGBV3D tool on this site is intended for lossless workflows. If you need maximum compatibility for sharing, export to PNG or WebP from the image tool after decoding.\n\nAlways keep originals when trying new formats."
+      },
+      {
+        "title": "Site launch notes",
+        "date": "2026-04-04",
+        "body": "PracticalKit went live as a static, multilingual toolbox with legal pages, a blog, and client-side utilities. We will keep iterating based on real usage and feedback.\n\nContact us if you find a bug or a policy concern."
+      }
+    ]
   },
   "pdf": {
     "title": "PDF tools",

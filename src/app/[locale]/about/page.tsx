@@ -13,6 +13,8 @@ export default async function AboutPage({
       <p className="text-slate-700 dark:text-zinc-300">{t("p1")}</p>
       <p className="text-slate-700 dark:text-zinc-300">{t("p2")}</p>
       <p className="text-slate-700 dark:text-zinc-300">{t("p3")}</p>
+      <p className="legal-emphasis text-slate-900 dark:text-zinc-100">{t("p4")}</p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p5")}</p>
     </div>
   );
 }

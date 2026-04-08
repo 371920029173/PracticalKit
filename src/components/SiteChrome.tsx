@@ -7,6 +7,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/components/ThemeProvider";
+import { CookieAndAnalytics } from "@/components/CookieAndAnalytics";
 
 const locales = ["en", "zh", "ru", "es"] as const;
 
@@ -254,6 +255,7 @@ export function SiteChrome({
     <NextIntlClientProvider locale={locale} messages={messages} timeZone="UTC">
       <NavInner />
       <div className="mx-auto max-w-6xl px-4 py-8">{children}</div>
+      <CookieAndAnalytics />
     </NextIntlClientProvider>
   );
 }

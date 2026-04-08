@@ -22,6 +22,12 @@ npm run lint
 - Build command: `npm run build`
 - Output directory: `out`
 
+### Environment variables (Pages → Settings → Environment variables)
+
+- `NEXT_PUBLIC_GA_ID` — your Google Analytics 4 Measurement ID (e.g. `G-XXXXXXXXXX`). Leave unset to ship without analytics and without the cookie banner.
+
+Copy `.env.example` to `.env.local` for local builds if you want to test GA.
+
 ### Bind `practicalkit.com` after purchase
 
 1. Open Cloudflare Pages project for this repository.
