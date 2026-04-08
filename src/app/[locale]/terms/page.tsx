@@ -1,4 +1,7 @@
+import { createPageMetadata } from "@/lib/seo-metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export const generateMetadata = createPageMetadata("terms", (m) => m.termsPage.title);
 
 export default async function TermsPage({
   params,

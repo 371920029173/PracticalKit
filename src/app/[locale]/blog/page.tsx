@@ -1,7 +1,14 @@
 import { getMessages, setRequestLocale } from "next-intl/server";
 import type { Messages } from "@/lib/messages";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
 type BlogPost = { title: string; date: string; body: string };
+
+export const generateMetadata = createPageMetadata(
+  "blog",
+  (m) => m.blogPage.title,
+  (m) => m.blogPage.lead,
+);
 
 export default async function BlogPage({
   params,

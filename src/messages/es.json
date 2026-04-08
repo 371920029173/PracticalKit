@@ -1,5 +1,9 @@
 {
   "brand": "PracticalKit",
+  "seo": {
+    "defaultDescription": "PracticalKit: utilidades en el navegador para PDF, imágenes, datos, texto y flujos de desarrollo; procesamiento local cuando es posible.",
+    "homeDescription": "PracticalKit — herramientas en el navegador para PDF, imágenes, datos y desarrollo; multilingüe; procesamiento local cuando se puede."
+  },
   "nav": {
     "home": "Inicio",
     "pdf": "PDF",

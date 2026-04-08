@@ -1,5 +1,9 @@
 {
   "brand": "实用工具箱",
+  "seo": {
+    "defaultDescription": "PracticalKit：面向 PDF、图片、数据、文本与开发场景的浏览器端实用工具；在可行时优先本地处理。",
+    "homeDescription": "PracticalKit — 浏览器端 PDF、图片、数据与开发小工具；多语言；尽量本地处理。"
+  },
   "nav": {
     "home": "首页",
     "pdf": "PDF",

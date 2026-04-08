@@ -1,4 +1,7 @@
+import { createPageMetadata } from "@/lib/seo-metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export const generateMetadata = createPageMetadata("privacy", (m) => m.privacyPage.title);
 
 export default async function PrivacyPage({
   params,

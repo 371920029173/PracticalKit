@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/JsonLd";
 import { SiteChrome } from "@/components/SiteChrome";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { loadMessages } from "@/lib/messages";
@@ -19,6 +20,7 @@ export default async function LocaleLayout({
   const messages = await loadMessages(params.locale);
   return (
     <ThemeProvider>
+      <JsonLd />
       <SiteChrome locale={params.locale} messages={messages}>
         {children}
       </SiteChrome>

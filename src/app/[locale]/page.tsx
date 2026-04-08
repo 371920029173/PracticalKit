@@ -1,5 +1,8 @@
 import { Link } from "@/i18n/navigation";
+import { createHomeMetadata } from "@/lib/seo-metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export const generateMetadata = createHomeMetadata();
 
 const tiles = [
   ["/blog/", "blog"],

@@ -1,0 +1,8 @@
+import type { ReactNode } from "react";
+import { createPageMetadata } from "@/lib/seo-metadata";
+
+export const generateMetadata = createPageMetadata("jwt", (m) => m.jwtPage.title);
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return children;
+}

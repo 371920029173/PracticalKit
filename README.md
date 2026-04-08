@@ -45,3 +45,5 @@ Copy `.env.example` to `.env.local` for local builds if you want to test GA.
 
 - `src/lib/site.ts` stores canonical site constants.
 - `src/app/robots.ts` and `src/app/sitemap.ts` are configured for `practicalkit.com`.
+- SEO: per-locale `canonical` + `hreflang` (`en`, `zh-CN`, `ru`, `es`, `x-default`), JSON-LD (`Organization` + `WebSite`), `manifest.webmanifest`, optional `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` for Search Console.
+- `public/humans.txt` and `public/.well-known/security.txt` give crawlers/contact hints.

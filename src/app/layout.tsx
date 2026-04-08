@@ -2,13 +2,27 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
+const googleVerification =
+  typeof process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION === "string" &&
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim().length > 0
+    ? process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim()
+    : undefined;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${SITE_NAME} — Browser tools`,
-  description: SITE_DESCRIPTION,
-  alternates: {
-    canonical: "/",
+  title: {
+    default: `${SITE_NAME} — Browser tools`,
+    template: `%s`,
   },
+  description: SITE_DESCRIPTION,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  ...(googleVerification
+    ? { verification: { google: googleVerification } }
+    : {}),
   openGraph: {
     title: `${SITE_NAME} — Browser tools`,
     description: SITE_DESCRIPTION,
