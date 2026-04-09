@@ -1,3 +1,2 @@
 /* PracticalKit */
-Site: https://practicalkit.com/
-Contact: 371920029173abcd@gmail.com
+Contact: mailto:371920029173abcd@gmail.com
