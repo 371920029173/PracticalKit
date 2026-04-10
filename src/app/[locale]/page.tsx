@@ -87,19 +87,24 @@ export default async function HomePage({
         />
       </section>
 
-      <section id="tools" className="scroll-mt-24 space-y-4">
+      <section id="tools" className="scroll-mt-24 space-y-5">
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
           {t("toolsSectionTitle")}
         </h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {tiles.map(([href, key]) => (
             <Link
               key={href}
               href={href}
               prefetch={false}
-              className="btn-motion rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 shadow-sm hover:border-indigo-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-100 dark:hover:border-indigo-600"
+              className="btn-motion flex min-h-[5.5rem] flex-col items-stretch justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-5 text-left text-slate-800 shadow-sm ring-1 ring-transparent hover:border-indigo-300 hover:shadow-md hover:ring-indigo-500/10 dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-100 dark:hover:border-indigo-600"
             >
-              {nav(key)}
+              <span className="text-lg font-semibold leading-snug tracking-tight text-slate-900 dark:text-white">
+                {nav(key)}
+              </span>
+              <span className="text-sm leading-relaxed text-slate-600 dark:text-zinc-400">
+                {t(`toolBlurbs.${key}`)}
+              </span>
             </Link>
           ))}
         </div>
