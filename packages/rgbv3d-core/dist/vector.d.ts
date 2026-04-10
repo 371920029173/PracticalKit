@@ -4,6 +4,13 @@ export interface VectorEncodeOptions {
     rgb: Uint8Array;
     /** 8 or 9 are supported in this build. */
     dirBits?: 8 | 9;
+    /**
+     * When false (default), the encoder may replace the whole image with classic
+     * Sub+deflate if that compresses smaller — in that case `dirBits` has no effect.
+     * Set true to always use block-adaptive vector mode so 8 vs 9 bit direction
+     * quantization is honored at the container level.
+     */
+    skipClassicFallback?: boolean;
 }
 export interface VectorDecoded {
     width: number;

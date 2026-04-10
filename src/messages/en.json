@@ -345,6 +345,7 @@
     "dirBits": "Direction codebook",
     "dirBits8": "8-bit (smaller header)",
     "dirBits9": "9-bit (finer direction grid)",
+    "dirBitsHint": "8 vs 9 bits = 256 vs 512 direction bins on the sphere. Each 16×16 block still picks the smallest lossless mode (vector, Sub+deflate, plane stack, or raw). Previously, if classic Sub+deflate won for the whole image, 8/9 were ignored and outputs matched — this page fixes that by always using the block-adaptive path.",
     "bytes": "Uncompressed RGB vs .rgbv3d",
     "ofRaw": "of raw RGB",
     "errorLoad": "Could not read the image.",

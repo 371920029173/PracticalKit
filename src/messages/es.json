@@ -345,6 +345,7 @@
     "dirBits": "Libro de códigos de dirección",
     "dirBits8": "8 bits",
     "dirBits9": "9 bits",
+    "dirBitsHint": "8 vs 9 bits = 256 vs 512 direcciones en la esfera; cada bloque 16×16 elige el modo sin pérdida más pequeño. Antes, si el Sub+deflate clásico ganaba en toda la imagen, 8/9 se ignoraban — esta página evita ese atajo y usa siempre el modo adaptativo por bloques.",
     "bytes": "RGB sin comprimir vs .rgbv3d",
     "ofRaw": "del RGB bruto",
     "errorLoad": "No se pudo leer la imagen.",

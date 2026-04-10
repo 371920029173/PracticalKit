@@ -94,6 +94,7 @@ export default function RgbV3dToolClient() {
           rgb,
           profile: PROFILE_LOSSLESS_VECTOR_V2,
           dirBits,
+          skipClassicFallback: true,
         });
         const base = file.name.replace(/\.[^/.]+$/, "") || "image";
         setLastBlob(out);
@@ -192,6 +193,9 @@ export default function RgbV3dToolClient() {
             {tc("download")}
           </button>
         </div>
+        <p className="max-w-2xl text-xs leading-relaxed text-slate-500 dark:text-zinc-500">
+          {t("dirBitsHint")}
+        </p>
         {stats && !error && (
           <p className="text-sm text-slate-600 dark:text-zinc-400">
             {t("bytes")}: {stats.rawBytes} → {stats.outBytes} (

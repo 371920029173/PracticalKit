@@ -10,6 +10,13 @@ export interface VectorEncodeOptions {
   rgb: Uint8Array;
   /** 8 or 9 are supported in this build. */
   dirBits?: 8 | 9;
+  /**
+   * When false (default), the encoder may replace the whole image with classic
+   * Sub+deflate if that compresses smaller — in that case `dirBits` has no effect.
+   * Set true to always use block-adaptive vector mode so 8 vs 9 bit direction
+   * quantization is honored at the container level.
+   */
+  skipClassicFallback?: boolean;
 }
 
 export interface VectorDecoded {
@@ -363,6 +370,7 @@ export function encodeVectorLossless(opts: VectorEncodeOptions): Uint8Array {
   if (rgb.length !== width * height * 3) throw new Error('RGB buffer size mismatch');
 
   const vectorPayload = encodeBlockAdaptive(width, height, rgb, dirBits);
+  if (opts.skipClassicFallback) return vectorPayload;
   const classicPayload = encodeClassicCore(width, height, rgb);
   return classicPayload.length < vectorPayload.length ? classicPayload : vectorPayload;
 }

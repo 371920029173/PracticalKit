@@ -7,6 +7,8 @@ export interface EncodeRgbOptions {
     profile?: number;
     /** only used in profile=1 */
     dirBits?: 8 | 9;
+    /** only used in profile=1; forwarded to encodeVectorLossless */
+    skipClassicFallback?: boolean;
 }
 /**
  * Build `.rgbv3d` container (profile 0: Sub predictor + raw deflate payload).

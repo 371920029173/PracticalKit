@@ -326,6 +326,8 @@ export function encodeVectorLossless(opts) {
     if (rgb.length !== width * height * 3)
         throw new Error('RGB buffer size mismatch');
     const vectorPayload = encodeBlockAdaptive(width, height, rgb, dirBits);
+    if (opts.skipClassicFallback)
+        return vectorPayload;
     const classicPayload = encodeClassicCore(width, height, rgb);
     return classicPayload.length < vectorPayload.length ? classicPayload : vectorPayload;
 }

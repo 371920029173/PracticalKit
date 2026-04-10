@@ -123,6 +123,7 @@ export default function ImagePage() {
           rgb,
           profile: PROFILE_LOSSLESS_VECTOR_V2,
           dirBits: 8,
+          skipClassicFallback: true,
         });
         downloadBlobPart(
           new Blob([new Uint8Array(out)], { type: "application/octet-stream" }),

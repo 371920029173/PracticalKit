@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:rgbv3d": "npm run build --prefix packages/rgbv3d-core",
+    "build": "npm run build:rgbv3d && next build",
     "start": "next start",
     "lint": "next lint"
   },

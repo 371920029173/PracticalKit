@@ -17,6 +17,8 @@ export interface EncodeRgbOptions {
   profile?: number;
   /** only used in profile=1 */
   dirBits?: 8 | 9;
+  /** only used in profile=1; forwarded to encodeVectorLossless */
+  skipClassicFallback?: boolean;
 }
 
 /**
@@ -32,7 +34,13 @@ export function encodeRgbLossless(opts: EncodeRgbOptions): Uint8Array {
     const filtered = filterSubRgb(width, height, rgb);
     compressed = pako.deflateRaw(filtered, { level: 9 });
   } else if (profile === PROFILE_LOSSLESS_VECTOR_V2) {
-    compressed = encodeVectorLossless({ width, height, rgb, dirBits: opts.dirBits ?? 8 });
+    compressed = encodeVectorLossless({
+      width,
+      height,
+      rgb,
+      dirBits: opts.dirBits ?? 8,
+      skipClassicFallback: opts.skipClassicFallback,
+    });
   } else {
     throw new Error(`Unsupported profile for encoder: ${profile}`);
   }

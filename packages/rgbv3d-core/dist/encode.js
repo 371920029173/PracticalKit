@@ -19,7 +19,13 @@ export function encodeRgbLossless(opts) {
         compressed = pako.deflateRaw(filtered, { level: 9 });
     }
     else if (profile === PROFILE_LOSSLESS_VECTOR_V2) {
-        compressed = encodeVectorLossless({ width, height, rgb, dirBits: opts.dirBits ?? 8 });
+        compressed = encodeVectorLossless({
+            width,
+            height,
+            rgb,
+            dirBits: opts.dirBits ?? 8,
+            skipClassicFallback: opts.skipClassicFallback,
+        });
     }
     else {
         throw new Error(`Unsupported profile for encoder: ${profile}`);
