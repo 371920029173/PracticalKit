@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rgbv3d/core": "file:../rgbv3d-ecosystem/packages/core",
+    "@rgbv3d/core": "file:./packages/rgbv3d-core",
     "@types/prismjs": "^1.26.6",
     "@types/qrcode": "^1.5.6",
     "browser-image-compression": "^2.0.2",

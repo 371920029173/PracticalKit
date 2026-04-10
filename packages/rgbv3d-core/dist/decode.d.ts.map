@@ -1,0 +1,1 @@
+{"version":3,"file":"decode.d.ts","sourceRoot":"","sources":["../src/decode.ts"],"names":[],"mappings":"AAUA,MAAM,WAAW,YAAY;IAC3B,KAAK,EAAE,MAAM,CAAC;IACd,MAAM,EAAE,MAAM,CAAC;IACf,GAAG,EAAE,UAAU,CAAC;IAChB,OAAO,EAAE,MAAM,CAAC;CACjB;AAQD,wBAAgB,YAAY,CAAC,IAAI,EAAE,UAAU,GAAG,YAAY,CA2B3D"}

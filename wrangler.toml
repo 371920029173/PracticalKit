@@ -1,0 +1,10 @@
+# Cloudflare Pages — optional metadata. You still connect GitHub in the dashboard:
+# Workers & Pages → Create → Connect to Git → pick repo → set build command / output below.
+#
+# Build command: npm run build
+# Build output directory: out
+# Root directory: / (repo root)
+
+name = "practicalkithub"
+compatibility_date = "2024-12-01"
+pages_build_output_dir = "out"
