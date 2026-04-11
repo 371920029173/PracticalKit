@@ -63,7 +63,7 @@ export default function TextPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <textarea
         className="min-h-48 w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm"
         value={text}

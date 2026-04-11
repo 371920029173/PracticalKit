@@ -127,7 +127,8 @@
     "themeLight": "Claro",
     "themeDark": "Oscuro",
     "menu": "Menú",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "resetAndRun": "Restablecer y ejecutar"
   },
   "aboutPage": {
     "title": "Acerca de PracticalKit",
@@ -278,7 +279,8 @@
     "title": "Traducir (MyMemory)",
     "from": "De",
     "to": "A",
-    "disclaimer": "API de terceros — no secretos."
+    "disclaimer": "API de terceros — no secretos.",
+    "submit": "Traducir"
   },
   "code": {
     "title": "Código",
@@ -329,7 +331,10 @@
     "title": "Regex",
     "pattern": "Patrón",
     "flags": "Flags",
-    "haystack": "Texto"
+    "haystack": "Texto",
+    "noMatches": "(sin coincidencias)",
+    "errorPrefix": "Error:",
+    "emptyPattern": "Escribe un patrón (no se ejecuta un patrón vacío)."
   },
   "rgbv3d": {
     "title": "RGBV3D sin pérdida",
@@ -360,7 +365,8 @@
     "fileIn": "Archivo",
     "run": "Hash",
     "digest": "Digest hex",
-    "empty": "Entrada vacía."
+    "empty": "Entrada vacía.",
+    "sampleText": "hello"
   },
   "jwtPage": {
     "title": "Decodificador JWT",
@@ -386,7 +392,8 @@
     "note": "Minúsculas, sin acentos, espacios a guiones.",
     "input": "Texto",
     "output": "Slug",
-    "run": "Generar"
+    "run": "Generar",
+    "sampleInput": "Practical Kit (demo)"
   },
   "htmlEntitiesPage": {
     "title": "Entidades HTML",

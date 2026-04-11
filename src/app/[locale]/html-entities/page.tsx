@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 function encodeHtml(s: string): string {
   return s
@@ -19,31 +20,38 @@ function decodeHtml(s: string): string {
   return ta.value;
 }
 
+const DEF_TEXT = '<div class="x">Tom & Jerry</div>';
+
 export default function HtmlEntitiesPage() {
   const t = useTranslations("htmlEntitiesPage");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(DEF_TEXT);
   const [out, setOut] = useState("");
+
+  const runEncode = useCallback(() => {
+    setOut(encodeHtml(text));
+  }, [text]);
+
+  const resetAndRun = useCallback(() => {
+    setText(DEF_TEXT);
+    setOut(encodeHtml(DEF_TEXT));
+  }, []);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
-        {t("title")}
-      </h1>
-      <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
+      <h1 className="tool-h1">{t("title")}</h1>
+      <p className="tool-muted">{t("note")}</p>
       <textarea
-        className="min-h-32 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-zinc-950"
+        className="tool-textarea min-h-32"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={t("input")}
       />
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          className="btn-primary"
-          onClick={() => setOut(encodeHtml(text))}
-        >
-          {t("encode")}
-        </button>
+        <ToolRunActions
+          onRun={runEncode}
+          onResetAndRun={resetAndRun}
+          runLabel={t("encode")}
+        />
         <button
           type="button"
           className="btn-ghost"
@@ -52,10 +60,8 @@ export default function HtmlEntitiesPage() {
           {t("decode")}
         </button>
       </div>
-      <pre className="min-h-24 w-full rounded-lg border border-slate-200 bg-slate-50 p-3 font-mono text-sm dark:border-zinc-800 dark:bg-zinc-900">
-        {out || "—"}
-      </pre>
-      <p className="text-xs text-slate-500">{t("output")}</p>
+      <pre className="tool-pre-out font-mono text-sm">{out || "—"}</pre>
+      <p className="text-xs text-slate-500 dark:text-zinc-500">{t("output")}</p>
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function MarkdownPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <div className="grid gap-4 lg:grid-cols-2">
         <textarea
           className="min-h-[420px] w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-sm"

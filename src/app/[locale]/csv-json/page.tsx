@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 /** Minimal CSV parser (quoted fields). */
 function parseCsv(text: string): string[][] {
@@ -86,14 +87,17 @@ function objectsToCsv(data: unknown): string {
   return lines.join("\n");
 }
 
+const DEF_CSV = "name,age\nAlice,30\nBob,25\n";
+const DEF_JSON = '[\n  { "name": "Alice", "age": "30" },\n  { "name": "Bob", "age": "25" }\n]';
+
 export default function CsvJsonPage() {
   const t = useTranslations("csvJsonPage");
   const [mode, setMode] = useState<"c2j" | "j2c">("c2j");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(DEF_CSV);
   const [out, setOut] = useState("");
   const [err, setErr] = useState("");
 
-  function run() {
+  const run = useCallback(() => {
     setErr("");
     setOut("");
     try {
@@ -108,44 +112,69 @@ export default function CsvJsonPage() {
     } catch (e) {
       setErr(`${t("err")}: ${e instanceof Error ? e.message : e}`);
     }
-  }
+  }, [mode, t, text]);
+
+  const resetAndRun = useCallback(() => {
+    setMode("c2j");
+    setText(DEF_CSV);
+    setErr("");
+    setOut("");
+    queueMicrotask(() => {
+      try {
+        const rows = parseCsv(DEF_CSV.trim());
+        const obj = csvToObjects(rows);
+        setOut(JSON.stringify(obj, null, 2));
+      } catch (e) {
+        setErr(`${t("err")}: ${e instanceof Error ? e.message : e}`);
+      }
+    });
+  }, [t]);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
-        {t("title")}
-      </h1>
-      <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
+      <h1 className="tool-h1">{t("title")}</h1>
+      <p className="tool-muted">{t("note")}</p>
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
-          className={mode === "c2j" ? "btn-primary" : "btn-ghost"}
-          onClick={() => setMode("c2j")}
+          className={mode === "c2j" ? "tool-chip tool-chip-on" : "tool-chip tool-chip-off"}
+          onClick={() => {
+            setMode("c2j");
+            setText(DEF_CSV);
+            setOut("");
+            setErr("");
+          }}
         >
           {t("csvToJson")}
         </button>
         <button
           type="button"
-          className={mode === "j2c" ? "btn-primary" : "btn-ghost"}
-          onClick={() => setMode("j2c")}
+          className={mode === "j2c" ? "tool-chip tool-chip-on" : "tool-chip tool-chip-off"}
+          onClick={() => {
+            setMode("j2c");
+            setText(DEF_JSON);
+            setOut("");
+            setErr("");
+          }}
         >
           {t("jsonToCsv")}
         </button>
       </div>
       <textarea
-        className="min-h-48 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-zinc-950"
+        className="tool-textarea min-h-48"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={mode === "c2j" ? t("csv") : t("json")}
       />
-      <button type="button" className="btn-primary" onClick={run}>
-        {t("convert")}
-      </button>
-      {err && <p className="text-sm text-red-600">{err}</p>}
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("convert")} />
+      {err && (
+        <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
+      )}
       <textarea
         readOnly
-        className="min-h-48 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-sm dark:border-zinc-800 dark:bg-zinc-900"
+        className="tool-textarea min-h-48 bg-slate-50 dark:bg-zinc-900/50"
         value={out}
+        aria-label={t("title")}
       />
     </div>
   );

@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
+
+/** Well-known demo JWT (payload is public example data only). */
+const SAMPLE_JWT =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 function b64UrlDecode(segment: string): string {
   let s = segment.replace(/-/g, "+").replace(/_/g, "/");
@@ -19,7 +24,7 @@ export default function JwtPage() {
   const [payload, setPayload] = useState("");
   const [err, setErr] = useState("");
 
-  function decode() {
+  const decode = useCallback(() => {
     setErr("");
     setHeader("");
     setPayload("");
@@ -36,36 +41,54 @@ export default function JwtPage() {
     } catch {
       setErr(t("invalid"));
     }
-  }
+  }, [raw, t]);
+
+  const resetAndRun = useCallback(() => {
+    setRaw(SAMPLE_JWT);
+    setErr("");
+    setHeader("");
+    setPayload("");
+    queueMicrotask(() => {
+      try {
+        const parts = SAMPLE_JWT.split(".");
+        const h = JSON.stringify(JSON.parse(b64UrlDecode(parts[0]!)), null, 2);
+        const p = JSON.stringify(JSON.parse(b64UrlDecode(parts[1]!)), null, 2);
+        setHeader(h);
+        setPayload(p);
+      } catch {
+        setErr(t("invalid"));
+      }
+    });
+  }, [t]);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
-        {t("title")}
-      </h1>
-      <p className="text-sm text-amber-800 dark:text-amber-200/90">{t("note")}</p>
+      <h1 className="tool-h1">{t("title")}</h1>
+      <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">
+        {t("note")}
+      </p>
       <textarea
-        className="min-h-32 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-zinc-950"
+        className="tool-textarea min-h-32"
         value={raw}
         onChange={(e) => setRaw(e.target.value)}
         placeholder={t("paste")}
       />
-      <button type="button" className="btn-primary" onClick={decode}>
-        {t("decode")}
-      </button>
-      {err && <p className="text-sm text-red-600">{err}</p>}
+      <ToolRunActions onRun={decode} onResetAndRun={resetAndRun} runLabel={t("decode")} />
+      {err && (
+        <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
+      )}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <h2 className="mb-1 text-sm font-medium text-slate-500">{t("header")}</h2>
-          <pre className="max-h-64 overflow-auto rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs dark:border-zinc-800 dark:bg-zinc-900">
-            {header || "—"}
-          </pre>
+          <h2 className="mb-1 text-sm font-medium text-slate-500 dark:text-zinc-400">
+            {t("header")}
+          </h2>
+          <pre className="tool-pre max-h-64 text-xs">{header || "—"}</pre>
         </div>
         <div>
-          <h2 className="mb-1 text-sm font-medium text-slate-500">{t("payload")}</h2>
-          <pre className="max-h-64 overflow-auto rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs dark:border-zinc-800 dark:bg-zinc-900">
-            {payload || "—"}
-          </pre>
+          <h2 className="mb-1 text-sm font-medium text-slate-500 dark:text-zinc-400">
+            {t("payload")}
+          </h2>
+          <pre className="tool-pre max-h-64 text-xs">{payload || "—"}</pre>
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 function uuidV4() {
   const b = new Uint8Array(16);
@@ -24,58 +25,68 @@ function randomHex(bytes: number) {
 
 export default function RandomPage() {
   const t = useTranslations("random");
+  const tc = useTranslations("common");
   const [serialCount, setSerialCount] = useState(5);
   const [out, setOut] = useState("");
 
-  function serials() {
+  const serials = useCallback(() => {
     const lines: string[] = [];
     for (let i = 0; i < serialCount; i++) {
       const n = (1000 + Math.floor(Math.random() * 9000)).toString();
       lines.push(`SN-${n}-${randomHex(2).toUpperCase()}`);
     }
     setOut(lines.join("\n"));
-  }
+  }, [serialCount]);
+
+  const resetSerialAndRun = useCallback(() => {
+    setSerialCount(5);
+    setOut("");
+    queueMicrotask(() => {
+      const lines: string[] = [];
+      for (let i = 0; i < 5; i++) {
+        const n = (1000 + Math.floor(Math.random() * 9000)).toString();
+        lines.push(`SN-${n}-${randomHex(2).toUpperCase()}`);
+      }
+      setOut(lines.join("\n"));
+    });
+  }, []);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
-          className="rounded-lg bg-zinc-800 px-3 py-2 text-sm"
+          className="btn-ghost text-sm"
           onClick={() => setOut(`${t("uuid")}:\n${uuidV4()}`)}
         >
           {t("uuid")}
         </button>
         <button
           type="button"
-          className="rounded-lg bg-zinc-800 px-3 py-2 text-sm"
+          className="btn-ghost text-sm"
           onClick={() => setOut(`${t("bytes")} (32):\n${randomHex(32)}`)}
         >
           {t("bytes")}
         </button>
       </div>
-      <div className="flex items-center gap-2 text-sm">
-        <span className="text-zinc-400">{t("serial")}</span>
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        <span className="tool-muted">{t("serial")}</span>
         <input
           type="number"
           min={1}
           max={500}
-          className="w-20 rounded border border-zinc-700 bg-zinc-900 px-2 py-1"
+          className="tool-field w-20"
           value={serialCount}
           onChange={(e) => setSerialCount(+e.target.value || 1)}
         />
-        <button
-          type="button"
-          onClick={serials}
-          className="rounded-lg bg-white px-3 py-1 text-sm font-medium text-zinc-900"
-        >
-          Run
-        </button>
+        <ToolRunActions
+          onRun={serials}
+          onResetAndRun={resetSerialAndRun}
+          runLabel={tc("run")}
+        />
       </div>
-      <pre className="min-h-24 whitespace-pre-wrap rounded-lg border border-zinc-800 bg-black/40 p-3 font-mono text-sm text-zinc-200">
-        {out || "—"}
-      </pre>
+      <pre className="tool-pre-out font-mono text-sm">{out || "—"}</pre>
     </div>
   );
 }

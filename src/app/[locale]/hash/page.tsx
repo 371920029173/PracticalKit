@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 type Algo = "SHA-256" | "SHA-384" | "SHA-512";
 
@@ -20,7 +21,7 @@ export default function HashPage() {
   const [out, setOut] = useState("");
   const [busy, setBusy] = useState(false);
 
-  async function runText() {
+  const runText = useCallback(async () => {
     setBusy(true);
     setOut("");
     try {
@@ -31,7 +32,23 @@ export default function HashPage() {
     } finally {
       setBusy(false);
     }
-  }
+  }, [algo, text, t]);
+
+  const resetAndRun = useCallback(async () => {
+    const sample = t("sampleText");
+    setAlgo("SHA-256");
+    setText(sample);
+    setBusy(true);
+    setOut("");
+    try {
+      const data = new TextEncoder().encode(sample);
+      setOut(await digest("SHA-256", data));
+    } catch {
+      setOut(t("empty"));
+    } finally {
+      setBusy(false);
+    }
+  }, [t]);
 
   async function runFile(f: File | undefined) {
     if (!f) return;
@@ -49,16 +66,14 @@ export default function HashPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
-        {t("title")}
-      </h1>
-      <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
+      <h1 className="tool-h1">{t("title")}</h1>
+      <p className="tool-muted">{t("note")}</p>
       <label className="flex flex-wrap items-center gap-2 text-sm">
-        <span>{t("algo")}</span>
+        <span className="text-slate-700 dark:text-zinc-300">{t("algo")}</span>
         <select
           value={algo}
           onChange={(e) => setAlgo(e.target.value as Algo)}
-          className="rounded-lg border border-slate-300 bg-white px-2 py-1 dark:border-zinc-600 dark:bg-zinc-900"
+          className="tool-select w-auto"
         >
           <option>SHA-256</option>
           <option>SHA-384</option>
@@ -66,15 +81,18 @@ export default function HashPage() {
         </select>
       </label>
       <textarea
-        className="min-h-28 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-zinc-950"
+        className="tool-textarea min-h-28"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={t("textIn")}
       />
       <div className="flex flex-wrap gap-2">
-        <button type="button" disabled={busy} className="btn-primary" onClick={() => void runText()}>
-          {t("run")}
-        </button>
+        <ToolRunActions
+          onRun={runText}
+          onResetAndRun={resetAndRun}
+          busy={busy}
+          runLabel={t("run")}
+        />
         <label className="btn-ghost cursor-pointer text-sm">
           {t("fileIn")}
           <input
@@ -93,10 +111,8 @@ export default function HashPage() {
           {tc("copy")}
         </button>
       </div>
-      <pre className="break-all rounded-lg border border-slate-200 bg-slate-50 p-3 font-mono text-sm text-slate-800 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
-        {out || "—"}
-      </pre>
-      <p className="text-xs text-slate-500">{t("digest")}</p>
+      <pre className="tool-pre-out break-all font-mono text-sm">{out || "—"}</pre>
+      <p className="text-xs text-slate-500 dark:text-zinc-500">{t("digest")}</p>
     </div>
   );
 }

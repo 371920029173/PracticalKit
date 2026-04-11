@@ -162,7 +162,7 @@ export default function PdfToolClient() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       {busy && <p className="text-sm text-amber-300">…</p>}
       <section className="space-y-2 rounded-xl border border-zinc-800 p-4">
         <h2 className="text-sm text-zinc-400">{t("merge")}</h2>

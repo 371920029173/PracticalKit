@@ -30,7 +30,7 @@ export default function QrPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <section className="space-y-2">
         <h2 className="text-sm text-zinc-500">{t("gen")}</h2>
         <textarea

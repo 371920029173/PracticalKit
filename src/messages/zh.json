@@ -127,7 +127,8 @@
     "themeLight": "浅色",
     "themeDark": "深色",
     "menu": "菜单",
-    "close": "关闭"
+    "close": "关闭",
+    "resetAndRun": "重置并运行"
   },
   "aboutPage": {
     "title": "关于 PracticalKit",
@@ -278,7 +279,8 @@
     "title": "翻译（MyMemory 免费接口）",
     "from": "源语言",
     "to": "目标语言",
-    "disclaimer": "第三方接口，勿提交机密内容。"
+    "disclaimer": "第三方接口，勿提交机密内容。",
+    "submit": "翻译"
   },
   "code": {
     "title": "代码工具",
@@ -329,7 +331,10 @@
     "title": "正则测试",
     "pattern": "模式",
     "flags": "标记",
-    "haystack": "文本"
+    "haystack": "文本",
+    "noMatches": "（无匹配）",
+    "errorPrefix": "错误：",
+    "emptyPattern": "请先填写正则（此处不执行空模式，避免异常匹配）。"
   },
   "rgbv3d": {
     "title": "RGBV3D 无损",
@@ -360,7 +365,8 @@
     "fileIn": "文件",
     "run": "计算",
     "digest": "十六进制摘要",
-    "empty": "输入为空。"
+    "empty": "输入为空。",
+    "sampleText": "hello"
   },
   "jwtPage": {
     "title": "JWT 解码",
@@ -386,7 +392,8 @@
     "note": "小写、去重音、空格变连字符。",
     "input": "文本",
     "output": "Slug",
-    "run": "生成"
+    "run": "生成",
+    "sampleInput": "实用工具箱 Demo"
   },
   "htmlEntitiesPage": {
     "title": "HTML 实体",

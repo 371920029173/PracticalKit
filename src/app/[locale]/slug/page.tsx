@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 function slugify(s: string): string {
   return s
@@ -18,31 +19,31 @@ export default function SlugPage() {
   const [input, setInput] = useState("");
   const [out, setOut] = useState("");
 
+  const run = useCallback(() => {
+    setOut(slugify(input));
+  }, [input]);
+
+  const resetAndRun = useCallback(() => {
+    const sample = t("sampleInput");
+    setInput(sample);
+    setOut(slugify(sample));
+  }, [t]);
+
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
-        {t("title")}
-      </h1>
-      <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
+      <h1 className="tool-h1">{t("title")}</h1>
+      <p className="tool-muted">{t("note")}</p>
       <textarea
-        className="min-h-24 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-zinc-950"
+        className="tool-textarea min-h-24"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder={t("input")}
       />
-      <button
-        type="button"
-        className="btn-primary"
-        onClick={() => setOut(slugify(input))}
-      >
-        {t("run")}
-      </button>
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
       <div>
-        <label className="text-sm text-slate-600 dark:text-zinc-400">
-          {t("output")}
-        </label>
+        <label className="tool-muted">{t("output")}</label>
         <div className="mt-1 flex flex-wrap gap-2">
-          <code className="block flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <code className="tool-pre-out block flex-1 font-mono text-sm">
             {out || "—"}
           </code>
           <button

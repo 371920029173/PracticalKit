@@ -63,7 +63,7 @@ export default function ColorPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <div className="flex flex-wrap items-center gap-4">
         <div
           className="h-24 w-40 rounded-xl border border-zinc-700 shadow-lg"

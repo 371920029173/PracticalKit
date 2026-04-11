@@ -127,7 +127,8 @@
     "themeLight": "Light",
     "themeDark": "Dark",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "resetAndRun": "Reset & run"
   },
   "aboutPage": {
     "title": "About PracticalKit",
@@ -278,7 +279,8 @@
     "title": "Translate (MyMemory free API)",
     "from": "From",
     "to": "To",
-    "disclaimer": "Third-party API — do not send secrets."
+    "disclaimer": "Third-party API — do not send secrets.",
+    "submit": "Translate"
   },
   "code": {
     "title": "Code tools",
@@ -329,7 +331,10 @@
     "title": "Regex tester",
     "pattern": "Pattern",
     "flags": "Flags",
-    "haystack": "Text"
+    "haystack": "Text",
+    "noMatches": "(no matches)",
+    "errorPrefix": "Error:",
+    "emptyPattern": "Enter a pattern first (empty patterns are not run here)."
   },
   "rgbv3d": {
     "title": "RGBV3D lossless",
@@ -360,7 +365,8 @@
     "fileIn": "File",
     "run": "Hash",
     "digest": "Hex digest",
-    "empty": "Empty input or file."
+    "empty": "Empty input or file.",
+    "sampleText": "hello"
   },
   "jwtPage": {
     "title": "JWT decoder",
@@ -386,7 +392,8 @@
     "note": "Lowercase, diacritics stripped, spaces to hyphens.",
     "input": "Text",
     "output": "Slug",
-    "run": "Generate"
+    "run": "Generate",
+    "sampleInput": "Practical Kit (demo)"
   },
   "htmlEntitiesPage": {
     "title": "HTML entities",

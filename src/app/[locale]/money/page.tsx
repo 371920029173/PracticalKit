@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 export default function MoneyPage() {
   const t = useTranslations("money");
@@ -10,12 +11,38 @@ export default function MoneyPage() {
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function refresh() {
+  const refresh = useCallback(async () => {
     setLoading(true);
     setErr("");
     try {
       const res = await fetch(
-        `https://open.er-api.com/v6/latest/${encodeURIComponent(base)}`
+        `https://open.er-api.com/v6/latest/${encodeURIComponent(base.trim() || "USD")}`
+      );
+      const j = (await res.json()) as {
+        result?: string;
+        rates?: Record<string, number>;
+        "error-type"?: string;
+      };
+      if (j.result !== "success" || !j.rates) {
+        throw new Error(j["error-type"] || j.result || "bad response");
+      }
+      setData(j.rates);
+    } catch (e) {
+      setErr(String(e));
+      setData(null);
+    } finally {
+      setLoading(false);
+    }
+  }, [base]);
+
+  const resetAndRun = useCallback(async () => {
+    setBase("USD");
+    setErr("");
+    setData(null);
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://open.er-api.com/v6/latest/USD"
       );
       const j = (await res.json()) as {
         result?: string;
@@ -29,7 +56,7 @@ export default function MoneyPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   const sample = data
     ? Object.entries(data)
@@ -40,29 +67,25 @@ export default function MoneyPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <div className="flex flex-wrap items-end gap-2">
         <label className="text-sm">
-          <span className="text-zinc-500">{t("base")}</span>
+          <span className="tool-muted">{t("base")}</span>
           <input
-            className="mt-1 rounded border border-zinc-700 bg-zinc-900 px-2 py-2 font-mono uppercase"
+            className="tool-field mt-1 font-mono uppercase"
             value={base}
             onChange={(e) => setBase(e.target.value)}
           />
         </label>
-        <button
-          type="button"
-          disabled={loading}
-          onClick={refresh}
-          className="rounded-lg bg-white px-3 py-2 text-sm font-medium text-zinc-900"
-        >
-          {t("refresh")}
-        </button>
+        <ToolRunActions
+          onRun={refresh}
+          onResetAndRun={resetAndRun}
+          busy={loading}
+          runLabel={t("refresh")}
+        />
       </div>
-      {err && <p className="text-sm text-red-400">{err}</p>}
-      <pre className="max-h-80 overflow-auto rounded-lg border border-zinc-800 bg-black/40 p-3 text-xs text-zinc-300">
-        {sample || "—"}
-      </pre>
+      {err && <p className="text-sm text-red-600 dark:text-red-400">{err}</p>}
+      <pre className="tool-pre max-h-80 text-xs">{sample || "—"}</pre>
     </div>
   );
 }

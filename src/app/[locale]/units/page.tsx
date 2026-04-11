@@ -79,7 +79,7 @@ export default function UnitsPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <div className="flex flex-wrap gap-2">
         {tabs.map(({ k, lab }) => (
           <button

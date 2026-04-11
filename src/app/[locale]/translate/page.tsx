@@ -1,17 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
+
+const DEF_Q = "Hello";
+const DEF_FROM = "en";
+const DEF_TO = "zh";
 
 export default function TranslatePage() {
   const t = useTranslations("translate");
-  const [q, setQ] = useState("Hello");
-  const [from, setFrom] = useState("en");
-  const [to, setTo] = useState("zh");
+  const [q, setQ] = useState(DEF_Q);
+  const [from, setFrom] = useState(DEF_FROM);
+  const [to, setTo] = useState(DEF_TO);
   const [out, setOut] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function run() {
+  const run = useCallback(async () => {
     setLoading(true);
     setOut("");
     try {
@@ -29,46 +34,66 @@ export default function TranslatePage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [q, from, to]);
+
+  const resetAndRun = useCallback(async () => {
+    setQ(DEF_Q);
+    setFrom(DEF_FROM);
+    setTo(DEF_TO);
+    setOut("");
+    setLoading(true);
+    try {
+      const u = new URL("https://api.mymemory.translated.net/get");
+      u.searchParams.set("q", DEF_Q);
+      u.searchParams.set("langpair", `${DEF_FROM}|${DEF_TO}`);
+      const res = await fetch(u.toString());
+      const data = (await res.json()) as {
+        responseData?: { translatedText?: string };
+      };
+      setOut(data.responseData?.translatedText || JSON.stringify(data));
+    } catch (e) {
+      setOut(String(e));
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
-      <p className="text-sm text-amber-200/80">{t("disclaimer")}</p>
+      <h1 className="tool-h1">{t("title")}</h1>
+      <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-100">
+        {t("disclaimer")}
+      </p>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="text-sm">
-          <span className="text-zinc-500">{t("from")}</span>
+          <span className="tool-muted">{t("from")}</span>
           <input
-            className="mt-1 w-full rounded border border-zinc-700 bg-zinc-900 px-2 py-2 font-mono uppercase"
+            className="tool-field mt-1 w-full font-mono uppercase"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
           />
         </label>
         <label className="text-sm">
-          <span className="text-zinc-500">{t("to")}</span>
+          <span className="tool-muted">{t("to")}</span>
           <input
-            className="mt-1 w-full rounded border border-zinc-700 bg-zinc-900 px-2 py-2 font-mono uppercase"
+            className="tool-field mt-1 w-full font-mono uppercase"
             value={to}
             onChange={(e) => setTo(e.target.value)}
           />
         </label>
       </div>
       <textarea
-        className="min-h-32 w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm"
+        className="tool-textarea min-h-32"
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
-      <button
-        type="button"
-        disabled={loading}
-        onClick={run}
-        className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
-      >
-        {loading ? "…" : "Translate"}
-      </button>
-      <pre className="whitespace-pre-wrap rounded-lg border border-zinc-800 bg-black/40 p-3 text-sm text-zinc-200">
-        {out || "—"}
-      </pre>
+      <ToolRunActions
+        onRun={run}
+        onResetAndRun={resetAndRun}
+        busy={loading}
+        runLabel={t("submit")}
+      />
+      <pre className="tool-pre-out">{out || "—"}</pre>
     </div>
   );
 }

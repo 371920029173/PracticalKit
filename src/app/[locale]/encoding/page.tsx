@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
 function u8ToB64(u8: Uint8Array) {
   let s = "";
@@ -18,11 +19,11 @@ function b64ToU8(b64: string) {
 
 export default function EncodingPage() {
   const t = useTranslations("encoding");
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Hello");
   const [mode, setMode] = useState<"b64en" | "b64de" | "ure" | "urd">("b64en");
   const [out, setOut] = useState("");
 
-  function run() {
+  const run = useCallback(() => {
     try {
       if (mode === "b64en") setOut(u8ToB64(new TextEncoder().encode(text)));
       else if (mode === "b64de")
@@ -32,11 +33,24 @@ export default function EncodingPage() {
     } catch (e) {
       setOut(`Error: ${e}`);
     }
-  }
+  }, [mode, text]);
+
+  const resetAndRun = useCallback(() => {
+    setText("Hello");
+    setMode("b64en");
+    setOut("");
+    queueMicrotask(() => {
+      try {
+        setOut(u8ToB64(new TextEncoder().encode("Hello")));
+      } catch (e) {
+        setOut(`Error: ${e}`);
+      }
+    });
+  }, []);
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <div className="flex flex-wrap gap-2 text-sm">
         {(
           [
@@ -50,31 +64,19 @@ export default function EncodingPage() {
             key={k}
             type="button"
             onClick={() => setMode(k)}
-            className={`rounded-full px-3 py-1 ${
-              mode === k
-                ? "bg-white text-zinc-900"
-                : "border border-zinc-700 text-zinc-300"
-            }`}
+            className={`tool-chip ${mode === k ? "tool-chip-on" : "tool-chip-off"}`}
           >
             {lab}
           </button>
         ))}
       </div>
       <textarea
-        className="min-h-40 w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-sm"
+        className="tool-textarea min-h-40"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button
-        type="button"
-        onClick={run}
-        className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white"
-      >
-        Run
-      </button>
-      <pre className="min-h-24 whitespace-pre-wrap break-all rounded-lg border border-zinc-800 bg-black/40 p-3 text-sm text-zinc-200">
-        {out}
-      </pre>
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
+      <pre className="tool-pre-out text-sm">{out || "—"}</pre>
     </div>
   );
 }

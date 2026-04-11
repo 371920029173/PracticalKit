@@ -188,7 +188,7 @@ export default function ImagePage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
+      <h1 className="tool-h1">
         {t("title")}
       </h1>
       {busy && (

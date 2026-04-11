@@ -50,7 +50,7 @@ export default function HttpStatusPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
+      <h1 className="tool-h1">
         {t("title")}
       </h1>
       <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>

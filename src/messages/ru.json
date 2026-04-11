@@ -127,7 +127,8 @@
     "themeLight": "Светлая",
     "themeDark": "Тёмная",
     "menu": "Меню",
-    "close": "Закрыть"
+    "close": "Закрыть",
+    "resetAndRun": "Сброс и запуск"
   },
   "aboutPage": {
     "title": "О PracticalKit",
@@ -278,7 +279,8 @@
     "title": "Перевод (MyMemory)",
     "from": "Из",
     "to": "В",
-    "disclaimer": "Сторонний API — без секретов."
+    "disclaimer": "Сторонний API — без секретов.",
+    "submit": "Перевести"
   },
   "code": {
     "title": "Код",
@@ -329,7 +331,10 @@
     "title": "Регулярки",
     "pattern": "Шаблон",
     "flags": "Флаги",
-    "haystack": "Текст"
+    "haystack": "Текст",
+    "noMatches": "(нет совпадений)",
+    "errorPrefix": "Ошибка:",
+    "emptyPattern": "Введите шаблон (пустой шаблон здесь не запускается)."
   },
   "rgbv3d": {
     "title": "RGBV3D без потерь",
@@ -360,7 +365,8 @@
     "fileIn": "Файл",
     "run": "Хеш",
     "digest": "Hex-дайджест",
-    "empty": "Пустой ввод."
+    "empty": "Пустой ввод.",
+    "sampleText": "hello"
   },
   "jwtPage": {
     "title": "JWT декодер",
@@ -386,7 +392,8 @@
     "note": "Нижний регистр, без диакритики, пробелы в дефисы.",
     "input": "Текст",
     "output": "Slug",
-    "run": "Сгенерировать"
+    "run": "Сгенерировать",
+    "sampleInput": "Practical Kit (демо)"
   },
   "htmlEntitiesPage": {
     "title": "HTML-сущности",

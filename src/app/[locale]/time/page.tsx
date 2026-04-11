@@ -37,7 +37,7 @@ export default function TimePage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <button
         type="button"
         onClick={now}

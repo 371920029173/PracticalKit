@@ -30,7 +30,7 @@ export default function PasswordPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">{t("title")}</h1>
+      <h1 className="tool-h1">{t("title")}</h1>
       <label className="flex items-center gap-3 text-sm">
         <span className="text-zinc-400">{t("len")}</span>
         <input
