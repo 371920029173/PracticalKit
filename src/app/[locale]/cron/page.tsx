@@ -26,9 +26,14 @@ function validField(v: string, min: number, max: number): boolean {
 
 const DEF_EXPR = "*/5 * * * *";
 
-function parseCron(expr: string, t: (k: string) => string) {
+type CronRow = { k: string; v: string };
+
+function parseCron(
+  expr: string,
+  t: (k: string) => string
+): { err: string | null; rows: CronRow[] } {
   const parts = expr.trim().split(/\s+/);
-  if (parts.length !== 5) return { err: t("invalid") as const, rows: [] };
+  if (parts.length !== 5) return { err: t("invalid"), rows: [] };
   const [mi, ho, dm, mo, dw] = parts;
   if (
     !validField(mi!, 0, 59) ||
@@ -37,7 +42,7 @@ function parseCron(expr: string, t: (k: string) => string) {
     !validField(mo!, 1, 12) ||
     !validField(dw!, 0, 7)
   ) {
-    return { err: t("invalid") as const, rows: [] };
+    return { err: t("invalid"), rows: [] };
   }
   return {
     err: null,
