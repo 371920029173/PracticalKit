@@ -8,6 +8,29 @@ const googleVerification =
     ? process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim()
     : undefined;
 
+const yandexVerification =
+  typeof process.env.NEXT_PUBLIC_YANDEX_VERIFICATION === "string" &&
+  process.env.NEXT_PUBLIC_YANDEX_VERIFICATION.trim().length > 0
+    ? process.env.NEXT_PUBLIC_YANDEX_VERIFICATION.trim()
+    : undefined;
+
+const bingVerification =
+  typeof process.env.NEXT_PUBLIC_BING_VERIFICATION === "string" &&
+  process.env.NEXT_PUBLIC_BING_VERIFICATION.trim().length > 0
+    ? process.env.NEXT_PUBLIC_BING_VERIFICATION.trim()
+    : undefined;
+
+const verificationMeta: Metadata["verification"] =
+  googleVerification || yandexVerification || bingVerification
+    ? {
+        ...(googleVerification ? { google: googleVerification } : {}),
+        ...(yandexVerification ? { yandex: yandexVerification } : {}),
+        ...(bingVerification
+          ? { other: { "msvalidate.01": bingVerification } }
+          : {}),
+      }
+    : undefined;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -20,9 +43,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
-  ...(googleVerification
-    ? { verification: { google: googleVerification } }
-    : {}),
+  ...(verificationMeta ? { verification: verificationMeta } : {}),
   openGraph: {
     title: `${SITE_NAME} — Browser tools`,
     description: SITE_DESCRIPTION,
