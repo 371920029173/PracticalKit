@@ -47,11 +47,7 @@ export default function HtmlEntitiesPage() {
         placeholder={t("input")}
       />
       <div className="flex flex-wrap gap-2">
-        <ToolRunActions
-          onRun={runEncode}
-          onResetAndRun={resetAndRun}
-          runLabel={t("encode")}
-        />
+        <ToolRunActions onRun={runEncode} onResetAndRun={resetAndRun} />
         <button
           type="button"
           className="btn-ghost"

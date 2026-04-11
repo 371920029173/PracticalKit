@@ -98,7 +98,7 @@ export default function JsonDiffPage() {
           />
         </div>
       </div>
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       {err && (
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}

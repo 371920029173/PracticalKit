@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -14,6 +15,14 @@ function randomChar(pool: string) {
   return pool[arr[0]! % pool.length]!;
 }
 
+function generatePassword(length: number, useSymbols: boolean) {
+  let pool = LOWER + UPPER + NUM;
+  if (useSymbols) pool += SYM;
+  let s = "";
+  for (let i = 0; i < length; i++) s += randomChar(pool);
+  return s;
+}
+
 export default function PasswordPage() {
   const t = useTranslations("password");
   const [len, setLen] = useState(20);
@@ -21,11 +30,13 @@ export default function PasswordPage() {
   const [out, setOut] = useState("");
 
   function gen() {
-    let pool = LOWER + UPPER + NUM;
-    if (symbols) pool += SYM;
-    let s = "";
-    for (let i = 0; i < len; i++) s += randomChar(pool);
-    setOut(s);
+    setOut(generatePassword(len, symbols));
+  }
+
+  function resetAndRun() {
+    setLen(20);
+    setSymbols(true);
+    setOut(generatePassword(20, true));
   }
 
   return (
@@ -50,13 +61,7 @@ export default function PasswordPage() {
         />
         {t("symbols")}
       </label>
-      <button
-        type="button"
-        onClick={gen}
-        className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-zinc-900"
-      >
-        Generate
-      </button>
+      <ToolRunActions onRun={gen} onResetAndRun={resetAndRun} />
       <pre className="rounded-lg border border-zinc-800 bg-black/40 p-3 font-mono text-sm text-emerald-300">
         {out || "—"}
       </pre>

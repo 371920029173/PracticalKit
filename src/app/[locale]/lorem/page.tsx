@@ -70,7 +70,7 @@ export default function LoremPage() {
           />
         </label>
       </div>
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <div className="flex flex-wrap gap-2">
         <textarea
           readOnly

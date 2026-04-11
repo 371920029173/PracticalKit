@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { diffLines } from "diff";
 import { useState } from "react";
@@ -15,7 +16,6 @@ const DEF_B = "line one\nline changed\n";
 
 export default function CodePage() {
   const t = useTranslations("code");
-  const tc = useTranslations("common");
   const [tab, setTab] = useState<"hi" | "df">("hi");
   const [lang, setLang] = useState("typescript");
   const [code, setCode] = useState(DEF_CODE);
@@ -62,6 +62,21 @@ export default function CodePage() {
         >
           {t("diff")}
         </button>
+        <ToolRunActions
+          onRun={() => {
+            if (tab === "hi") void navigator.clipboard.writeText(code);
+            else void navigator.clipboard.writeText(diffOut);
+          }}
+          onResetAndRun={() => {
+            if (tab === "hi") {
+              setCode(DEF_CODE);
+              setLang("typescript");
+            } else {
+              setA(DEF_A);
+              setB(DEF_B);
+            }
+          }}
+        />
       </div>
       {tab === "hi" ? (
         <>
@@ -75,16 +90,6 @@ export default function CodePage() {
               <option value="javascript">javascript</option>
               <option value="json">json</option>
             </select>
-            <button
-              type="button"
-              className="btn-ghost text-sm"
-              onClick={() => {
-                setCode(DEF_CODE);
-                setLang("typescript");
-              }}
-            >
-              {tc("resetAndRun")}
-            </button>
           </div>
           <textarea
             className="tool-textarea min-h-56"
@@ -100,16 +105,6 @@ export default function CodePage() {
         </>
       ) : (
         <>
-          <button
-            type="button"
-            className="btn-ghost text-sm"
-            onClick={() => {
-              setA(DEF_A);
-              setB(DEF_B);
-            }}
-          >
-            {tc("resetAndRun")}
-          </button>
           <div className="grid gap-3 md:grid-cols-2">
             <textarea
               className="tool-textarea min-h-48 text-xs"

@@ -5,6 +5,7 @@ import {
   decodeRgbV3d,
   encodeRgbLossless,
 } from "@rgbv3d/core";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useRef, useState } from "react";
 
@@ -75,6 +76,8 @@ export default function RgbV3dToolClient() {
     outBytes: number;
   } | null>(null);
   const [lastBlob, setLastBlob] = useState<Uint8Array | null>(null);
+  const [encodePick, setEncodePick] = useState<File | null>(null);
+  const [decodePick, setDecodePick] = useState<File | null>(null);
   const previewRef = useRef<HTMLCanvasElement>(null);
 
   const onEncodeFile = useCallback(
@@ -163,7 +166,7 @@ export default function RgbV3dToolClient() {
               accept="image/*"
               disabled={busy}
               className="text-sm file:btn-motion file:mr-2 file:rounded-lg file:border-0 file:bg-indigo-600 file:px-3 file:py-1.5 file:text-white"
-              onChange={(e) => void onEncodeFile(e.target.files?.[0] ?? null)}
+              onChange={(e) => setEncodePick(e.target.files?.[0] ?? null)}
             />
           </label>
           <label className="flex flex-col gap-2 text-sm">
@@ -182,6 +185,17 @@ export default function RgbV3dToolClient() {
               <option value={9}>{t("dirBits9")}</option>
             </select>
           </label>
+          <ToolRunActions
+            onRun={() => void onEncodeFile(encodePick)}
+            onResetAndRun={() => {
+              setEncodePick(null);
+              setLastBlob(null);
+              setStats(null);
+              setError(null);
+              clearPreviewCanvas();
+            }}
+            busy={busy}
+          />
           <button
             type="button"
             disabled={busy || !lastBlob || !stats}
@@ -220,9 +234,18 @@ export default function RgbV3dToolClient() {
               accept=".rgbv3d,application/octet-stream"
               disabled={busy}
               className="text-sm file:btn-motion file:rounded-lg file:bg-slate-800 file:px-3 file:py-1.5 file:text-white dark:file:bg-zinc-700"
-              onChange={(e) => void onDecodeFile(e.target.files?.[0] ?? null)}
+              onChange={(e) => setDecodePick(e.target.files?.[0] ?? null)}
             />
           </label>
+          <ToolRunActions
+            onRun={() => void onDecodeFile(decodePick)}
+            onResetAndRun={() => {
+              setDecodePick(null);
+              clearPreviewCanvas();
+              setError(null);
+            }}
+            busy={busy}
+          />
           <button
             type="button"
             className="btn-ghost text-sm"

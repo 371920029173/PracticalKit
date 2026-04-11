@@ -1,15 +1,19 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import QRCode from "qrcode";
 import jsQR from "jsqr";
 
+const DEF_QR_TEXT = "https://example.com";
+
 export default function QrPage() {
   const t = useTranslations("qr");
-  const [text, setText] = useState("https://example.com");
+  const [text, setText] = useState(DEF_QR_TEXT);
   const [dataUrl, setDataUrl] = useState("");
   const [decodeOut, setDecodeOut] = useState("");
+  const [scanFile, setScanFile] = useState<File | null>(null);
 
   async function gen() {
     const url = await QRCode.toDataURL(text, { margin: 1, width: 256 });
@@ -38,13 +42,13 @@ export default function QrPage() {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button
-          type="button"
-          onClick={gen}
-          className="rounded-lg bg-white px-3 py-2 text-sm font-medium text-zinc-900"
-        >
-          Generate
-        </button>
+        <ToolRunActions
+          onRun={() => void gen()}
+          onResetAndRun={() => {
+            setText(DEF_QR_TEXT);
+            void QRCode.toDataURL(DEF_QR_TEXT, { margin: 1, width: 256 }).then(setDataUrl);
+          }}
+        />
         {dataUrl && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={dataUrl} alt="qr" className="mt-2 max-w-xs border border-zinc-800 bg-white p-2" />
@@ -56,10 +60,19 @@ export default function QrPage() {
           type="file"
           accept="image/*"
           onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) onDecodeFile(f);
+            setScanFile(e.target.files?.[0] ?? null);
+            setDecodeOut("");
           }}
           className="text-sm"
+        />
+        <ToolRunActions
+          onRun={() => {
+            if (scanFile) void onDecodeFile(scanFile);
+          }}
+          onResetAndRun={() => {
+            setScanFile(null);
+            setDecodeOut("");
+          }}
         />
         <pre className="rounded border border-zinc-800 bg-black/40 p-2 text-sm">{decodeOut}</pre>
       </section>

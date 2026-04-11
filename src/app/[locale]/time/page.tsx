@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -35,16 +36,33 @@ export default function TimePage() {
     setOut2(`${Math.floor(d.getTime() / 1000)} s\n${d.getTime()} ms`);
   }
 
+  function runAll() {
+    tsToDate();
+    dateToTs();
+  }
+
+  function resetAndRun() {
+    const s = Math.floor(Date.now() / 1000);
+    setTs(String(s));
+    setIso(new Date().toISOString().slice(0, 19));
+    setOut1(new Date(s * 1000).toString() + ` (${s}s)`);
+    const d = new Date(s * 1000);
+    setOut2(`${Math.floor(d.getTime() / 1000)} s\n${d.getTime()} ms`);
+  }
+
   return (
     <div className="space-y-6">
       <h1 className="tool-h1">{t("title")}</h1>
-      <button
-        type="button"
-        onClick={now}
-        className="rounded-lg bg-zinc-800 px-3 py-2 text-sm"
-      >
-        {t("now")}
-      </button>
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onClick={now}
+          className="rounded-lg bg-zinc-800 px-3 py-2 text-sm"
+        >
+          {t("now")}
+        </button>
+        <ToolRunActions onRun={runAll} onResetAndRun={resetAndRun} />
+      </div>
       <section className="space-y-2">
         <h2 className="text-sm font-medium text-zinc-400">{t("toDate")}</h2>
         <input
@@ -52,13 +70,6 @@ export default function TimePage() {
           value={ts}
           onChange={(e) => setTs(e.target.value)}
         />
-        <button
-          type="button"
-          onClick={tsToDate}
-          className="rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white"
-        >
-          Convert
-        </button>
         <pre className="rounded border border-zinc-800 bg-black/30 p-2 text-sm">{out1}</pre>
       </section>
       <section className="space-y-2">
@@ -69,13 +80,6 @@ export default function TimePage() {
           onChange={(e) => setIso(e.target.value)}
           placeholder="2026-04-07T12:00:00"
         />
-        <button
-          type="button"
-          onClick={dateToTs}
-          className="rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white"
-        >
-          Convert
-        </button>
         <pre className="rounded border border-zinc-800 bg-black/30 p-2 text-sm">{out2}</pre>
       </section>
     </div>

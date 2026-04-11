@@ -159,7 +159,7 @@ export default function FunctionPlotPage() {
           className="tool-field"
         />
       </div>
-      <ToolRunActions onRun={draw} onResetAndRun={resetAndRun} runLabel={t("plot")} />
+      <ToolRunActions onRun={draw} onResetAndRun={resetAndRun} />
       {err && (
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}

@@ -71,6 +71,10 @@
     "welcomeLead": "A calm, browser-first toolbox for PDFs, images, data, and everyday conversions. We prefer local processing so your files stay on your device whenever the tool allows it.",
     "welcomeCta": "Explore tools",
     "toolsSectionTitle": "All tools",
+    "recentTitle": "Recently used",
+    "recentEmpty": "Open any tool below — we keep your last picks on this device only (nothing is sent to our servers for this list).",
+    "recentHint": "Stored in your browser. When you change language, these links open in your current locale.",
+    "recentClear": "Clear",
     "lead": "Browser-first utilities for everyday work. Processing stays in your device when possible; see each tool for details.",
     "privacyNote": "Designed for Pages/CDN hosting. Prefer client-side processing to keep your files off servers.",
     "editorialTitle": "Who runs this site",
@@ -146,7 +150,8 @@
     "p4": "Ads are provided by Google AdSense and may use cookies or similar technologies based on your region and consent settings.",
     "p5": "Third-party APIs are used only on pages that explicitly mention them. Review each provider's policy before submitting sensitive data.",
     "p6": "Analytics: we may use Google Analytics 4 (GA4) with IP anonymization enabled, only after you accept non-essential cookies via the banner (where shown). GA helps us understand which pages are used and how the site performs.",
-    "p7": "Cookies: essential cookies may be needed for theme or UI preferences. Marketing/analytics cookies (such as GA) are optional and respect your choice in the cookie banner. You can change your mind by clearing site data for this website or using browser controls."
+    "p7": "Cookies: essential cookies may be needed for theme or UI preferences. Marketing/analytics cookies (such as GA) are optional and respect your choice in the cookie banner. You can change your mind by clearing site data for this website or using browser controls.",
+    "p8": "Privacy-friendly analytics: when enabled for a deployment, we may load Plausible (or a compatible self-hosted script) to count page views in aggregate. It does not use third-party advertising cookies. This is off unless the site operator sets it in environment variables."
   },
   "termsPage": {
     "title": "Terms of Use",
@@ -318,6 +323,7 @@
   "audio": {
     "title": "Audio convert",
     "note": "Experimental ffmpeg.wasm path; keep files small.",
+    "outputFmt": "Output format",
     "pick": "Choose audio or video",
     "fmtMp3": "MP3",
     "fmtWav": "WAV",

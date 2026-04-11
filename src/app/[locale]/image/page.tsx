@@ -5,6 +5,7 @@ import {
   decodeRgbV3d,
   encodeRgbLossless,
 } from "@rgbv3d/core";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import imageCompression from "browser-image-compression";
@@ -95,6 +96,9 @@ export default function ImagePage() {
   const [busy, setBusy] = useState("");
   const [ocrText, setOcrText] = useState("");
   const [fmt, setFmt] = useState<RasterMime | "rgbv3d">("image/jpeg");
+  const [compressFile, setCompressFile] = useState<File | null>(null);
+  const [convertFile, setConvertFile] = useState<File | null>(null);
+  const [ocrPick, setOcrPick] = useState<File | null>(null);
 
   async function compress(file: File) {
     setBusy("compress");
@@ -169,7 +173,7 @@ export default function ImagePage() {
     }
   }
 
-  async function ocrFile(file: File) {
+  async function runOcr(file: File) {
     setBusy("ocr");
     setOcrText("");
     try {
@@ -204,10 +208,16 @@ export default function ImagePage() {
           type="file"
           accept="image/*"
           className="text-sm file:btn-motion file:mr-2 file:rounded-lg file:bg-indigo-600 file:px-3 file:py-1.5 file:text-white"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) compress(f);
+          onChange={(e) => setCompressFile(e.target.files?.[0] ?? null)}
+        />
+        <ToolRunActions
+          onRun={() => {
+            if (compressFile) void compress(compressFile);
           }}
+          onResetAndRun={() => {
+            setCompressFile(null);
+          }}
+          busy={busy === "compress"}
         />
       </section>
       <section className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900/60">
@@ -235,10 +245,16 @@ export default function ImagePage() {
           type="file"
           accept="image/*,.rgbv3d"
           className="text-sm file:btn-motion file:rounded-lg file:bg-slate-800 file:px-3 file:py-1.5 file:text-white dark:file:bg-zinc-700"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) convert(f, fmt);
+          onChange={(e) => setConvertFile(e.target.files?.[0] ?? null)}
+        />
+        <ToolRunActions
+          onRun={() => {
+            if (convertFile) void convert(convertFile, fmt);
           }}
+          onResetAndRun={() => {
+            setConvertFile(null);
+          }}
+          busy={busy === "convert"}
         />
       </section>
       <section className="space-y-2 rounded-xl border border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900/60">
@@ -250,9 +266,19 @@ export default function ImagePage() {
           accept="image/*"
           className="text-sm"
           onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) ocrFile(f);
+            setOcrPick(e.target.files?.[0] ?? null);
+            setOcrText("");
           }}
+        />
+        <ToolRunActions
+          onRun={() => {
+            if (ocrPick) void runOcr(ocrPick);
+          }}
+          onResetAndRun={() => {
+            setOcrPick(null);
+            setOcrText("");
+          }}
+          busy={busy === "ocr"}
         />
         <pre className="max-h-64 overflow-auto whitespace-pre-wrap rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-800 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-300">
           {ocrText}

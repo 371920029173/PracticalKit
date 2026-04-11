@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -35,6 +36,14 @@ export default function ColorPage() {
     setR(x.r);
     setG(x.g);
     setB(x.b);
+  };
+
+  const resetAndRun = () => {
+    setHex("#4F46E5");
+    setR(79);
+    setG(70);
+    setB(229);
+    setEyeError("");
   };
 
   const preview = useMemo(() => rgbToHex(r, g, b), [r, g, b]);
@@ -87,6 +96,7 @@ export default function ColorPage() {
           onBlur={fromHex}
         />
       </label>
+      <ToolRunActions onRun={fromHex} onResetAndRun={resetAndRun} />
       <div className="grid max-w-md grid-cols-3 gap-3 text-sm">
         {(
           [

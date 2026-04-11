@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -77,6 +78,23 @@ export default function UnitsPage() {
     { k: "volume", lab: t("volume") },
   ];
 
+  async function copyResult() {
+    if (converted === "—") return;
+    const line = `${converted} ${rows[toIdx]?.unit ?? ""}`.trim();
+    try {
+      await navigator.clipboard.writeText(line);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function resetAndRun() {
+    setCat("length");
+    setFromIdx(0);
+    setToIdx(1);
+    setVal("1");
+  }
+
   return (
     <div className="space-y-4">
       <h1 className="tool-h1">{t("title")}</h1>
@@ -139,6 +157,7 @@ export default function UnitsPage() {
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-lg font-mono text-emerald-300">
         {converted} {rows[toIdx]?.unit}
       </div>
+      <ToolRunActions onRun={copyResult} onResetAndRun={resetAndRun} />
     </div>
   );
 }

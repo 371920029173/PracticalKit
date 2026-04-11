@@ -91,7 +91,7 @@ export default function CidrPage() {
         onChange={(e) => setInput(e.target.value)}
         placeholder={t("input")}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       {err && (
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}

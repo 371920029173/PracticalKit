@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -54,16 +55,20 @@ export default function HttpStatusPage() {
         {t("title")}
       </h1>
       <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           className="w-72 rounded-lg border border-slate-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-zinc-950"
           placeholder={t("input")}
         />
-        <button type="button" className="btn-primary" onClick={() => setRunQ(q)}>
-          {t("search")}
-        </button>
+        <ToolRunActions
+          onRun={() => setRunQ(q)}
+          onResetAndRun={() => {
+            setQ("404");
+            setRunQ("404");
+          }}
+        />
       </div>
       <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-zinc-800 dark:bg-zinc-900">
         {matches.length === 0 ? (

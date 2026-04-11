@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -10,6 +11,7 @@ export default function VideoGifPage() {
   const [log, setLog] = useState("");
   const [busy, setBusy] = useState(false);
   const [fmt, setFmt] = useState<OutFmt>("gif");
+  const [videoFile, setVideoFile] = useState<File | undefined>();
 
   async function run(file: File | undefined) {
     if (!file) return;
@@ -132,7 +134,16 @@ export default function VideoGifPage() {
         accept="video/*"
         disabled={busy}
         className="text-sm file:btn-motion file:rounded-lg file:bg-indigo-600 file:px-3 file:py-1.5 file:text-white"
-        onChange={(e) => run(e.target.files?.[0])}
+        onChange={(e) => setVideoFile(e.target.files?.[0])}
+      />
+      <ToolRunActions
+        onRun={() => run(videoFile)}
+        onResetAndRun={() => {
+          setVideoFile(undefined);
+          setLog("");
+          setFmt("gif");
+        }}
+        busy={busy}
       />
       <pre className="max-h-48 overflow-auto rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-400">
         {log}

@@ -25,7 +25,6 @@ function randomHex(bytes: number) {
 
 export default function RandomPage() {
   const t = useTranslations("random");
-  const tc = useTranslations("common");
   const [serialCount, setSerialCount] = useState(5);
   const [out, setOut] = useState("");
 
@@ -80,11 +79,7 @@ export default function RandomPage() {
           value={serialCount}
           onChange={(e) => setSerialCount(+e.target.value || 1)}
         />
-        <ToolRunActions
-          onRun={serials}
-          onResetAndRun={resetSerialAndRun}
-          runLabel={tc("run")}
-        />
+        <ToolRunActions onRun={serials} onResetAndRun={resetSerialAndRun} />
       </div>
       <pre className="tool-pre-out font-mono text-sm">{out || "—"}</pre>
     </div>

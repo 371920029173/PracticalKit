@@ -15,8 +15,22 @@ function getGaId(): string | undefined {
   return undefined;
 }
 
+function getPlausibleDomain(): string | undefined {
+  if (typeof process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN === "string") {
+    const d = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN.trim();
+    return d.length > 0 ? d : undefined;
+  }
+  return undefined;
+}
+
+function getPlausibleScriptSrc(): string {
+  const u = process.env.NEXT_PUBLIC_PLAUSIBLE_SCRIPT_URL?.trim();
+  return u && u.length > 0 ? u : "https://plausible.io/js/script.js";
+}
+
 export function CookieAndAnalytics() {
   const gaId = getGaId();
+  const plausibleDomain = getPlausibleDomain();
   const t = useTranslations("cookieConsent");
   const [consent, setConsent] = useState<"yes" | "no" | null>(null);
 
@@ -47,11 +61,22 @@ export function CookieAndAnalytics() {
     setConsent("no");
   }, []);
 
-  if (!gaId) return null;
+  if (!gaId && !plausibleDomain) return null;
+
+  const loadPlausible =
+    Boolean(plausibleDomain) && (!gaId || consent === "yes");
 
   return (
     <>
-      {consent === "yes" ? (
+      {loadPlausible ? (
+        <Script
+          defer
+          data-domain={plausibleDomain}
+          src={getPlausibleScriptSrc()}
+          strategy="afterInteractive"
+        />
+      ) : null}
+      {gaId && consent === "yes" ? (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
@@ -68,7 +93,7 @@ export function CookieAndAnalytics() {
         </>
       ) : null}
 
-      {consent === null ? (
+      {gaId && consent === null ? (
         <div
           role="dialog"
           aria-label={t("bannerAria")}

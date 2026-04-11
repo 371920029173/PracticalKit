@@ -91,7 +91,6 @@ export default function TranslatePage() {
         onRun={run}
         onResetAndRun={resetAndRun}
         busy={loading}
-        runLabel={t("submit")}
       />
       <pre className="tool-pre-out">{out || "—"}</pre>
     </div>

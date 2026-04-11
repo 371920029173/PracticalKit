@@ -53,7 +53,7 @@ export default function CalcPage() {
         value={expr}
         onChange={(e) => setExpr(e.target.value)}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel="=" />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <pre className="tool-pre-out text-lg text-emerald-800 dark:text-emerald-300">
         {out || "—"}
       </pre>

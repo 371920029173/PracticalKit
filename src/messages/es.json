@@ -71,6 +71,10 @@
     "welcomeLead": "Utilidades en el navegador para PDF, imágenes, datos y conversiones cotidianas. Cuando es posible, el procesamiento es local en tu dispositivo.",
     "welcomeCta": "Ver herramientas",
     "toolsSectionTitle": "Todas las herramientas",
+    "recentTitle": "Usadas recientemente",
+    "recentEmpty": "Abre cualquier herramienta abajo: guardamos tus últimas solo en este dispositivo (no en nuestros servidores).",
+    "recentHint": "Solo en tu navegador. Al cambiar el idioma, los enlaces usan tu idioma actual.",
+    "recentClear": "Borrar",
     "lead": "Utilidades en el navegador. Cuando es posible, el procesamiento es local; revisa cada herramienta.",
     "privacyNote": "Pensado para hosting estático; preferimos procesamiento en el cliente.",
     "editorialTitle": "Quién mantiene el sitio",
@@ -146,7 +150,8 @@
     "p4": "Los anuncios de Google AdSense pueden usar cookies según tu región y tu consentimiento.",
     "p5": "Las APIs de terceros solo se usan en páginas que lo indican explícitamente. Revisa sus políticas antes de enviar datos sensibles.",
     "p6": "Analítica: podemos usar Google Analytics 4 (GA4) con anonimización de IP solo tras aceptar cookies no esenciales (si se muestra el banner). Ayuda a entender el uso y el rendimiento.",
-    "p7": "Cookies: la preferencia de tema puede requerir cookies esenciales. Las cookies analíticas (p. ej. GA) son opcionales y respetan el banner. Puedes borrar los datos de este sitio en el navegador o usar sus controles de privacidad."
+    "p7": "Cookies: la preferencia de tema puede requerir cookies esenciales. Las cookies analíticas (p. ej. GA) son opcionales y respetan el banner. Puedes borrar los datos de este sitio en el navegador o usar sus controles de privacidad.",
+    "p8": "Analítica respetuosa con la privacidad: si está configurada, podemos cargar Plausible (o un script compatible alojado por ti) para vistas agregadas, sin cookies publicitarias de terceros. Sin variables de entorno permanece desactivada."
   },
   "termsPage": {
     "title": "Términos de uso",
@@ -318,6 +323,7 @@
   "audio": {
     "title": "Audio",
     "note": "Experimental; archivos pequeños.",
+    "outputFmt": "Formato de salida",
     "pick": "Elegir audio o vídeo",
     "fmtMp3": "MP3",
     "fmtWav": "WAV",

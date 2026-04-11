@@ -40,7 +40,7 @@ export default function UnicodePage() {
         onChange={(e) => setText(e.target.value)}
         placeholder={t("input")}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <pre className="tool-pre min-h-48 text-sm">{out || "—"}</pre>
     </div>
   );

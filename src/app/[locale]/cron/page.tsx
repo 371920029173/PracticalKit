@@ -85,7 +85,7 @@ export default function CronPage() {
         className="tool-field w-full font-mono"
         placeholder={t("expr")}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       {err && (
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}

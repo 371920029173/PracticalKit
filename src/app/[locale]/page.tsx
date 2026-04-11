@@ -1,3 +1,4 @@
+import { RecentToolsSection } from "@/components/RecentToolsSection";
 import { Link } from "@/i18n/navigation";
 import { createHomeMetadata } from "@/lib/seo-metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -86,6 +87,8 @@ export default async function HomePage({
           aria-hidden
         />
       </section>
+
+      <RecentToolsSection />
 
       <section id="tools" className="scroll-mt-24 space-y-5">
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">

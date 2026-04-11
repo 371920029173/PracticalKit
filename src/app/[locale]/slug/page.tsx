@@ -39,7 +39,7 @@ export default function SlugPage() {
         onChange={(e) => setInput(e.target.value)}
         placeholder={t("input")}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <div>
         <label className="tool-muted">{t("output")}</label>
         <div className="mt-1 flex flex-wrap gap-2">

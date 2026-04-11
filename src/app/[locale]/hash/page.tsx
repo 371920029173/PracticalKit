@@ -91,7 +91,6 @@ export default function HashPage() {
           onRun={runText}
           onResetAndRun={resetAndRun}
           busy={busy}
-          runLabel={t("run")}
         />
         <label className="btn-ghost cursor-pointer text-sm">
           {t("fileIn")}

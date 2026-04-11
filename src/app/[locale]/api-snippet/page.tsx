@@ -123,7 +123,7 @@ export default function ApiSnippetPage() {
           className="tool-textarea mt-1 min-h-28"
         />
       </label>
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <h2 className="mb-1 text-sm font-semibold text-slate-600 dark:text-zinc-300">

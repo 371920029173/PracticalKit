@@ -81,7 +81,6 @@ export default function MoneyPage() {
           onRun={refresh}
           onResetAndRun={resetAndRun}
           busy={loading}
-          runLabel={t("refresh")}
         />
       </div>
       {err && <p className="text-sm text-red-600 dark:text-red-400">{err}</p>}

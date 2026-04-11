@@ -1,23 +1,29 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
+const DEF_TEXT = "Hello\nWorld\nWorld\n\n漢語";
+
+function statsFor(src: string) {
+  const lines = src.split(/\r?\n/);
+  const words = src.trim() ? src.trim().split(/\s+/) : [];
+  return [`chars: ${src.length}`, `lines: ${lines.length}`, `words: ${words.length}`].join("\n");
+}
+
 export default function TextPage() {
   const t = useTranslations("text");
-  const [text, setText] = useState("Hello\nWorld\nWorld\n\n漢語");
+  const [text, setText] = useState(DEF_TEXT);
   const [out, setOut] = useState("");
 
   function stats() {
-    const lines = text.split(/\r?\n/);
-    const words = text.trim() ? text.trim().split(/\s+/) : [];
-    setOut(
-      [
-        `chars: ${text.length}`,
-        `lines: ${lines.length}`,
-        `words: ${words.length}`,
-      ].join("\n")
-    );
+    setOut(statsFor(text));
+  }
+
+  function resetAndRun() {
+    setText(DEF_TEXT);
+    setOut(statsFor(DEF_TEXT));
   }
 
   function dedupe() {
@@ -69,6 +75,7 @@ export default function TextPage() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <ToolRunActions onRun={stats} onResetAndRun={resetAndRun} />
       <div className="flex flex-wrap gap-2 text-sm">
         <button type="button" onClick={stats} className="rounded-lg bg-zinc-800 px-3 py-2">
           {t("stats")}

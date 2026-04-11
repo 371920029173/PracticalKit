@@ -166,7 +166,7 @@ export default function CsvJsonPage() {
         onChange={(e) => setText(e.target.value)}
         placeholder={mode === "c2j" ? t("csv") : t("json")}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("convert")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       {err && (
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}

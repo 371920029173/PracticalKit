@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { PDFDocument } from "pdf-lib";
 import { useTranslations } from "next-intl";
@@ -33,6 +34,11 @@ export default function PdfToolClient() {
   const t = useTranslations("pdf");
   const [log, setLog] = useState("");
   const [busy, setBusy] = useState(false);
+  const [mergePick, setMergePick] = useState<FileList | null>(null);
+  const [splitPick, setSplitPick] = useState<File | undefined>();
+  const [compressPick, setCompressPick] = useState<File | undefined>();
+  const [toImgPick, setToImgPick] = useState<File | undefined>();
+  const [toWordPick, setToWordPick] = useState<File | undefined>();
 
   async function merge(files: FileList | null) {
     if (!files?.length) return;
@@ -166,24 +172,85 @@ export default function PdfToolClient() {
       {busy && <p className="text-sm text-amber-300">…</p>}
       <section className="space-y-2 rounded-xl border border-zinc-800 p-4">
         <h2 className="text-sm text-zinc-400">{t("merge")}</h2>
-        <input type="file" accept="application/pdf" multiple onChange={(e) => merge(e.target.files)} />
+        <input
+          type="file"
+          accept="application/pdf"
+          multiple
+          onChange={(e) => setMergePick(e.target.files)}
+        />
+        <ToolRunActions
+          onRun={() => void merge(mergePick)}
+          onResetAndRun={() => {
+            setMergePick(null);
+            setLog("");
+          }}
+          busy={busy}
+        />
         <p className="text-xs text-zinc-600">{t("mergeBtn")}</p>
       </section>
       <section className="space-y-2 rounded-xl border border-zinc-800 p-4">
         <h2 className="text-sm text-zinc-400">{t("split")}</h2>
-        <input type="file" accept="application/pdf" onChange={(e) => split(e.target.files?.[0])} />
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={(e) => setSplitPick(e.target.files?.[0])}
+        />
+        <ToolRunActions
+          onRun={() => void split(splitPick)}
+          onResetAndRun={() => {
+            setSplitPick(undefined);
+            setLog("");
+          }}
+          busy={busy}
+        />
       </section>
       <section className="space-y-2 rounded-xl border border-zinc-800 p-4">
         <h2 className="text-sm text-zinc-400">{t("compress")}</h2>
-        <input type="file" accept="application/pdf" onChange={(e) => compress(e.target.files?.[0])} />
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={(e) => setCompressPick(e.target.files?.[0])}
+        />
+        <ToolRunActions
+          onRun={() => void compress(compressPick)}
+          onResetAndRun={() => {
+            setCompressPick(undefined);
+            setLog("");
+          }}
+          busy={busy}
+        />
       </section>
       <section className="space-y-2 rounded-xl border border-zinc-800 p-4">
         <h2 className="text-sm text-zinc-400">{t("toImages")}</h2>
-        <input type="file" accept="application/pdf" onChange={(e) => toImages(e.target.files?.[0])} />
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={(e) => setToImgPick(e.target.files?.[0])}
+        />
+        <ToolRunActions
+          onRun={() => void toImages(toImgPick)}
+          onResetAndRun={() => {
+            setToImgPick(undefined);
+            setLog("");
+          }}
+          busy={busy}
+        />
       </section>
       <section className="space-y-2 rounded-xl border border-zinc-800 p-4">
         <h2 className="text-sm text-zinc-400">{t("toWord")}</h2>
-        <input type="file" accept="application/pdf" onChange={(e) => toWord(e.target.files?.[0])} />
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={(e) => setToWordPick(e.target.files?.[0])}
+        />
+        <ToolRunActions
+          onRun={() => void toWord(toWordPick)}
+          onResetAndRun={() => {
+            setToWordPick(undefined);
+            setLog("");
+          }}
+          busy={busy}
+        />
       </section>
       <pre className="rounded border border-zinc-800 bg-black/40 p-2 text-xs text-zinc-300">{log}</pre>
     </div>

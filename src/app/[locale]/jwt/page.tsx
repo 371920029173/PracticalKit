@@ -73,7 +73,7 @@ export default function JwtPage() {
         onChange={(e) => setRaw(e.target.value)}
         placeholder={t("paste")}
       />
-      <ToolRunActions onRun={decode} onResetAndRun={resetAndRun} runLabel={t("decode")} />
+      <ToolRunActions onRun={decode} onResetAndRun={resetAndRun} />
       {err && (
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}

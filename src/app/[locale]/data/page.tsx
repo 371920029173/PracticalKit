@@ -1,33 +1,52 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import YAML from "yaml";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
 
+type DataMode = "json" | "xml" | "yaml";
+
+const DEF_TEXT: Record<DataMode, string> = {
+  json: '{\n  "hello": "world"\n}',
+  yaml: "hello: world",
+  xml: '<?xml version="1.0"?>\n<root>\n  <hello>world</hello>\n</root>',
+};
+
+function formatOut(src: string, m: DataMode): string {
+  try {
+    if (m === "json") {
+      const o = JSON.parse(src);
+      return JSON.stringify(o, null, 2);
+    }
+    if (m === "yaml") {
+      const o = YAML.parse(src);
+      return YAML.stringify(o, { indent: 2 });
+    }
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const builder = new XMLBuilder({ format: true, ignoreAttributes: false });
+    const o = parser.parse(src);
+    return builder.build(o);
+  } catch (e) {
+    return `Error: ${e}`;
+  }
+}
+
 export default function DataPage() {
   const t = useTranslations("data");
-  const [mode, setMode] = useState<"json" | "xml" | "yaml">("json");
-  const [text, setText] = useState('{\n  "hello": "world"\n}');
+  const [mode, setMode] = useState<DataMode>("json");
+  const [text, setText] = useState(DEF_TEXT.json);
   const [out, setOut] = useState("");
 
   function format() {
-    try {
-      if (mode === "json") {
-        const o = JSON.parse(text);
-        setOut(JSON.stringify(o, null, 2));
-      } else if (mode === "yaml") {
-        const o = YAML.parse(text);
-        setOut(YAML.stringify(o, { indent: 2 }));
-      } else {
-        const parser = new XMLParser({ ignoreAttributes: false });
-        const builder = new XMLBuilder({ format: true, ignoreAttributes: false });
-        const o = parser.parse(text);
-        setOut(builder.build(o));
-      }
-    } catch (e) {
-      setOut(`Error: ${e}`);
-    }
+    setOut(formatOut(text, mode));
+  }
+
+  function resetAndRun() {
+    const d = DEF_TEXT[mode];
+    setText(d);
+    setOut(formatOut(d, mode));
   }
 
   function minify() {
@@ -83,6 +102,7 @@ export default function DataPage() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <ToolRunActions onRun={format} onResetAndRun={resetAndRun} />
       <div className="flex flex-wrap gap-2">
         <button
           type="button"

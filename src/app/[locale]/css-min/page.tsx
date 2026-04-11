@@ -43,7 +43,7 @@ export default function CssMinPage() {
         onChange={(e) => setInput(e.target.value)}
         placeholder={t("input")}
       />
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} runLabel={t("run")} />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <div className="flex flex-wrap items-start gap-2">
         <pre className="tool-pre min-h-24 flex-1 text-xs">{out || "—"}</pre>
         <button

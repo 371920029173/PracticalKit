@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
@@ -17,6 +18,7 @@ export default function AudioPage() {
   const [log, setLog] = useState("");
   const [busy, setBusy] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [outKind, setOutKind] = useState<OutKind>("mp3");
 
   async function convert(f: File, out: OutKind) {
     setBusy(true);
@@ -100,7 +102,7 @@ export default function AudioPage() {
     }
   }
 
-  const buttons: { k: OutKind; lab: string }[] = [
+  const fmtOptions: { k: OutKind; lab: string }[] = [
     { k: "mp3", lab: t("fmtMp3") },
     { k: "wav", lab: t("fmtWav") },
     { k: "aac", lab: t("fmtAac") },
@@ -126,18 +128,33 @@ export default function AudioPage() {
           onChange={(e) => setFile(e.target.files?.[0] ?? null)}
         />
       </label>
-      <div className="flex flex-wrap gap-2">
-        {buttons.map(({ k, lab }) => (
-          <button
-            key={k}
-            type="button"
-            disabled={busy || !file}
-            className="btn-ghost text-sm disabled:opacity-40"
-            onClick={() => file && void convert(file, k)}
+      <div className="flex flex-wrap items-end gap-3">
+        <label className="flex flex-col gap-1 text-sm text-slate-700 dark:text-zinc-300">
+          <span>{t("outputFmt")}</span>
+          <select
+            value={outKind}
+            disabled={busy}
+            onChange={(e) => setOutKind(e.target.value as OutKind)}
+            className="rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-zinc-600 dark:bg-zinc-950 dark:text-zinc-100"
           >
-            → {lab}
-          </button>
-        ))}
+            {fmtOptions.map(({ k, lab }) => (
+              <option key={k} value={k}>
+                {lab}
+              </option>
+            ))}
+          </select>
+        </label>
+        <ToolRunActions
+          onRun={() => {
+            if (file) void convert(file, outKind);
+          }}
+          onResetAndRun={() => {
+            setFile(null);
+            setLog("");
+            setOutKind("mp3");
+          }}
+          busy={busy}
+        />
       </div>
       <pre className="max-h-48 overflow-auto rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-400">
         {log}
