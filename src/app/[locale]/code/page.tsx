@@ -21,6 +21,7 @@ export default function CodePage() {
   const [code, setCode] = useState(DEF_CODE);
   const [a, setA] = useState(DEF_A);
   const [b, setB] = useState(DEF_B);
+  const [copyStatus, setCopyStatus] = useState("");
 
   const highlighted =
     tab === "hi"
@@ -63,11 +64,17 @@ export default function CodePage() {
           {t("diff")}
         </button>
         <ToolRunActions
-          onRun={() => {
-            if (tab === "hi") void navigator.clipboard.writeText(code);
-            else void navigator.clipboard.writeText(diffOut);
+          onRun={async () => {
+            try {
+              if (tab === "hi") await navigator.clipboard.writeText(code);
+              else await navigator.clipboard.writeText(diffOut);
+              setCopyStatus("Copied");
+            } catch {
+              setCopyStatus("Copy failed");
+            }
           }}
           onResetAndRun={() => {
+            setCopyStatus("");
             if (tab === "hi") {
               setCode(DEF_CODE);
               setLang("typescript");
@@ -78,6 +85,9 @@ export default function CodePage() {
           }}
         />
       </div>
+      {copyStatus ? (
+        <p className="text-xs text-slate-500 dark:text-zinc-400">{copyStatus}</p>
+      ) : null}
       {tab === "hi" ? (
         <>
           <div className="flex flex-wrap items-center gap-2">

@@ -16,20 +16,28 @@ export default function QrPage() {
   const [scanFile, setScanFile] = useState<File | null>(null);
 
   async function gen() {
-    const url = await QRCode.toDataURL(text, { margin: 1, width: 256 });
-    setDataUrl(url);
+    try {
+      const url = await QRCode.toDataURL(text.trim(), { margin: 1, width: 320 });
+      setDataUrl(url);
+    } catch (e) {
+      setDecodeOut(`QR generation failed: ${String(e)}`);
+    }
   }
 
   async function onDecodeFile(f: File) {
-    const bmp = await createImageBitmap(f);
-    const canvas = document.createElement("canvas");
-    canvas.width = bmp.width;
-    canvas.height = bmp.height;
-    const ctx = canvas.getContext("2d")!;
-    ctx.drawImage(bmp, 0, 0);
-    const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(data, width, height);
-    setDecodeOut(code?.data || "(no QR found)");
+    try {
+      const bmp = await createImageBitmap(f);
+      const canvas = document.createElement("canvas");
+      canvas.width = bmp.width;
+      canvas.height = bmp.height;
+      const ctx = canvas.getContext("2d")!;
+      ctx.drawImage(bmp, 0, 0);
+      const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(data, width, height);
+      setDecodeOut(code?.data || "No QR found");
+    } catch (e) {
+      setDecodeOut(`Failed to decode image: ${String(e)}`);
+    }
   }
 
   return (

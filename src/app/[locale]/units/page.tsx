@@ -95,6 +95,11 @@ export default function UnitsPage() {
     setVal("1");
   }
 
+  function swapUnits() {
+    setFromIdx(toIdx);
+    setToIdx(fromIdx);
+  }
+
   return (
     <div className="space-y-4">
       <h1 className="tool-h1">{t("title")}</h1>
@@ -153,6 +158,11 @@ export default function UnitsPage() {
             ))}
           </select>
         </label>
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <button type="button" className="btn-ghost text-sm" onClick={swapUnits}>
+          Swap
+        </button>
       </div>
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-lg font-mono text-emerald-300">
         {converted} {rows[toIdx]?.unit}

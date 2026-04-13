@@ -4,6 +4,20 @@ import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
+function parseTimestamp(raw: string): number | null {
+  const n = Number(raw.trim());
+  if (!Number.isFinite(n)) return null;
+  return Math.abs(n) >= 1e12 ? n / 1000 : n;
+}
+
+function parseIsoLocal(raw: string): Date | null {
+  const v = raw.trim();
+  if (!v) return null;
+  const withSeconds = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(v) ? `${v}:00` : v;
+  const d = new Date(withSeconds);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
 export default function TimePage() {
   const t = useTranslations("time");
   const [ts, setTs] = useState(String(Math.floor(Date.now() / 1000)));
@@ -18,19 +32,19 @@ export default function TimePage() {
   }
 
   function tsToDate() {
-    const n = parseFloat(ts);
-    if (Number.isNaN(n)) {
-      setOut1("bad number");
+    const sec = parseTimestamp(ts);
+    if (sec == null) {
+      setOut1("Invalid timestamp");
       return;
     }
-    const sec = n > 1e12 ? n / 1000 : n;
-    setOut1(new Date(sec * 1000).toString() + ` (${sec}s)`);
+    const d = new Date(sec * 1000);
+    setOut1(`${d.toString()}\n${d.toISOString()}\n(${sec}s)`);
   }
 
   function dateToTs() {
-    const d = new Date(iso);
-    if (Number.isNaN(d.getTime())) {
-      setOut2("bad date");
+    const d = parseIsoLocal(iso);
+    if (!d) {
+      setOut2("Invalid date/time");
       return;
     }
     setOut2(`${Math.floor(d.getTime() / 1000)} s\n${d.getTime()} ms`);
@@ -43,10 +57,10 @@ export default function TimePage() {
 
   function resetAndRun() {
     const s = Math.floor(Date.now() / 1000);
-    setTs(String(s));
-    setIso(new Date().toISOString().slice(0, 19));
-    setOut1(new Date(s * 1000).toString() + ` (${s}s)`);
     const d = new Date(s * 1000);
+    setTs(String(s));
+    setIso(new Date().toISOString().slice(0, 16));
+    setOut1(`${d.toString()}\n${d.toISOString()}\n(${s}s)`);
     setOut2(`${Math.floor(d.getTime() / 1000)} s\n${d.getTime()} ms`);
   }
 
@@ -78,7 +92,7 @@ export default function TimePage() {
           className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-sm"
           value={iso}
           onChange={(e) => setIso(e.target.value)}
-          placeholder="2026-04-07T12:00:00"
+          placeholder="2026-04-07T12:00"
         />
         <pre className="rounded border border-zinc-800 bg-black/30 p-2 text-sm">{out2}</pre>
       </section>
