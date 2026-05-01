@@ -1,0 +1,11 @@
+import type { ReactNode } from "react";
+import { createPageMetadata } from "@/lib/seo-metadata";
+
+export const generateMetadata = createPageMetadata(
+  "base-convert",
+  (m) => m.baseConvertPage.title,
+);
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return children;
+}

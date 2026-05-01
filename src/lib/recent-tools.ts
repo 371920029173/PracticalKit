@@ -34,6 +34,8 @@ export const TOOL_SEGMENT_TO_NAV: Record<string, string> = {
   "video-gif": "videoGif",
   audio: "audio",
   regex: "regex",
+  "text-diff": "textDiff",
+  "base-convert": "baseConvert",
   rgbv3d: "rgbv3d",
 };
 

@@ -34,6 +34,8 @@ export const NAV_GROUPS: NavGroup[] = [
       { href: "/encoding/", labelKey: "encoding" },
       { href: "/code/", labelKey: "code" },
       { href: "/regex/", labelKey: "regex" },
+      { href: "/text-diff/", labelKey: "textDiff" },
+      { href: "/base-convert/", labelKey: "baseConvert" },
       { href: "/calc/", labelKey: "calc" },
       { href: "/random/", labelKey: "random" },
       { href: "/json-diff/", labelKey: "jsonDiff" },

@@ -17,6 +17,7 @@ export function hrefAlternates(locale: string, pathSegment: string) {
     "zh-CN": `${SITE_URL}/zh${p}`,
     ru: `${SITE_URL}/ru${p}`,
     es: `${SITE_URL}/es${p}`,
+    fr: `${SITE_URL}/fr${p}`,
     "x-default": `${SITE_URL}/en${p}`,
   };
   return {

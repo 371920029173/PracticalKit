@@ -40,6 +40,8 @@
     "cron": "Cron helper",
     "httpStatus": "HTTP status",
     "apiSnippet": "API snippets",
+    "textDiff": "Text diff",
+    "baseConvert": "Base converter",
     "about": "About",
     "privacy": "Privacy",
     "terms": "Terms",
@@ -60,7 +62,8 @@
     "en": "English (English)",
     "zh": "Chinese (简体中文)",
     "ru": "Russian (Русский)",
-    "es": "Spanish (Español)"
+    "es": "Spanish (Español)",
+    "fr": "French (Français)"
   },
   "legalStrip": {
     "title": "Transparency & policies (AdSense / publishers)",
@@ -75,11 +78,13 @@
     "recentEmpty": "Open any tool below — we keep your last picks on this device only (nothing is sent to our servers for this list).",
     "recentHint": "Stored in your browser. When you change language, these links open in your current locale.",
     "recentClear": "Clear",
+    "nextTitle": "Try these next",
     "lead": "Browser-first utilities for everyday work. Processing stays in your device when possible; see each tool for details.",
     "privacyNote": "Designed for Pages/CDN hosting. Prefer client-side processing to keep your files off servers.",
     "editorialTitle": "Who runs this site",
     "editorialBody": "PracticalKit is maintained by a solo publisher who builds small, focused browser utilities for everyday work — PDFs, images, data formats, developer helpers, and light media tasks.\n\nThe goal is simple: fast pages, clear UX, and privacy-friendly defaults (client-side processing whenever the tool allows it). The site is updated as new utilities ship or existing ones improve; see the Blog for a short changelog and practical notes.",
-    "editorialUpdate": "Update cadence: small improvements ship continuously; larger tool additions are announced in Blog / changelog.",
+    "editorialUpdate": "May update: refreshed UI language, faster transitions, new loading motion, and two new tools (Text diff + Base converter).",
+    "newBadge": "New",
     "toolBlurbs": {
       "blog": "Changelog and notes so you know what changed and why.",
       "pdf": "Merge, split, compress, and convert PDFs in your browser when possible.",
@@ -115,6 +120,8 @@
       "videoGif": "Convert or compress video and GIF with clear format limits per browser.",
       "audio": "Transcode common audio formats where the browser allows decoding.",
       "regex": "Test patterns with live highlights before you ship them to prod.",
+      "textDiff": "Compare two text blocks by lines or words and focus on exact edits.",
+      "baseConvert": "Convert large integers between base2, base8, base10, base16, and base36.",
       "rgbv3d": "Decode RGBV3D payloads and preview the packed image data."
     }
   },
@@ -132,7 +139,8 @@
     "themeDark": "Dark",
     "menu": "Menu",
     "close": "Close",
-    "resetAndRun": "Reset & run"
+    "resetAndRun": "Reset & run",
+    "new": "New"
   },
   "aboutPage": {
     "title": "About PracticalKit",
@@ -547,5 +555,22 @@
     "run": "Generate",
     "curl": "cURL",
     "fetch": "fetch"
+  },
+  "baseConvertPage": {
+    "title": "Base converter (BigInt)",
+    "note": "Convert big integers across base2/base8/base10/base16/base36 without precision loss.",
+    "input": "Input number",
+    "fromBase": "From base",
+    "baseLabel": "Base {base}",
+    "invalid": "Invalid number for the selected base."
+  },
+  "textDiffPage": {
+    "title": "Text diff",
+    "note": "Compare by line or by word and quickly inspect added/removed fragments.",
+    "line": "Line mode",
+    "word": "Word mode",
+    "left": "Text A",
+    "right": "Text B",
+    "summary": "Added blocks: {added} · Removed blocks: {removed}"
   }
 }

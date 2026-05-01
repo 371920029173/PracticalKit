@@ -14,6 +14,7 @@ export function RecentToolsSection() {
   const t = useTranslations("home");
   const nav = useTranslations("nav");
   const [items, setItems] = useState<RecentToolEntry[]>([]);
+  const suggested = getSuggestions(items);
 
   const refresh = useCallback(() => {
     setItems(readRecentTools());
@@ -83,6 +84,56 @@ export function RecentToolsSection() {
           </li>
         ))}
       </ul>
+      {suggested.length > 0 ? (
+        <div className="space-y-2 rounded-2xl border border-slate-200/80 bg-white/70 p-4 dark:border-zinc-700 dark:bg-zinc-900/50">
+          <p className="text-sm font-semibold text-slate-800 dark:text-zinc-200">
+            {t("nextTitle")}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {suggested.map((navKey) => (
+              <Link
+                key={navKey}
+                href={`/${segmentFromNavKey(navKey)}/`}
+                prefetch={false}
+                className="btn-motion inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-900 dark:border-violet-800 dark:bg-violet-950/50 dark:text-violet-200"
+              >
+                <span className="badge-new">{t("newBadge")}</span>
+                <span>{nav(navKey as never)}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </section>
   );
+}
+
+const SUGGESTION_BY_NAV_KEY: Record<string, string[]> = {
+  pdf: ["image", "textDiff"],
+  image: ["color", "baseConvert"],
+  data: ["jsonDiff", "apiSnippet"],
+  regex: ["textDiff", "code"],
+  textDiff: ["slug", "markdown"],
+  baseConvert: ["hash", "code"],
+};
+
+function getSuggestions(items: RecentToolEntry[]): string[] {
+  const first = items[0]?.navKey;
+  if (!first) return [];
+  return SUGGESTION_BY_NAV_KEY[first] ?? [];
+}
+
+function segmentFromNavKey(navKey: string): string {
+  switch (navKey) {
+    case "textDiff":
+      return "text-diff";
+    case "baseConvert":
+      return "base-convert";
+    case "jsonDiff":
+      return "json-diff";
+    case "apiSnippet":
+      return "api-snippet";
+    default:
+      return navKey.toLowerCase();
+  }
 }

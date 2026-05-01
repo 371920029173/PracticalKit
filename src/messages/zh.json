@@ -40,6 +40,8 @@
     "cron": "Cron 表达式",
     "httpStatus": "HTTP 状态码",
     "apiSnippet": "API 代码片段",
+    "textDiff": "文本对比",
+    "baseConvert": "进制转换",
     "about": "关于",
     "privacy": "隐私",
     "terms": "条款",
@@ -60,7 +62,8 @@
     "en": "English（英语）",
     "zh": "中文（简体）",
     "ru": "俄语（Русский）",
-    "es": "西班牙语（Español）"
+    "es": "西班牙语（Español）",
+    "fr": "法语（Français）"
   },
   "legalStrip": {
     "title": "透明度与政策（AdSense / 发布商）",
@@ -75,11 +78,13 @@
     "recentEmpty": "在下方打开任意工具，我们会在这台设备上记住你常用的入口（仅浏览器本地，不上传服务器）。",
     "recentHint": "仅存于本机；切换语言后，这些入口会按当前语言打开。",
     "recentClear": "清空",
+    "nextTitle": "接下来可试试",
     "lead": "面向日常工作的浏览器工具；尽量在本地处理，具体见各工具说明。",
     "privacyNote": "面向静态托管；优先客户端处理，减少文件经过服务器。",
     "editorialTitle": "谁在维护本站",
     "editorialBody": "PracticalKit 由个人维护者独立运营，专注小而清晰的浏览器工具：PDF、图片、数据格式、开发者常用功能，以及轻量媒体处理。\n\n目标是页面快、交互清楚，并在可行时默认本地处理（客户端优先）。本站会持续迭代；重大更新会写在「博客 / 更新日志」。",
-    "editorialUpdate": "更新节奏：小改进会持续上线；较大的新工具或改版会在博客 / 更新日志中说明。",
+    "editorialUpdate": "五月更新：主页文段和视觉语言升级，加载动画重做，并新增文本对比与进制转换两个工具。",
+    "newBadge": "新",
     "toolBlurbs": {
       "blog": "更新日志与说明，方便你了解站点变化与用法。",
       "pdf": "在浏览器里合并、拆分、压缩与转换 PDF（在可行时本地处理）。",
@@ -115,6 +120,8 @@
       "videoGif": "在浏览器能力范围内转换或压缩视频与 GIF。",
       "audio": "在浏览器支持的前提下转换常见音频格式。",
       "regex": "在线试正则并高亮匹配，上线前先把模式跑通。",
+      "textDiff": "按行或按词对比两段文本，快速定位实际改动。",
+      "baseConvert": "大整数在 2/8/10/16/36 进制之间互转，不丢精度。",
       "rgbv3d": "解码 RGBV3D 数据并预览打包后的图像信息。"
     }
   },
@@ -132,7 +139,8 @@
     "themeDark": "深色",
     "menu": "菜单",
     "close": "关闭",
-    "resetAndRun": "重置并运行"
+    "resetAndRun": "重置并运行",
+    "new": "新"
   },
   "aboutPage": {
     "title": "关于 PracticalKit",
@@ -547,5 +555,22 @@
     "run": "生成",
     "curl": "cURL",
     "fetch": "fetch"
+  },
+  "baseConvertPage": {
+    "title": "进制转换（BigInt）",
+    "note": "将大整数在 base2/base8/base10/base16/base36 间转换，避免精度丢失。",
+    "input": "输入数字",
+    "fromBase": "输入进制",
+    "baseLabel": "{base} 进制",
+    "invalid": "输入与所选进制不匹配。"
+  },
+  "textDiffPage": {
+    "title": "文本对比",
+    "note": "支持按行和按词两种模式，突出新增和删除片段。",
+    "line": "按行",
+    "word": "按词",
+    "left": "文本 A",
+    "right": "文本 B",
+    "summary": "新增块：{added} · 删除块：{removed}"
   }
 }

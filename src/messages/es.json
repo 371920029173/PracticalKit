@@ -40,6 +40,8 @@
     "cron": "Cron",
     "httpStatus": "Estado HTTP",
     "apiSnippet": "Snippet API",
+    "textDiff": "Diff de texto",
+    "baseConvert": "Conversor de bases",
     "about": "Acerca de",
     "privacy": "Privacidad",
     "terms": "Términos",
@@ -60,7 +62,8 @@
     "en": "Inglés (English)",
     "zh": "Chino (简体中文)",
     "ru": "Ruso (Русский)",
-    "es": "Español (Español)"
+    "es": "Español (Español)",
+    "fr": "Francés (Français)"
   },
   "legalStrip": {
     "title": "Transparencia y políticas (AdSense / editores)",
@@ -75,11 +78,13 @@
     "recentEmpty": "Abre cualquier herramienta abajo: guardamos tus últimas solo en este dispositivo (no en nuestros servidores).",
     "recentHint": "Solo en tu navegador. Al cambiar el idioma, los enlaces usan tu idioma actual.",
     "recentClear": "Borrar",
+    "nextTitle": "Prueba esto después",
     "lead": "Utilidades en el navegador. Cuando es posible, el procesamiento es local; revisa cada herramienta.",
     "privacyNote": "Pensado para hosting estático; preferimos procesamiento en el cliente.",
     "editorialTitle": "Quién mantiene el sitio",
     "editorialBody": "PracticalKit lo mantiene un editor individual (un solo responsable). Son utilidades pequeñas y enfocadas en el navegador: PDF, imágenes, datos, tareas típicas de desarrollo y medios ligeros.\n\nEl objetivo es rapidez, claridad y privacidad por defecto (procesamiento local cuando el navegador lo permite). El sitio se actualiza con frecuencia; los cambios mayores se anuncian en el blog / changelog.",
-    "editorialUpdate": "Ritmo de actualización: mejoras pequeñas de forma continua; funciones grandes se anuncian en el blog.",
+    "editorialUpdate": "Actualización de mayo: renovamos el texto de portada y el estilo visual, mejoramos animaciones y añadimos dos herramientas nuevas.",
+    "newBadge": "Nuevo",
     "toolBlurbs": {
       "blog": "Notas de cambios para saber qué se actualizó y por qué importa.",
       "pdf": "Une, divide, comprime y convierte PDF en el navegador cuando sea posible en local.",
@@ -115,6 +120,8 @@
       "videoGif": "Convierte o comprime vídeo y GIF según límites del navegador.",
       "audio": "Transcodifica formatos de audio comunes donde el navegador lo permita.",
       "regex": "Prueba patrones con resaltado en vivo antes de usarlos en producción.",
+      "textDiff": "Compara dos bloques de texto por líneas o palabras y detecta cambios exactos.",
+      "baseConvert": "Convierte enteros grandes entre base2/base8/base10/base16/base36.",
       "rgbv3d": "Decodifica RGBV3D y previsualiza los datos de imagen empaquetados."
     }
   },
@@ -132,7 +139,8 @@
     "themeDark": "Oscuro",
     "menu": "Menú",
     "close": "Cerrar",
-    "resetAndRun": "Restablecer y ejecutar"
+    "resetAndRun": "Restablecer y ejecutar",
+    "new": "Nuevo"
   },
   "aboutPage": {
     "title": "Acerca de PracticalKit",
@@ -547,5 +555,22 @@
     "run": "Generar",
     "curl": "curl",
     "fetch": "fetch"
+  },
+  "baseConvertPage": {
+    "title": "Conversor de bases (BigInt)",
+    "note": "Convierte enteros grandes sin perder precisión entre base2/base8/base10/base16/base36.",
+    "input": "Número",
+    "fromBase": "Base de entrada",
+    "baseLabel": "Base {base}",
+    "invalid": "Número no válido para la base seleccionada."
+  },
+  "textDiffPage": {
+    "title": "Diff de texto",
+    "note": "Compara por líneas o palabras y resalta bloques añadidos/eliminados.",
+    "line": "Por líneas",
+    "word": "Por palabras",
+    "left": "Texto A",
+    "right": "Texto B",
+    "summary": "Bloques añadidos: {added} · Bloques eliminados: {removed}"
   }
 }

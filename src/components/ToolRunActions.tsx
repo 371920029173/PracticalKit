@@ -9,6 +9,7 @@ type Props = {
   busy?: boolean;
   disabled?: boolean;
   runLabel?: string;
+  showNewBadge?: boolean;
 };
 
 export function ToolRunActions({
@@ -17,6 +18,7 @@ export function ToolRunActions({
   busy,
   disabled,
   runLabel,
+  showNewBadge = true,
 }: Props) {
   const tc = useTranslations("common");
   const label = runLabel ?? tc("run");
@@ -28,7 +30,10 @@ export function ToolRunActions({
         disabled={busy || disabled}
         onClick={() => void onRun()}
       >
-        {busy ? tc("processing") : label}
+        <span className="inline-flex items-center gap-2">
+          {busy ? tc("processing") : label}
+          {showNewBadge ? <span className="badge-new">{tc("new")}</span> : null}
+        </span>
       </button>
       {onResetAndRun ? (
         <button

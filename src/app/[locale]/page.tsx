@@ -40,8 +40,12 @@ const tiles = [
   ["/video-gif/", "videoGif"],
   ["/audio/", "audio"],
   ["/regex/", "regex"],
+  ["/text-diff/", "textDiff"],
+  ["/base-convert/", "baseConvert"],
   ["/rgbv3d/", "rgbv3d"],
 ] as const;
+
+const newToolKeys = new Set(["textDiff", "baseConvert"]);
 
 export default async function HomePage({
   params,
@@ -104,6 +108,9 @@ export default async function HomePage({
             >
               <span className="text-lg font-semibold leading-snug tracking-tight text-slate-900 dark:text-white">
                 {nav(key)}
+                {newToolKeys.has(key) ? (
+                  <span className="ml-2 align-middle badge-new">{t("newBadge")}</span>
+                ) : null}
               </span>
               <span className="text-sm leading-relaxed text-slate-600 dark:text-zinc-400">
                 {t(`toolBlurbs.${key}`)}

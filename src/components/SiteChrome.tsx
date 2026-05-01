@@ -10,8 +10,9 @@ import { useTheme } from "@/components/ThemeProvider";
 import { CookieAndAnalytics } from "@/components/CookieAndAnalytics";
 import { RecentToolsTracker } from "@/components/RecentToolsTracker";
 import { AdsenseScript, AdsenseUnit } from "@/components/Adsense";
+import { CursorTrail } from "@/components/CursorTrail";
 
-const locales = ["en", "zh", "ru", "es"] as const;
+const locales = ["en", "zh", "ru", "es", "fr"] as const;
 
 function LangSwitch() {
   const locale = useLocale();
@@ -270,6 +271,7 @@ export function SiteChrome({
         </div>
       </div>
       <RecentToolsTracker />
+      <CursorTrail />
       <CookieAndAnalytics />
     </NextIntlClientProvider>
   );

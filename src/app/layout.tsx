@@ -38,6 +38,16 @@ export const metadata: Metadata = {
     template: `%s`,
   },
   description: SITE_DESCRIPTION,
+  keywords: [
+    "online tools",
+    "pdf tools",
+    "image converter",
+    "json formatter",
+    "text diff",
+    "base converter",
+    "developer utilities",
+  ],
+  category: "technology",
   robots: {
     index: true,
     follow: true,
