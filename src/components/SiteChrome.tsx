@@ -204,7 +204,7 @@ function NavInner() {
   return (
     <>
       <SidebarDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
-      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-950/90">
+      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl dark:border-zinc-800/80 dark:bg-zinc-950/75">
         <LegalStrip />
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2">
@@ -259,14 +259,14 @@ export function SiteChrome({
       <AdsenseScript />
       <NavInner />
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-8">
-        <div className="rounded-xl border border-slate-200/80 bg-white/70 p-3 dark:border-zinc-800 dark:bg-zinc-900/60">
+        <div className="glass-panel rounded-2xl p-3">
           <AdsenseUnit variant="display" />
         </div>
         {children}
-        <div className="rounded-xl border border-slate-200/80 bg-white/70 p-3 dark:border-zinc-800 dark:bg-zinc-900/60">
+        <div className="glass-panel rounded-2xl p-3">
           <AdsenseUnit variant="infeed" />
         </div>
-        <div className="rounded-xl border border-slate-200/80 bg-white/70 p-3 dark:border-zinc-800 dark:bg-zinc-900/60">
+        <div className="glass-panel rounded-2xl p-3">
           <AdsenseUnit variant="multiplex" />
         </div>
       </div>

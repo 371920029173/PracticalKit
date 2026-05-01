@@ -58,7 +58,7 @@ export default async function HomePage({
 
   return (
     <div className="space-y-12">
-      <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-indigo-50 via-white to-slate-50 px-6 py-12 shadow-lg dark:border-zinc-800 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900 sm:px-10">
+      <section className="glass-panel relative overflow-hidden rounded-3xl px-6 py-12 sm:px-10">
         <div className="relative z-10 max-w-2xl space-y-4">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
             {t("welcomeTitle")}
@@ -69,7 +69,7 @@ export default async function HomePage({
           <p className="text-sm text-slate-500 dark:text-zinc-500">
             {t("privacyNote")}
           </p>
-          <div className="mt-6 space-y-3 rounded-xl border border-slate-200/80 bg-white/60 p-5 text-left text-base leading-relaxed text-slate-700 shadow-sm dark:border-zinc-700/80 dark:bg-zinc-900/40 dark:text-zinc-200">
+          <div className="glass-panel mt-6 space-y-3 rounded-2xl p-5 text-left text-base leading-relaxed text-slate-700 dark:text-zinc-200">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
               {t("editorialTitle")}
             </h2>
@@ -104,9 +104,9 @@ export default async function HomePage({
               key={href}
               href={href}
               prefetch={false}
-              className="btn-motion flex min-h-[5.5rem] flex-col items-stretch justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-5 text-left text-slate-800 shadow-sm ring-1 ring-transparent hover:border-indigo-300 hover:shadow-md hover:ring-indigo-500/10 dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-100 dark:hover:border-indigo-600"
+              className="btn-motion glass-panel group flex min-h-[5.5rem] flex-col items-stretch justify-center gap-2 rounded-2xl px-5 py-5 text-left text-slate-800 ring-1 ring-transparent hover:ring-indigo-500/20 dark:text-zinc-100"
             >
-              <span className="text-lg font-semibold leading-snug tracking-tight text-slate-900 dark:text-white">
+              <span className="text-lg font-semibold leading-snug tracking-tight text-slate-900 transition-colors group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-300">
                 {nav(key)}
                 {newToolKeys.has(key) ? (
                   <span className="ml-2 align-middle badge-new">{t("newBadge")}</span>
