@@ -57,7 +57,7 @@ export default function TextDiffPage() {
         <textarea className="tool-textarea min-h-40" value={left} onChange={(e) => setLeft(e.target.value)} placeholder={t("left")} />
         <textarea className="tool-textarea min-h-40" value={right} onChange={(e) => setRight(e.target.value)} placeholder={t("right")} />
       </div>
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} showNewBadge />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <p className="tool-muted">
         {t("summary", { added: stats.added, removed: stats.removed })}
       </p>

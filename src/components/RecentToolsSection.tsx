@@ -97,7 +97,6 @@ export function RecentToolsSection() {
                 prefetch={false}
                 className="btn-motion inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-900 dark:border-violet-800 dark:bg-violet-950/50 dark:text-violet-200"
               >
-                <span className="badge-new">{t("newBadge")}</span>
                 <span>{nav(navKey as never)}</span>
               </Link>
             ))}

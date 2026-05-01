@@ -88,7 +88,7 @@ export default function BaseConvertPage() {
           </select>
         </label>
       </div>
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} showNewBadge />
+      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       {error ? <p className="text-sm text-red-600 dark:text-red-400">{error}</p> : null}
       <div className="grid gap-3 md:grid-cols-2">
         {bases.map((b) => (
