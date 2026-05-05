@@ -69,6 +69,36 @@
     "title": "Transparencia y políticas (AdSense / editores)",
     "subtitle": "Antes de usar funciones con anuncios, lee Privacidad, Términos y Descargo — especialmente cookies, anuncios y APIs de terceros."
   },
+  "toolEditorial": {
+    "scopeLabel": "Sobre esta página de herramienta",
+    "intro": "Estás usando «{toolName}» en PracticalKit. El bloque siguiente es contexto editorial: cómo se tratan los datos, límites habituales y enlaces a políticas; es independiente de los controles interactivos de arriba.",
+    "linksTitle": "Políticas y páginas editoriales",
+    "linkPrivacy": "Privacidad",
+    "linkTerms": "Términos",
+    "linkDisclaimer": "Descargo",
+    "linkAbout": "Acerca de",
+    "linkBlog": "Blog",
+    "modes": {
+      "local": {
+        "title": "Procesamiento en el navegador para esta utilidad",
+        "p1": "Para «{toolName}», la lógica interactiva se ejecuta en tu navegador en este dispositivo. El alojamiento de PracticalKit sirve HTML, recursos y scripts; no hay un backend complementario que, por defecto, ingiera tu texto o archivos para esta herramienta salvo aviso explícito en la página.",
+        "p2": "Siguen existiendo límites prácticos: RAM disponible, tiempo de ejecución de JavaScript, soporte de códecs o WASM y reglas de seguridad del navegador (portapapeles, almacenamiento, manejadores de archivos). Entradas muy grandes pueden ir lentas o fallar; conserva los originales cuando el resultado importe para trabajo, cumplimiento o archivo.",
+        "p3": "Los anuncios o analítica opcionales (solo tras el consentimiento de cookies donde aplique) pueden cargar scripts de terceros según la política de privacidad: eso es independiente de la ruta de cálculo de la herramienta. Si en las herramientas de desarrollo ves un comportamiento distinto a este texto, escríbenos con la URL de la herramienta y corregiremos el copy."
+      },
+      "thirdParty": {
+        "title": "Esta herramienta usa una API de terceros",
+        "p1": "«{toolName}» envía el texto o parámetros que proporcionas a un proveedor externo indicado en el aviso de la página. PracticalKit no enruta tu carga silenciosamente por nuestros servidores salvo que la página indique un proxy o paso en servidor.",
+        "p2": "No pegues secretos, datos personales regulados ni contenido que no debas transmitir. Los proveedores pueden cambiar cuotas, modelos o disponibilidad; los resultados pueden variar por región. Si necesitas manejo estrictamente local, elige otra utilidad del sitio documentada como solo navegador.",
+        "p3": "Cookies, etiquetas publicitarias y analítica se cubren en Privacidad y Términos. Antes de basarte en la salida para decisiones legales, médicas, financieras o críticas para la seguridad, lee el Descargo."
+      },
+      "fileMedia": {
+        "title": "Archivos, PDF y medios en el navegador",
+        "p1": "«{toolName}» lee archivos que eliges en el navegador. Donde la implementación lo permite, los bytes se procesan con APIs web o WASM en tu dispositivo sin que PracticalKit almacene el archivo en nuestros servidores para la propia conversión.",
+        "p2": "Los flujos de PDF, imagen, audio y vídeo pueden consumir mucha memoria. El éxito depende del tamaño, resolución, códec y RAM del dispositivo. Si el navegador aborta o se queda colgado, prueba un activo más pequeño, un formato más simple o software de escritorio para producciones muy grandes.",
+        "p3": "Mantén siempre copias de seguridad de los originales. Estas páginas son utilidades de propósito general, no un servicio profesional. Ver Descargo; si el texto de privacidad en esta ruta es inexacto, contáctanos."
+      }
+    }
+  },
   "home": {
     "welcomeTitle": "Bienvenido a PracticalKit",
     "welcomeLead": "Utilidades en el navegador para PDF, imágenes, datos y conversiones cotidianas. Cuando es posible, el procesamiento es local en tu dispositivo.",
@@ -79,6 +109,11 @@
     "recentHint": "Solo en tu navegador. Al cambiar el idioma, los enlaces usan tu idioma actual.",
     "recentClear": "Borrar",
     "nextTitle": "Prueba esto después",
+    "qualityTitle": "Capa editorial, no solo formularios",
+    "qualityLead": "Si la mayoría de las URLs parecen utilidades breves sin explicación propia, los sistemas automáticos pueden clasificar el sitio como de «bajo valor» o plantilla. PracticalKit añade textos persistentes: narrativa en la portada, una página «Acerca de» ampliada y un blog con artículos sobre datos, límites y novedades — sin obligarte a ejecutar primero una herramienta.",
+    "qualityP2": "En cada página de herramienta se indica qué corre en local, qué llama a terceros, límites típicos del navegador y qué no registramos en nuestro origen. Para programas de anuncios, esa transparencia importa tanto como la propia función.",
+    "qualityCtaAbout": "Acerca de y divulgaciones",
+    "qualityCtaBlog": "Blog y artículos",
     "lead": "Utilidades en el navegador. Cuando es posible, el procesamiento es local; revisa cada herramienta.",
     "privacyNote": "Pensado para hosting estático; preferimos procesamiento en el cliente.",
     "editorialTitle": "Quién mantiene el sitio",
@@ -148,7 +183,12 @@
     "p2": "Nuestro objetivo por defecto es procesar localmente cuando sea posible y usar hosting estático para velocidad y estabilidad.",
     "p3": "Algunas herramientas usan APIs de terceros y lo indican en su página. No subas información confidencial.",
     "p4": "Operador: PracticalKit es operado por un editor individual (único responsable), no una empresa registrada, salvo que se indique lo contrario aquí en el futuro.",
-    "p5": "Para asuntos legales, derechos de autor o abuso, usa la página de contacto; los tiempos de respuesta pueden variar. Incluye detalles suficientes."
+    "p5": "Para asuntos legales, derechos de autor o abuso, usa la página de contacto; los tiempos de respuesta pueden variar. Incluye detalles suficientes.",
+    "p6": "Calidad del contenido: PracticalKit no es una granja de enlaces, un doorway ni una plantilla masiva. Cada herramienta resuelve una tarea concreta (p. ej. comparar JSON con seguridad en el navegador) y va acompañada de explicaciones humanas sobre límites, fallos y privacidad, para que el valor sea claro antes de ejecutar.",
+    "p7": "Proceso editorial: las novedades van con una nota en el blog o changelog con el «por qué», no solo un despliegue silencioso. Si hace falta una API de terceros, la página nombra de antemano al proveedor y los datos que podrían salir a la red. Si el procesamiento es local, se dice de forma explícita, incluidos los casos en que los datos aun así abandonen el dispositivo (por ejemplo, al guardar un archivo tú mismo).",
+    "p8": "Seguridad y usos prohibidos: no está permitido usar el sitio para material ilegal, acoso, eludir protecciones, spam o distribuir malware. Ante abusos, las herramientas pueden limitarse. Los límites técnicos (tamaño de archivo, códecs, memoria) se describen en las páginas, porque prometer de más también es contenido de baja calidad.",
+    "p9": "Originalidad: las descripciones de herramientas, el blog y las políticas están redactados para PracticalKit. Las bibliotecas de código abierto de terceros figuran en los metadatos del repositorio; no copiamos artículos ajenos solo por volumen.",
+    "p10": "Correcciones: si crees que una página describe mal el tratamiento de datos o las capacidades de una herramienta, escribe al contacto con URL y pruebas. Los errores sustanciales que afecten seguridad o privacidad se corrigen y, si aplica, se reflejan en el blog."
   },
   "privacyPage": {
     "title": "Política de privacidad",
@@ -189,8 +229,23 @@
   },
   "blogPage": {
     "title": "Blog y changelog",
-    "lead": "Notas breves: enfoque de las herramientas y cambios recientes.",
+    "lead": "Materiales extensos y changelog: decisiones técnicas, límites de privacidad e historial de cambios — lectura autónoma, no solo leyendas de la interfaz.",
     "posts": [
+      {
+        "title": "Por qué los sitios de utilidades se marcan como low-value (y qué hacemos)",
+        "date": "2026-05-15",
+        "body": "Los sistemas automáticos buscan contenido «fino»: poco texto original, mucha repetición o casi solo navegación y formularios. Un toolbox honesto puede caer en el filtro si el rastreador ve sobre todo páginas cortas sin contexto.\n\nNuestra respuesta es estructural: mantenemos las herramientas, pero añadimos artículos y políticas estables donde se explica quién opera el sitio, cómo se tratan los datos y qué no prometemos. La página «Acerca de» ahora fija estándares de calidad y usos prohibidos.\n\nEn rutas con APIs de terceros describimos límites de datos: el tráfico no declarado fuera del dispositivo es riesgo de privacidad y de confianza en moderación.\n\nSi llegas desde un aviso de un programa de anuncios, lee primero Acerca de y Privacidad, luego abre varias herramientas: deberías ver formulaciones coherentes sobre alcance y límites.\n\nLas entradas de changelog aquí van dirigidas a personas (qué cambió y por qué), no a relleno de palabras clave. Combinar utilidades útiles con una envoltura editorial legible es el estándar que sostenemos."
+      },
+      {
+        "title": "Cómo documentamos herramientas locales frente a las basadas en API",
+        "date": "2026-05-12",
+        "body": "Cuando las APIs del navegador bastan, PracticalKit por defecto intenta procesar en local: reduce riesgo en servidor y protege muchos flujos.\n\nCuando hace falta una API externa (tipos de cambio, traducción), la página dice de antemano qué puede salir a la red antes de que pegues texto. Explicamos qué permanece en el dispositivo y qué considerar sensible.\n\nEvitamos frases absolutas tipo «100% sin conexión» porque códecs, WASM y fallos del navegador varían por plataforma. En su lugar, límites típicos y alternativas seguras.\n\nEsa documentación es parte del producto: promesas difusas también parecen bajo valor."
+      },
+      {
+        "title": "Multilingüe: qué traducimos y qué tomamos como referencia",
+        "date": "2026-05-10",
+        "body": "Publicamos inglés, chino, ruso, español y francés para la navegación clave y las políticas. Los textos sobre consentimiento y riesgo se traducen priorizando la exactitud del sentido, no el volumen de «traducción automática».\n\nLas rutas coinciden con el prefijo de idioma para mantener hreflang y canonical alineados. Si una traducción va retrasada, preferimos un inglés estable a un fragmento que induzca a error.\n\nSi ves un fallo en un aviso de seguridad, envía URL e idioma: esas correcciones van primero."
+      },
       {
         "title": "Por qué importa el enfoque en el navegador",
         "date": "2026-04-08",

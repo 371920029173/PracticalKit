@@ -69,6 +69,36 @@
     "title": "Transparency & policies (AdSense / publishers)",
     "subtitle": "Read Privacy, Terms, and Disclaimer — especially for cookies, ads, and third-party APIs."
   },
+  "toolEditorial": {
+    "scopeLabel": "About this tool page",
+    "intro": "You are using “{toolName}” on PracticalKit. The section below is editorial context—how data is handled, typical limits, and where to read policies—separate from the interactive controls above.",
+    "linksTitle": "Policies and editorial pages",
+    "linkPrivacy": "Privacy",
+    "linkTerms": "Terms",
+    "linkDisclaimer": "Disclaimer",
+    "linkAbout": "About",
+    "linkBlog": "Blog",
+    "modes": {
+      "local": {
+        "title": "In-browser processing for this utility",
+        "p1": "For “{toolName}”, the interactive logic runs in your web browser on this device. PracticalKit’s hosting delivers HTML, assets, and scripts; we do not run a companion backend that ingests your pasted text or uploaded files for this specific tool unless an on-page notice says otherwise.",
+        "p2": "Practical limits still apply: available RAM, JavaScript execution time, codec or WASM support, and browser security rules (clipboard, storage, file handles). Very large inputs may be slow or fail; keep originals whenever the output matters for work, compliance, or archives.",
+        "p3": "Optional ads or analytics (only after cookie consent where required) may load third-party scripts as described in Privacy—that is separate from the tool’s own computation path. If this explanation disagrees with what you observe in DevTools, contact us with the tool URL and we will correct the copy."
+      },
+      "thirdParty": {
+        "title": "This tool uses a third-party API",
+        "p1": "“{toolName}” sends the text or parameters you provide to an external provider named in the on-tool notice. PracticalKit does not silently route that payload through our own servers unless the page explicitly states a proxy or server step.",
+        "p2": "Do not paste secrets, regulated personal data, or content you are not allowed to transmit. Providers can change quotas, models, or availability; results may vary by region. When you need strictly local handling, pick another utility on this site that is documented as browser-only.",
+        "p3": "Cookies, advertising tags, and analytics are covered under Privacy and Terms. Read Disclaimer before relying on outputs for legal, medical, financial, or safety-critical decisions."
+      },
+      "fileMedia": {
+        "title": "Files, PDFs, and media in the browser",
+        "p1": "“{toolName}” reads files you select in the browser. Where the implementation allows, bytes are processed with Web APIs or WASM on your device without PracticalKit storing the file on our servers for the conversion itself.",
+        "p2": "PDF, image, audio, and video workflows can be memory-heavy. Success depends on file size, resolution, encoding, and device RAM. If the browser aborts or freezes, try a smaller asset, a simpler format, or desktop software for very large productions.",
+        "p3": "Always keep backups of originals. These pages are general-purpose utilities, not professional services. See Disclaimer; use Contact if privacy wording on this route is inaccurate."
+      }
+    }
+  },
   "home": {
     "welcomeTitle": "Welcome to PracticalKit",
     "welcomeLead": "A calm, browser-first toolbox for PDFs, images, data, and everyday conversions. We prefer local processing so your files stay on your device whenever the tool allows it.",
@@ -79,6 +109,11 @@
     "recentHint": "Stored in your browser. When you change language, these links open in your current locale.",
     "recentClear": "Clear",
     "nextTitle": "Try these next",
+    "qualityTitle": "Editorial depth beyond tool forms",
+    "qualityLead": "Search and advertising quality systems may label a site low-value when most URLs look like thin utility shells with little surrounding explanation. PracticalKit publishes this homepage narrative, an expanded About page, and a Blog with articles that explain engineering choices, data flows, and update history—without requiring you to run a tool first.",
+    "qualityP2": "Each utility page states scope clearly: what runs locally, what calls third parties, approximate browser limits, and what we do not collect on our origin. That transparency is the same standard we apply when preparing the site for monetization: substantive editorial pages first, then tools.",
+    "qualityCtaAbout": "About & disclosures",
+    "qualityCtaBlog": "Blog & articles",
     "lead": "Browser-first utilities for everyday work. Processing stays in your device when possible; see each tool for details.",
     "privacyNote": "Designed for Pages/CDN hosting. Prefer client-side processing to keep your files off servers.",
     "editorialTitle": "Who runs this site",
@@ -148,7 +183,12 @@
     "p2": "Our default design goal is local processing when feasible, with static hosting for speed, reliability, and lower operational risk.",
     "p3": "Some tools call third-party APIs. Those tools display their own notices. Please avoid uploading confidential files to any online tool.",
     "p4": "Operator: PracticalKit is operated by an individual publisher (sole maintainer), not a registered company, unless otherwise stated here in the future.",
-    "p5": "For legal, copyright, or abuse notices, use the Contact page. Response times may vary; please include enough detail to investigate."
+    "p5": "For legal, copyright, or abuse notices, use the Contact page. Response times may vary; please include enough detail to investigate.",
+    "p6": "Content quality commitment: PracticalKit is not a link farm, doorway page, or mass-generated template site. Each tool exists to solve a concrete workflow (for example, comparing JSON safely in the browser, or converting units without sending your numbers to our servers). We pair those tools with human-written explanations of limits, failure modes, and privacy implications so a reader can understand value before interacting.",
+    "p7": "Editorial process: new utilities ship with a short rationale in the Blog or changelog, not silently. When a tool depends on a third-party API, the page states the provider, what data crosses the network, and what you should not paste there. When processing is local-only, we say so explicitly and describe what still leaves your device (for example, downloads you choose to save).",
+    "p8": "Safety and prohibited uses: do not use this site to process illegal material, to harass others, to bypass security controls, or to build spam or malware delivery pipelines. We may remove or restrict tools if abuse patterns appear. Technical limits (file size, codec support, memory) are documented on the relevant pages because overstated claims are also a form of low-quality publishing.",
+    "p9": "Copyright and originality: tool descriptions, blog posts, and policy text on this domain are written for PracticalKit. Open-source libraries used in the browser stack are credited in repository metadata where applicable; we do not scrape third-party articles to pad word count.",
+    "p10": "Corrections: if you believe a page contains a factual error about data handling or a tool capability, email the address on the Contact page with the URL and evidence. We will correct substantiated mistakes and note significant changes in the Blog when they affect safety or privacy."
   },
   "privacyPage": {
     "title": "Privacy Policy",
@@ -189,8 +229,23 @@
   },
   "blogPage": {
     "title": "Blog & changelog",
-    "lead": "Short, practical notes: how we think about tools, and what changed recently.",
+    "lead": "Long-form notes and changelog entries: engineering rationale, privacy boundaries, and what changed—written to stand alone as useful reading, not only as captions for tool UIs.",
     "posts": [
+      {
+        "title": "Why utility sites get flagged for low-value content (and how we respond)",
+        "date": "2026-05-15",
+        "body": "Automated quality systems look for thin pages: little original prose, heavy duplication, or a site that is mostly navigation and forms. A legitimate toolbox can be misclassified if crawlers mostly see short UI shells.\n\nOur response is structural: keep the tools, but publish durable articles and policy pages that explain who operates the site, how each category of tool handles data, and what we will not promise. The About page now includes an explicit content-quality commitment and prohibited-use stance.\n\nWe also document third-party boundaries on every affected route, because undisclosed off-device processing is both a privacy issue and a trust issue for reviewers.\n\nIf you arrived from an advertising program notice, review those pages first, then sample a few tools: you should see consistent scope statements and predictable limits.\n\nFinally, the changelog here is written for humans (what changed and why), not keyword stuffing. That balance—useful utilities plus readable editorial context—is the standard we maintain going forward."
+      },
+      {
+        "title": "How we document local-only vs API-backed tools",
+        "date": "2026-05-12",
+        "body": "PracticalKit defaults to client-side processing when the browser APIs are sufficient. That model reduces server liability and keeps many workflows private.\n\nWhen an API is required (for example, live FX quotes or translation), the page must say so up front, before you paste data. We describe what is sent, what stays local, and what you should treat as sensitive.\n\nWe avoid blanket claims like 100% offline because media codecs, WASM paths, and browser bugs differ by platform. Instead we document typical limits and link to safer workflows when needed.\n\nThis documentation is part of the product, not a bolt-on footer, because unclear claims are another form of low-value content."
+      },
+      {
+        "title": "Multilingual publishing: what we translate and what stays canonical",
+        "date": "2026-05-10",
+        "body": "We ship English, Chinese, Russian, Spanish, and French coverage for core navigation and policies. Legal and safety-critical text aims for faithful meaning across locales, not machine filler.\n\nLocale-specific pages share the same routes with a locale prefix so hreflang and canonical URLs stay coherent. When a translation lags a feature, we fall back to English for stability rather than publishing partial nonsense.\n\nIf you spot a misleading translation in a safety notice, contact us with the URL and locale; we prioritize corrections that affect consent, data handling, or risk statements."
+      },
       {
         "title": "Why browser-first matters",
         "date": "2026-04-08",

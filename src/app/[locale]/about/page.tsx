@@ -18,6 +18,11 @@ export default async function AboutPage({
       <p className="text-slate-700 dark:text-zinc-300">{t("p3")}</p>
       <p className="legal-emphasis text-slate-900 dark:text-zinc-100">{t("p4")}</p>
       <p className="text-slate-700 dark:text-zinc-300">{t("p5")}</p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p6")}</p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p7")}</p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p8")}</p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p9")}</p>
+      <p className="text-slate-700 dark:text-zinc-300">{t("p10")}</p>
     </div>
   );
 }

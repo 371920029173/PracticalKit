@@ -76,6 +76,29 @@ export default async function HomePage({
               {t("editorialUpdate")}
             </p>
           </div>
+          <div className="glass-panel mt-6 space-y-3 rounded-2xl p-5 text-left text-base leading-relaxed text-slate-700 dark:text-zinc-200">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+              {t("qualityTitle")}
+            </h2>
+            <p>{t("qualityLead")}</p>
+            <p>{t("qualityP2")}</p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link
+                href="/about/"
+                prefetch={false}
+                className="inline-flex rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-800 dark:bg-zinc-100 dark:text-slate-900 dark:hover:bg-white"
+              >
+                {t("qualityCtaAbout")}
+              </Link>
+              <Link
+                href="/blog/"
+                prefetch={false}
+                className="inline-flex rounded-xl border border-slate-300 bg-white/80 px-4 py-2 text-sm font-medium text-slate-800 hover:border-indigo-400 hover:text-indigo-800 dark:border-zinc-600 dark:bg-zinc-900/80 dark:text-zinc-100 dark:hover:border-indigo-400 dark:hover:text-indigo-200"
+              >
+                {t("qualityCtaBlog")}
+              </Link>
+            </div>
+          </div>
           <Link
             href="#tools"
             prefetch={false}

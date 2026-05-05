@@ -47,6 +47,36 @@
   "langNames": {
     "fr": "Français (Français)"
   },
+  "toolEditorial": {
+    "scopeLabel": "À propos de cette page d’outil",
+    "intro": "Vous utilisez « {toolName} » sur PracticalKit. Le bloc ci-dessous est un contexte éditorial : traitement des données, limites courantes et liens vers les politiques — distinct des commandes interactives ci-dessus.",
+    "linksTitle": "Politiques et pages éditoriales",
+    "linkPrivacy": "Confidentialité",
+    "linkTerms": "Conditions",
+    "linkDisclaimer": "Avertissement",
+    "linkAbout": "À propos",
+    "linkBlog": "Blog",
+    "modes": {
+      "local": {
+        "title": "Traitement dans le navigateur pour cet utilitaire",
+        "p1": "Pour « {toolName} », la logique interactive s’exécute dans votre navigateur sur cet appareil. L’hébergement PracticalKit fournit HTML, ressources et scripts ; il n’y a pas de backend associé qui ingère par défaut votre texte ou fichiers pour cet outil, sauf mention contraire explicite sur la page.",
+        "p2": "Des limites pratiques subsistent : mémoire disponible, durée d’exécution JavaScript, prise en charge des codecs ou WASM et règles de sécurité du navigateur (presse-papiers, stockage, descripteurs de fichiers). Des entrées très volumineuses peuvent ralentir ou échouer ; conservez les originaux lorsque le résultat compte pour le travail, la conformité ou les archives.",
+        "p3": "Les publicités ou analyses facultatives (uniquement après consentement aux cookies lorsque requis) peuvent charger des scripts tiers comme décrit dans la politique de confidentialité — cela est distinct du chemin de calcul de l’outil. Si les outils de développement montrent un écart avec ce texte, écrivez-nous avec l’URL de l’outil pour corriger la formulation."
+      },
+      "thirdParty": {
+        "title": "Cet outil appelle une API tierce",
+        "p1": "« {toolName} » envoie le texte ou les paramètres que vous fournissez à un fournisseur externe nommé dans l’avis sur la page. PracticalKit ne fait pas transiter votre charge en silence via nos serveurs sauf indication explicite d’un proxy ou d’une étape serveur.",
+        "p2": "Ne collez pas de secrets, de données personnelles réglementées ni de contenu que vous n’êtes pas autorisé à transmettre. Les fournisseurs peuvent modifier quotas, modèles ou disponibilité ; les résultats peuvent varier selon la région. Pour un traitement strictement local, choisissez un autre utilitaire du site documenté comme « navigateur uniquement ».",
+        "p3": "Cookies, tags publicitaires et analyses sont couverts dans Confidentialité et Conditions. Avant de vous fier aux sorties pour des décisions juridiques, médicales, financières ou critiques pour la sécurité, lisez l’Avertissement."
+      },
+      "fileMedia": {
+        "title": "Fichiers, PDF et médias dans le navigateur",
+        "p1": "« {toolName} » lit les fichiers que vous choisissez dans le navigateur. Lorsque l’implémentation le permet, les octets sont traités via des API web ou du WASM sur l’appareil sans que PracticalKit stocke le fichier sur nos serveurs pour la conversion elle-même.",
+        "p2": "Les flux PDF, image, audio et vidéo peuvent être gourmands en mémoire. La réussite dépend de la taille du fichier, de la résolution, du codec et de la RAM de l’appareil. Si le navigateur abandonne ou se fige, essayez un fichier plus petit, un format plus simple ou un logiciel bureau pour de très gros projets.",
+        "p3": "Conservez toujours des copies des originaux. Ces pages sont des utilitaires généralistes, pas un service professionnel. Voir l’Avertissement ; si les formulations sur la confidentialité de cette route sont inexactes, contactez-nous."
+      }
+    }
+  },
   "home": {
     "welcomeTitle": "Bienvenue sur PracticalKit",
     "welcomeLead": "Boîte à outils web orientée navigateur pour PDF, images, données et conversions du quotidien.",
@@ -57,6 +87,11 @@
     "recentHint": "Stocké localement dans votre navigateur.",
     "recentClear": "Effacer",
     "nextTitle": "Prochains outils recommandés",
+    "qualityTitle": "Une couche éditoriale, pas seulement des formulaires",
+    "qualityLead": "Lorsque la plupart des URL ressemblent à de courtes utilitaires sans texte explicatif, les systèmes automatiques peuvent classer le site comme « peu de valeur » ou générique. PracticalKit ajoute des contenus pérennes : récit sur l’accueil, page À propos enrichie et blog avec articles sur les données, les limites et les mises à jour — sans obliger à lancer un outil d’abord.",
+    "qualityP2": "Chaque page d’outil précise ce qui s’exécute en local, ce qui appelle des tiers, les limites typiques du navigateur et ce que nous ne journalisons pas sur notre origine. Pour les programmes publicitaires, cette transparence compte autant que la fonction elle-même.",
+    "qualityCtaAbout": "À propos et informations",
+    "qualityCtaBlog": "Blog et articles",
     "editorialUpdate": "Mise à jour de mai : texte d'accueil et style UI rafraîchis, nouvelle animation de chargement, et 2 nouveaux outils.",
     "newBadge": "Nouveau",
     "toolBlurbs": {
@@ -80,6 +115,13 @@
     "close": "Fermer",
     "resetAndRun": "Réinitialiser et lancer",
     "new": "Nouveau"
+  },
+  "aboutPage": {
+    "p6": "Qualité éditoriale : PracticalKit n’est ni une ferme de liens, ni une porte dérobée, ni un modèle massif dupliqué. Chaque outil répond à une tâche précise (par ex. comparer du JSON en toute sécurité dans le navigateur), avec des explications humaines sur limites, pannes et confidentialité, afin que la valeur soit claire avant exécution.",
+    "p7": "Processus éditorial : les nouveautés sont accompagnées d’une note sur le blog ou le changelog expliquant le « pourquoi », pas d’un déploiement silencieux. Si une API tierce est nécessaire, la page nomme le fournisseur et les données susceptibles de quitter le réseau. Si le traitement est local, c’est indiqué explicitement, y compris lorsque les données quittent tout de même l’appareil (par ex. lorsque vous enregistrez un fichier vous-même).",
+    "p8": "Sécurité et usages interdits : il est interdit d’utiliser le site pour du contenu illégal, du harcèlement, du contournement de protections, du spam ou la distribution de malware. En cas d’abus, les outils peuvent être restreints. Les limites techniques (taille de fichier, codecs, mémoire) sont décrites sur les pages, car sur-promettre relève aussi d’un contenu de faible valeur.",
+    "p9": "Originalité : descriptions d’outils, blog et politiques sont rédigés pour PracticalKit. Les bibliothèques open source tierces figurent dans les métadonnées du dépôt ; nous ne copions pas d’articles tiers pour gonfler le volume.",
+    "p10": "Corrections : si une page décrit de façon erronée le traitement des données ou les capacités d’un outil, écrivez via la page contact avec l’URL et des preuves. Les erreurs substantielles touchant sécurité ou confidentialité seront corrigées et, si besoin, mentionnées sur le blog."
   },
   "baseConvertPage": {
     "title": "Convertisseur de base (BigInt)",
