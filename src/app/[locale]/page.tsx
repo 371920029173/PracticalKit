@@ -1,3 +1,4 @@
+import { HomeProSection } from "@/components/HomeProSection";
 import { RecentToolsSection } from "@/components/RecentToolsSection";
 import { Link } from "@/i18n/navigation";
 import { createHomeMetadata } from "@/lib/seo-metadata";
@@ -112,6 +113,8 @@ export default async function HomePage({
           aria-hidden
         />
       </section>
+
+      <HomeProSection />
 
       <RecentToolsSection />
 

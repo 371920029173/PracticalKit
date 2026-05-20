@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "kinrg": {
+      "command": "kinrg",
+      "args": ["serve"],
+      "type": "stdio"
+    },
+    "PruneTool": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\user\\.cursor\\tools\\mcprune\\mcp-server.js",
+        "--headless"
+      ],
+      "type": "stdio"
+    },
+    "guardian": {
+      "command": "guardian-mcp",
+      "args": [],
+      "type": "stdio"
+    },
+    "limelight": {
+      "command": "C:\\nodejs\\npx.cmd",
+      "args": ["-y", "limelight-mcp"],
+      "type": "stdio"
+    },
+    "mcp-on-demand": {
+      "command": "C:\\Users\\user\\.local\\bin\\McpHub.exe",
+      "args": [],
+      "type": "stdio"
+    }
+  }
+}

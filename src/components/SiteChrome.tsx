@@ -9,7 +9,8 @@ import { useEffect, useState } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 import { CookieAndAnalytics } from "@/components/CookieAndAnalytics";
 import { RecentToolsTracker } from "@/components/RecentToolsTracker";
-import { AdsenseScript, AdsenseUnit } from "@/components/Adsense";
+import { AdsenseScript } from "@/components/Adsense";
+import { ContentFirstAds } from "@/components/ContentFirstAds";
 import { CursorTrail } from "@/components/CursorTrail";
 
 const locales = ["en", "zh", "ru", "es", "fr"] as const;
@@ -258,17 +259,11 @@ export function SiteChrome({
     <NextIntlClientProvider locale={locale} messages={messages} timeZone="UTC">
       <AdsenseScript />
       <NavInner />
-      <div className="mx-auto max-w-6xl space-y-6 px-4 py-8">
-        <div className="glass-panel rounded-2xl p-3">
-          <AdsenseUnit variant="display" />
-        </div>
-        {children}
-        <div className="glass-panel rounded-2xl p-3">
-          <AdsenseUnit variant="infeed" />
-        </div>
-        <div className="glass-panel rounded-2xl p-3">
-          <AdsenseUnit variant="multiplex" />
-        </div>
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <main id="pk-main-content" className="min-h-[50vh] space-y-6">
+          {children}
+          <ContentFirstAds />
+        </main>
       </div>
       <RecentToolsTracker />
       <CursorTrail />
