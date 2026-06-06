@@ -13,7 +13,6 @@ import { AdsenseScript } from "@/components/Adsense";
 import { ContentFirstAds } from "@/components/ContentFirstAds";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolFinder } from "@/components/ToolFinder";
-import { ToolWelcomeOverlay } from "@/components/ToolWelcomeOverlay";
 
 const locales = ["en", "zh", "ru", "es", "fr"] as const;
 
@@ -274,7 +273,6 @@ export function SiteChrome({
       <NavInner />
       <div className="page-shell">
         <main id="pk-main-content" className="min-h-[50vh]">
-          <ToolWelcomeOverlay />
           {children}
           <ContentFirstAds />
         </main>
