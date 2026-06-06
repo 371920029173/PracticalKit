@@ -101,7 +101,7 @@ body {
   }
 
   .tool-tile {
-    @apply btn-motion glass-panel group relative flex min-h-[6.25rem] flex-col justify-between overflow-hidden rounded-2xl p-5 text-left ring-1 ring-transparent;
+    @apply btn-motion glass-panel relative flex min-h-[6.25rem] flex-col justify-between overflow-hidden rounded-2xl p-5 text-left ring-1 ring-transparent;
   }
 
   .tool-tile-glow {

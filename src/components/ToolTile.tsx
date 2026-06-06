@@ -32,7 +32,7 @@ export function ToolTile({ href, navKey, title, blurb, isNew }: ToolTileProps) {
     <Link
       href={href}
       prefetch={false}
-      className={`tool-tile ${styles.ring}`}
+      className={`tool-tile group ${styles.ring}`}
     >
       <div className={`tool-tile-glow bg-gradient-to-br ${styles.glow}`} />
       <div className="relative flex items-start gap-3">
