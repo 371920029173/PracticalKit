@@ -2,9 +2,9 @@
 
 import { Link } from "@/i18n/navigation";
 import {
-  RECENT_TOOLS_KEY,
   clearRecentTools,
   readRecentTools,
+  segmentFromNavKey,
   type RecentToolEntry,
 } from "@/lib/recent-tools";
 import { useTranslations } from "next-intl";
@@ -26,7 +26,7 @@ export function RecentToolsSection() {
       if (document.visibilityState === "visible") refresh();
     };
     const onStorage = (e: StorageEvent) => {
-      if (e.key === RECENT_TOOLS_KEY) refresh();
+      if (e.key === "pk-recent-tools-v1") refresh();
     };
     document.addEventListener("visibilitychange", onVis);
     window.addEventListener("storage", onStorage);
@@ -114,25 +114,12 @@ const SUGGESTION_BY_NAV_KEY: Record<string, string[]> = {
   regex: ["textDiff", "code"],
   textDiff: ["slug", "markdown"],
   baseConvert: ["hash", "code"],
+  ipLookup: ["userAgent", "cidr"],
+  mushroomQuiz: ["random", "hash"],
 };
 
 function getSuggestions(items: RecentToolEntry[]): string[] {
   const first = items[0]?.navKey;
   if (!first) return [];
   return SUGGESTION_BY_NAV_KEY[first] ?? [];
-}
-
-function segmentFromNavKey(navKey: string): string {
-  switch (navKey) {
-    case "textDiff":
-      return "text-diff";
-    case "baseConvert":
-      return "base-convert";
-    case "jsonDiff":
-      return "json-diff";
-    case "apiSnippet":
-      return "api-snippet";
-    default:
-      return navKey.toLowerCase();
-  }
 }

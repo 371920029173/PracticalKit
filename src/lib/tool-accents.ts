@@ -1,0 +1,81 @@
+/** Accent palette for tool tiles on the homepage grid. */
+export type ToolAccent = "cyan" | "violet" | "amber" | "emerald" | "rose" | "sky";
+
+export const TOOL_ACCENT: Record<string, ToolAccent> = {
+  blog: "violet",
+  pdf: "rose",
+  image: "amber",
+  data: "cyan",
+  text: "sky",
+  qr: "emerald",
+  units: "sky",
+  time: "sky",
+  functionPlot: "violet",
+  calc: "violet",
+  encoding: "cyan",
+  password: "emerald",
+  translate: "amber",
+  code: "cyan",
+  money: "amber",
+  markdown: "sky",
+  random: "violet",
+  jsonDiff: "cyan",
+  hash: "emerald",
+  jwt: "cyan",
+  cron: "violet",
+  httpStatus: "sky",
+  apiSnippet: "cyan",
+  csvJson: "cyan",
+  slug: "sky",
+  htmlEntities: "cyan",
+  cssMin: "cyan",
+  lorem: "sky",
+  unicode: "cyan",
+  cidr: "violet",
+  color: "amber",
+  videoGif: "rose",
+  audio: "rose",
+  regex: "cyan",
+  textDiff: "sky",
+  baseConvert: "violet",
+  rgbv3d: "amber",
+  ipLookup: "sky",
+  userAgent: "cyan",
+  mushroomQuiz: "emerald",
+};
+
+export const ACCENT_CLASSES: Record<
+  ToolAccent,
+  { ring: string; glow: string; icon: string }
+> = {
+  cyan: {
+    ring: "hover:ring-cyan-500/25",
+    glow: "from-cyan-500/20 via-cyan-400/5 to-transparent",
+    icon: "bg-cyan-500/15 text-cyan-700 dark:text-cyan-300",
+  },
+  violet: {
+    ring: "hover:ring-violet-500/25",
+    glow: "from-violet-500/20 via-violet-400/5 to-transparent",
+    icon: "bg-violet-500/15 text-violet-700 dark:text-violet-300",
+  },
+  amber: {
+    ring: "hover:ring-amber-500/25",
+    glow: "from-amber-500/20 via-amber-400/5 to-transparent",
+    icon: "bg-amber-500/15 text-amber-800 dark:text-amber-300",
+  },
+  emerald: {
+    ring: "hover:ring-emerald-500/25",
+    glow: "from-emerald-500/20 via-emerald-400/5 to-transparent",
+    icon: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
+  },
+  rose: {
+    ring: "hover:ring-rose-500/25",
+    glow: "from-rose-500/20 via-rose-400/5 to-transparent",
+    icon: "bg-rose-500/15 text-rose-700 dark:text-rose-300",
+  },
+  sky: {
+    ring: "hover:ring-sky-500/25",
+    glow: "from-sky-500/20 via-sky-400/5 to-transparent",
+    icon: "bg-sky-500/15 text-sky-700 dark:text-sky-300",
+  },
+};

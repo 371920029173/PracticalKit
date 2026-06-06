@@ -2,6 +2,7 @@
   "brand": "PracticalKit",
   "seo": {
     "defaultDescription": "PracticalKit: utilidades en el navegador para PDF, imágenes, datos, texto y flujos de desarrollo; procesamiento local cuando es posible.",
+    "homeTitle": "PracticalKit — herramientas gratis en el navegador",
     "homeDescription": "PracticalKit — herramientas en el navegador para PDF, imágenes, datos y desarrollo; multilingüe; procesamiento local cuando se puede."
   },
   "nav": {
@@ -42,6 +43,9 @@
     "apiSnippet": "Snippet API",
     "textDiff": "Diff de texto",
     "baseConvert": "Conversor de bases",
+    "ipLookup": "Geolocalización IP",
+    "userAgent": "User-Agent",
+    "mushroomQuiz": "Quiz de setas",
     "about": "Acerca de",
     "privacy": "Privacidad",
     "terms": "Términos",
@@ -55,6 +59,8 @@
     "dataDev": "Datos y desarrollo",
     "daily": "Uso diario",
     "math": "Matemáticas",
+    "network": "Red",
+    "fun": "Quiz y diversión",
     "extras": "Más herramientas",
     "legal": "Legal y cumplimiento"
   },
@@ -68,6 +74,47 @@
   "legalStrip": {
     "title": "Transparencia y políticas (AdSense / editores)",
     "subtitle": "Antes de usar funciones con anuncios, lee Privacidad, Términos y Descargo — especialmente cookies, anuncios y APIs de terceros."
+  },
+  "adsPlacement": {
+    "sectionLabel": "Anuncio",
+    "disclosure": "Patrocinado — se muestra solo después de cargar el contenido editorial de la página."
+  },
+  "homePro": {
+    "trust1Title": "Local por defecto",
+    "trust1Body": "La mayoría de utilidades corren en tu navegador. Archivos y texto a menudo no llegan a nuestros servidores — revisa cada página de herramienta.",
+    "trust2Title": "Límites claros con terceros",
+    "trust2Body": "Traducción y divisas nombran al proveedor API de antemano. No ocultamos tráfico externo.",
+    "trust3Title": "Páginas editoriales, no solo widgets",
+    "trust3Body": "About, blog, privacidad y guías por herramienta explican alcance, límites y novedades.",
+    "categoriesTitle": "Explora por lo que necesitas hacer",
+    "categoriesKicker": "Categorías",
+    "categoriesLead": "Los sitios profesionales agrupan por resultado. Elige categoría y abre una utilidad con explicación al final.",
+    "category_documents": "PDF: unir, dividir, comprimir y exportar en el navegador cuando sea posible.",
+    "category_media": "Imagen, audio y vídeo con límites realistas del navegador en cada página.",
+    "category_dataDev": "JSON/XML/YAML, diff, codificación y utilidades dev con procesamiento local cuando se puede.",
+    "category_daily": "Marcas de tiempo, unidades, contraseñas, QR, colores y conversiones rápidas.",
+    "category_math": "Gráficas, calculadora científica y unidades con notas legibles.",
+    "category_network": "Geolocalización IP, User-Agent y diagnóstico básico de red.",
+    "category_fun": "Cuestionarios educativos con avisos de seguridad claros.",
+    "category_extras": "Hashes, JWT, cron, códigos HTTP y más para builders.",
+    "howTitle": "Cómo funciona PracticalKit",
+    "step1Title": "Elige categoría o la cuadrícula",
+    "step1Body": "Cada ficha incluye una descripción breve antes de abrir.",
+    "step2Title": "Lee el alcance en la página",
+    "step2Body": "Arriba el flujo; abajo datos, límites y enlaces a políticas.",
+    "step3Title": "Trabaja en local cuando puedas",
+    "step3Body": "Si hace falta API, la página lo indica antes de pegar datos sensibles.",
+    "faqTitle": "Preguntas frecuentes",
+    "faq1Q": "¿Solo calculadoras finas?",
+    "faq1A": "No. Cada ruta incluye guía sustancial al pie; portada, About y blog son contenido propio.",
+    "faq2Q": "¿Por qué anuncios debajo?",
+    "faq2A": "Mostramos anuncios solo tras el texto principal, según requisitos de Google.",
+    "faq3Q": "¿Datos regulados o secretos?",
+    "faq3A": "Sigue el aviso de cada herramienta; para secretos usa utilidades solo locales."
+  },
+  "siteFooter": {
+    "tagline": "PracticalKit — utilidades rápidas en el navegador para PDF, medios, datos y desarrollo. Gratis; procesamiento local cuando la herramienta lo permite.",
+    "copyright": "© PracticalKit. Las herramientas corren en tu navegador salvo que la página indique lo contrario."
   },
   "toolEditorial": {
     "scopeLabel": "Sobre esta página de herramienta",
@@ -100,9 +147,19 @@
     }
   },
   "home": {
+    "heroBadge": "Utilidades en el navegador",
+    "statTools": "43+",
+    "statToolsLabel": "Herramientas gratis",
+    "statLangs": "5",
+    "statLangsLabel": "Idiomas",
+    "statLocal": "Local",
+    "statLocalLabel": "Procesamiento cuando se puede",
     "welcomeTitle": "Bienvenido a PracticalKit",
     "welcomeLead": "Utilidades en el navegador para PDF, imágenes, datos y conversiones cotidianas. Cuando es posible, el procesamiento es local en tu dispositivo.",
     "welcomeCta": "Ver herramientas",
+    "searchKicker": "Búsqueda rápida",
+    "searchSectionTitle": "Buscar y filtrar",
+    "searchSectionLead": "Escribe una tarea, elige categoría o pulsa Ctrl+K en cualquier página.",
     "toolsSectionTitle": "Todas las herramientas",
     "recentTitle": "Usadas recientemente",
     "recentEmpty": "Abre cualquier herramienta abajo: guardamos tus últimas solo en este dispositivo (no en nuestros servidores).",
@@ -157,8 +214,28 @@
       "regex": "Prueba patrones con resaltado en vivo antes de usarlos en producción.",
       "textDiff": "Compara dos bloques de texto por líneas o palabras y detecta cambios exactos.",
       "baseConvert": "Convierte enteros grandes entre base2/base8/base10/base16/base36.",
-      "rgbv3d": "Decodifica RGBV3D y previsualiza los datos de imagen empaquetados."
+      "rgbv3d": "Decodifica RGBV3D y previsualiza los datos de imagen empaquetados.",
+      "ipLookup": "IP pública, ciudad, ISP y zona horaria (API de terceros).",
+      "userAgent": "User-Agent y pantalla solo en el navegador.",
+      "mushroomQuiz": "Quiz educativo sobre setas tóxicas — no es guía de campo."
     }
+  },
+  "toolFinder": {
+    "placeholder": "Buscar (PDF, IP, hash…)",
+    "allCategories": "Todas",
+    "resultCount": "{count} coincidencias",
+    "noResults": "Sin resultados. Prueba otra palabra o categoría.",
+    "openSearch": "Buscar",
+    "dialogTitle": "Encontrar herramienta",
+    "close": "Cerrar",
+    "newBadge": "Nuevo"
+  },
+  "toolWelcome": {
+    "kicker": "Antes de empezar",
+    "title": "Bienvenido a {toolName}",
+    "editorialNote": "Tras usar la herramienta, lee el bloque inferior: datos, límites y políticas.",
+    "start": "Entendido",
+    "skipForever": "No mostrar de nuevo"
   },
   "common": {
     "run": "Ejecutar",
@@ -627,5 +704,47 @@
     "left": "Texto A",
     "right": "Texto B",
     "summary": "Bloques añadidos: {added} · Bloques eliminados: {removed}"
+  },
+  "ipLookupPage": {
+    "title": "Geolocalización IP",
+    "note": "IP pública y ubicación aproximada vía ipwho.is (tercero).",
+    "ip": "IP",
+    "country": "País",
+    "region": "Región",
+    "city": "Ciudad",
+    "isp": "ISP",
+    "timezone": "Zona horaria",
+    "coords": "Coordenadas",
+    "error": "Error de consulta. Inténtalo más tarde.",
+    "provider": "Fuente: ipwho.is (tercero)."
+  },
+  "userAgentPage": {
+    "title": "Inspector User-Agent",
+    "note": "Solo en el navegador; no se sube nada.",
+    "uaLabel": "User-Agent",
+    "browser": "Navegador",
+    "os": "SO",
+    "mobile": "Móvil",
+    "yes": "Sí",
+    "no": "No",
+    "language": "Idioma",
+    "screen": "Pantalla",
+    "dpr": "DPR"
+  },
+  "mushroomQuizPage": {
+    "title": "Quiz de setas tóxicas",
+    "note": "Cuestionario educativo. No sustituye identificación experta.",
+    "progress": "Pregunta {current} de {total}",
+    "next": "Siguiente",
+    "finish": "Ver puntuación",
+    "retry": "Repetir",
+    "resultLead": "Revisa las explicaciones. Con duda, no consumas setas silvestres.",
+    "disclaimer": "Solo educación. Error de identificación puede ser mortal.",
+    "q1": { "prompt": "¿Una seta roja con manchas blancas es segura tras hervir?", "correct": "1", "options": { "0": "Sí", "1": "No", "2": "Sí en Europa", "3": "No sin ajo" }, "explain": "Muchas toxinas resisten al calor." },
+    "q2": { "prompt": "¿Si un animal comió la seta, es segura?", "correct": "1", "options": { "0": "Sí", "1": "No", "2": "Si ardillas", "3": "Si aves" }, "explain": "Metabolismos distintos." },
+    "q3": { "prompt": "¿Cuchara de plata negra = veneno?", "correct": "1", "options": { "0": "Sí", "1": "No", "2": "Sí salvo acero", "3": "No para morels" }, "explain": "Mito sin base científica." },
+    "q4": { "prompt": "¿Confusión mortal común?", "correct": "2", "options": { "0": "Champiñones", "1": "Shiitake", "2": "Puffball vs Amanita joven", "3": "Rebozuelos" }, "explain": "Se requiere experto." },
+    "q5": { "prompt": "¿Pelar la cutícula la hace segura?", "correct": "1", "options": { "0": "Sí", "1": "No", "2": "Sí todas", "3": "No sin almendra" }, "explain": "Toxinas en todo el cuerpo." },
+    "q6": { "prompt": "¿Mejor práctica antes de comer?", "correct": "3", "options": { "0": "Preguntar en redes", "1": "Oler", "2": "Probar un poco", "3": "ID experta o no comer" }, "explain": "Solo experto o tienda certificada." }
   }
 }

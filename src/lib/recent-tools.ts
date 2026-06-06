@@ -1,43 +1,6 @@
-/** First path segment (no locale) → next-intl nav key for `nav(...)`. */
-export const TOOL_SEGMENT_TO_NAV: Record<string, string> = {
-  blog: "blog",
-  pdf: "pdf",
-  image: "image",
-  data: "data",
-  text: "text",
-  qr: "qr",
-  units: "units",
-  time: "time",
-  "function-plot": "functionPlot",
-  calc: "calc",
-  encoding: "encoding",
-  password: "password",
-  translate: "translate",
-  code: "code",
-  money: "money",
-  markdown: "markdown",
-  random: "random",
-  "json-diff": "jsonDiff",
-  hash: "hash",
-  jwt: "jwt",
-  cron: "cron",
-  "http-status": "httpStatus",
-  "api-snippet": "apiSnippet",
-  "csv-json": "csvJson",
-  slug: "slug",
-  "html-entities": "htmlEntities",
-  "css-min": "cssMin",
-  lorem: "lorem",
-  unicode: "unicode",
-  cidr: "cidr",
-  color: "color",
-  "video-gif": "videoGif",
-  audio: "audio",
-  regex: "regex",
-  "text-diff": "textDiff",
-  "base-convert": "baseConvert",
-  rgbv3d: "rgbv3d",
-};
+import { TOOL_SEGMENT_TO_NAV, segmentFromNavKey } from "@/lib/tools-registry";
+
+export { TOOL_SEGMENT_TO_NAV, segmentFromNavKey };
 
 export type RecentToolEntry = {
   segment: string;
@@ -60,7 +23,7 @@ function safeParse(raw: string | null): RecentToolEntry[] {
           x !== null &&
           typeof (x as RecentToolEntry).segment === "string" &&
           typeof (x as RecentToolEntry).navKey === "string" &&
-          typeof (x as RecentToolEntry).at === "number"
+          typeof (x as RecentToolEntry).at === "number",
       )
       .filter((x) => TOOL_SEGMENT_TO_NAV[x.segment] === x.navKey);
   } catch {
@@ -93,7 +56,7 @@ export function readRecentTools(): RecentToolEntry[] {
   if (typeof window === "undefined") return [];
   try {
     return safeParse(localStorage.getItem(RECENT_TOOLS_KEY)).sort(
-      (a, b) => b.at - a.at
+      (a, b) => b.at - a.at,
     );
   } catch {
     return [];

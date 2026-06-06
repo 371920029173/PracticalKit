@@ -8,6 +8,8 @@ const CATEGORY_IDS = [
   "dataDev",
   "daily",
   "math",
+  "network",
+  "fun",
   "extras",
 ] as const;
 
@@ -21,7 +23,7 @@ export async function HomeProSection() {
   );
 
   return (
-    <div className="space-y-14">
+    <div className="space-y-16">
       <section className="grid gap-4 sm:grid-cols-3">
         {(
           [
@@ -32,9 +34,9 @@ export async function HomeProSection() {
         ).map(([titleKey, bodyKey]) => (
           <div
             key={titleKey}
-            className="glass-panel rounded-2xl border border-indigo-100/80 p-5 dark:border-indigo-900/40"
+            className="glass-panel rounded-2xl border border-white/50 p-6 dark:border-zinc-700/50"
           >
-            <h2 className="text-base font-semibold text-slate-900 dark:text-white">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white">
               {t(titleKey)}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-zinc-400">
@@ -44,12 +46,11 @@ export async function HomeProSection() {
         ))}
       </section>
 
-      <section className="space-y-5">
+      <section className="space-y-6">
         <div>
-          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
-            {t("categoriesTitle")}
-          </h2>
-          <p className="mt-2 max-w-2xl text-slate-600 dark:text-zinc-400">
+          <p className="section-kicker">{t("categoriesKicker")}</p>
+          <h2 className="section-title mt-2">{t("categoriesTitle")}</h2>
+          <p className="mt-3 max-w-2xl text-slate-600 dark:text-zinc-400">
             {t("categoriesLead")}
           </p>
         </div>
@@ -83,10 +84,9 @@ export async function HomeProSection() {
         </div>
       </section>
 
-      <section className="glass-panel rounded-3xl px-6 py-8 sm:px-10">
-        <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
-          {t("howTitle")}
-        </h2>
+      <section className="glass-panel rounded-[1.75rem] px-6 py-8 sm:px-10">
+        <p className="section-kicker">{t("howTitle")}</p>
+        <h2 className="section-title mt-2">{t("howTitle")}</h2>
         <ol className="mt-6 grid gap-6 sm:grid-cols-3">
           {(
             [
@@ -111,9 +111,8 @@ export async function HomeProSection() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
-          {t("faqTitle")}
-        </h2>
+        <p className="section-kicker">{t("faqTitle")}</p>
+        <h2 className="section-title">{t("faqTitle")}</h2>
         <div className="space-y-3">
           {(
             [

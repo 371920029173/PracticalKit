@@ -2,6 +2,7 @@
   "brand": "PracticalKit",
   "seo": {
     "defaultDescription": "PracticalKit: browser-first utilities for PDF, images, data, text, developer workflows, and lightweight media conversion.",
+    "homeTitle": "PracticalKit — Free browser tools online",
     "homeDescription": "PracticalKit — browser tools for PDF, images, data, and developer utilities. Local processing when possible; multilingual; free online utilities."
   },
   "nav": {
@@ -42,6 +43,9 @@
     "apiSnippet": "API snippets",
     "textDiff": "Text diff",
     "baseConvert": "Base converter",
+    "ipLookup": "IP geolocation",
+    "userAgent": "User agent",
+    "mushroomQuiz": "Mushroom safety quiz",
     "about": "About",
     "privacy": "Privacy",
     "terms": "Terms",
@@ -55,6 +59,8 @@
     "dataDev": "Data & developer",
     "daily": "Daily utilities",
     "math": "Math",
+    "network": "Network",
+    "fun": "Fun & quizzes",
     "extras": "More tools",
     "legal": "Legal & compliance"
   },
@@ -81,12 +87,15 @@
     "trust3Title": "Editorial pages, not only widgets",
     "trust3Body": "About, Blog, Privacy, and per-tool guides explain scope, limits, and updates so pages stand on their own—not just a form in an empty shell.",
     "categoriesTitle": "Browse by what you need to do",
+    "categoriesKicker": "Tool categories",
     "categoriesLead": "Professional tool sites group work by outcome. Start from a category, then open a focused utility with its own explanation block at the bottom of the page.",
     "category_documents": "Merge, split, compress, and export PDFs without installing desktop software when the browser can handle the job.",
     "category_media": "Resize, convert, and inspect images, audio, and video with realistic browser limits called out on each page.",
     "category_dataDev": "Format JSON/XML/YAML, diff configs, encode strings, and ship small developer helpers—all with local processing where possible.",
     "category_daily": "Timestamps, units, passwords, QR codes, colors, and quick conversions for everyday tasks.",
     "category_math": "Plot functions, run a scientific calculator, and convert units with readable on-page notes.",
+    "category_network": "Look up IP geolocation, inspect your browser fingerprint, and troubleshoot connectivity basics.",
+    "category_fun": "Light educational quizzes and playful utilities that still ship with clear safety disclaimers.",
     "category_extras": "Hashes, JWT decode, cron helpers, HTTP status lookup, and other sharp utilities for builders.",
     "howTitle": "How PracticalKit works",
     "step1Title": "Choose a category or search the grid",
@@ -102,6 +111,10 @@
     "faq2A": "We place ads only after the main article/tool text is present in the page, matching Google’s requirement not to show ads on screens without publisher content.",
     "faq3Q": "Can I use this for regulated or secret data?",
     "faq3A": "Treat each tool’s on-page notice as authoritative. Prefer local-only tools for secrets; avoid pasting regulated personal data into API-backed utilities."
+  },
+  "siteFooter": {
+    "tagline": "PracticalKit — fast, privacy-minded browser tools for PDFs, media, data, and developer workflows. Free to use; processing stays on your device when the tool allows.",
+    "copyright": "© PracticalKit. All tools run in your browser unless a page states otherwise."
   },
   "toolEditorial": {
     "scopeLabel": "About this tool page",
@@ -134,9 +147,19 @@
     }
   },
   "home": {
+    "heroBadge": "Browser-first utilities",
+    "statTools": "43+",
+    "statToolsLabel": "Free online tools",
+    "statLangs": "5",
+    "statLangsLabel": "Languages",
+    "statLocal": "Local",
+    "statLocalLabel": "Processing when possible",
     "welcomeTitle": "Welcome to PracticalKit",
     "welcomeLead": "A calm, browser-first toolbox for PDFs, images, data, and everyday conversions. We prefer local processing so your files stay on your device whenever the tool allows it.",
     "welcomeCta": "Explore tools",
+    "searchKicker": "Find tools fast",
+    "searchSectionTitle": "Search & filter the toolbox",
+    "searchSectionLead": "Type a task, pick a category, or press Ctrl+K anywhere on the site. No scrolling through dozens of tiles.",
     "toolsSectionTitle": "All tools",
     "recentTitle": "Recently used",
     "recentEmpty": "Open any tool below — we keep your last picks on this device only (nothing is sent to our servers for this list).",
@@ -191,8 +214,28 @@
       "regex": "Test patterns with live highlights before you ship them to prod.",
       "textDiff": "Compare two text blocks by lines or words and focus on exact edits.",
       "baseConvert": "Convert large integers between base2, base8, base10, base16, and base36.",
-      "rgbv3d": "Decode RGBV3D payloads and preview the packed image data."
+      "rgbv3d": "Decode RGBV3D payloads and preview the packed image data.",
+      "ipLookup": "See your public IP, city, ISP, and timezone via a named third-party API.",
+      "userAgent": "Inspect your browser user-agent string and device hints locally.",
+      "mushroomQuiz": "Educational quiz on poisonous vs. safer mushrooms—not foraging advice."
     }
+  },
+  "toolFinder": {
+    "placeholder": "Search tools (PDF, IP, hash, quiz…)",
+    "allCategories": "All",
+    "resultCount": "{count} tools match",
+    "noResults": "No tools matched. Try another keyword or category.",
+    "openSearch": "Search tools",
+    "dialogTitle": "Find a tool",
+    "close": "Close",
+    "newBadge": "New"
+  },
+  "toolWelcome": {
+    "kicker": "Before you start",
+    "title": "Welcome to {toolName}",
+    "editorialNote": "Scroll down after using the tool for processing details, limits, and policy links—substantive context for readers and reviewers.",
+    "start": "Got it — show the tool",
+    "skipForever": "Skip intro on this tool"
   },
   "common": {
     "run": "Run",
@@ -661,5 +704,107 @@
     "left": "Text A",
     "right": "Text B",
     "summary": "Added blocks: {added} · Removed blocks: {removed}"
+  },
+  "ipLookupPage": {
+    "title": "IP geolocation lookup",
+    "note": "Shows your public IP and approximate location. Your browser calls ipwho.is directly—we do not proxy the request.",
+    "ip": "IP address",
+    "country": "Country",
+    "region": "Region",
+    "city": "City",
+    "isp": "ISP / org",
+    "timezone": "Timezone",
+    "coords": "Coordinates",
+    "error": "Lookup failed. The provider may be rate-limited—try again shortly.",
+    "provider": "Data provider: ipwho.is (third party). Do not use for security-critical decisions."
+  },
+  "userAgentPage": {
+    "title": "User agent inspector",
+    "note": "Reads navigator.userAgent and basic screen hints in your browser only—nothing is uploaded.",
+    "uaLabel": "User agent string",
+    "browser": "Browser family",
+    "os": "Operating system",
+    "mobile": "Mobile",
+    "yes": "Yes",
+    "no": "No",
+    "language": "Language",
+    "screen": "Screen size",
+    "dpr": "Device pixel ratio"
+  },
+  "mushroomQuizPage": {
+    "title": "Poisonous mushroom quiz",
+    "note": "Educational multiple-choice quiz about common mushroom safety myths. Not a field guide—never eat wild mushrooms based on an online quiz.",
+    "progress": "Question {current} of {total}",
+    "next": "Next question",
+    "finish": "See score",
+    "retry": "Try again",
+    "resultLead": "How did you do? Review the explanations and remember: when in doubt, do not forage or consume wild mushrooms.",
+    "disclaimer": "For education only. Misidentification can be fatal. Consult qualified mycologists and local regulations before any foraging.",
+    "q1": {
+      "prompt": "A bright red cap with white spots (fly agaric lookalike) is always safe after boiling.",
+      "correct": "1",
+      "options": {
+        "0": "True — boiling removes all toxins",
+        "1": "False — many toxic species stay dangerous",
+        "2": "True — red means edible in Europe",
+        "3": "False — only if paired with garlic"
+      },
+      "explain": "Heat does not reliably detoxify many mushroom toxins. Visual rules like color are unsafe."
+    },
+    "q2": {
+      "prompt": "If forest animals ate a mushroom, is it safe for humans?",
+      "correct": "1",
+      "options": {
+        "0": "Yes — animals know best",
+        "1": "No — species metabolize toxins differently",
+        "2": "Yes — if squirrels ate it",
+        "3": "Only if birds ignore it"
+      },
+      "explain": "Some toxins affect humans but not other mammals. Never use animal feeding as proof of edibility."
+    },
+    "q3": {
+      "prompt": "Silver spoon turning black while cooking mushrooms proves they are poisonous.",
+      "correct": "1",
+      "options": {
+        "0": "True — classic household test",
+        "1": "False — an old myth with no scientific basis",
+        "2": "True — unless the spoon is stainless",
+        "3": "False — only for morels"
+      },
+      "explain": "Silver discoloration is chemistry with sulfides, not a reliable mushroom toxicity test."
+    },
+    "q4": {
+      "prompt": "Which pairing is a well-known deadly mix-up in the wild?",
+      "correct": "2",
+      "options": {
+        "0": "Button mushroom vs. portobello",
+        "1": "Shiitake vs. oyster",
+        "2": "Edible puffball vs. young death cap stage",
+        "3": "Chanterelle vs. corn"
+      },
+      "explain": "Immature Amanita species have killed foragers who assumed they were puffballs. Expert ID is required."
+    },
+    "q5": {
+      "prompt": "Peeling the cap skin makes unknown mushrooms safe to eat.",
+      "correct": "1",
+      "options": {
+        "0": "True — peel removes poison",
+        "1": "False — toxins are not only in the skin",
+        "2": "True — for all gilled mushrooms",
+        "3": "False — unless it smells like almond"
+      },
+      "explain": "Many deadly toxins occur throughout the fruiting body. Peeling is not a safety step."
+    },
+    "q6": {
+      "prompt": "Best practice before eating any wild mushroom?",
+      "correct": "3",
+      "options": {
+        "0": "Ask a social media group for a quick ID",
+        "1": "Smell test only",
+        "2": "Eat a tiny piece and wait an hour",
+        "3": "Positive expert identification or do not eat"
+      },
+      "explain": "Only documented expert identification (or certified commercial supply) is acceptable. Partial tests kill people every year."
+    }
   }
 }

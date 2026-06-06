@@ -90,11 +90,26 @@ export function createHomeMetadata(): ({
     const messages = await loadMessages(params.locale);
     const alt = hrefAlternates(params.locale, "");
     const url = `${SITE_URL}/${params.locale}/`;
-    const title = `${messages.brand} — Browser tools`;
+    const title = messages.seo.homeTitle;
     const description = messages.seo.homeDescription;
+    const keywords =
+      params.locale === "zh"
+        ? [
+            "实用百宝箱",
+            "实用工具箱",
+            "在线工具",
+            "PDF工具",
+            "图片转换",
+            "JSON格式化",
+            "浏览器工具",
+            "IP查询",
+            "PracticalKit",
+          ]
+        : undefined;
     return {
       title: { absolute: title },
       description,
+      ...(keywords ? { keywords } : {}),
       alternates: {
         canonical: alt.canonical,
         languages: alt.languages,

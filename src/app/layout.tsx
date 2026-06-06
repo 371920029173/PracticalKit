@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { mono, sans } from "@/lib/fonts";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const googleVerification =
@@ -72,8 +73,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-zinc-950 dark:text-zinc-100">
+    <html lang="en" suppressHydrationWarning className={`dark ${sans.variable} ${mono.variable}`}>
+      <body className="min-h-screen font-sans antialiased text-foreground">
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('pk-theme');document.documentElement.classList.toggle('dark',t!=='light');}catch(e){}})()`,

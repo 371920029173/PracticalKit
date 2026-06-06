@@ -11,9 +11,19 @@ import { CookieAndAnalytics } from "@/components/CookieAndAnalytics";
 import { RecentToolsTracker } from "@/components/RecentToolsTracker";
 import { AdsenseScript } from "@/components/Adsense";
 import { ContentFirstAds } from "@/components/ContentFirstAds";
-import { CursorTrail } from "@/components/CursorTrail";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ToolFinder } from "@/components/ToolFinder";
+import { ToolWelcomeOverlay } from "@/components/ToolWelcomeOverlay";
 
 const locales = ["en", "zh", "ru", "es", "fr"] as const;
+
+function BrandMark() {
+  return (
+    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-violet-600 text-xs font-bold text-white shadow-md shadow-indigo-500/25">
+      PK
+    </span>
+  );
+}
 
 function LangSwitch() {
   const locale = useLocale();
@@ -134,14 +144,15 @@ function SidebarDrawer({
         }`}
       >
         <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-zinc-800">
-          <Link
-            href="/"
-            prefetch={false}
-            className="text-lg font-semibold text-slate-900 dark:text-white"
-            onClick={onClose}
-          >
-            PracticalKit
-          </Link>
+            <Link
+              href="/"
+              prefetch={false}
+              className="flex items-center gap-2.5 text-lg font-bold tracking-tight text-slate-900 dark:text-white"
+              onClick={onClose}
+            >
+              <BrandMark />
+              PracticalKit
+            </Link>
           <button
             type="button"
             onClick={onClose}
@@ -231,12 +242,14 @@ function NavInner() {
             <Link
               href="/"
               prefetch={false}
-              className="text-lg font-semibold tracking-tight text-slate-900 dark:text-white"
+              className="flex items-center gap-2.5 text-lg font-bold tracking-tight text-slate-900 dark:text-white"
             >
+              <BrandMark />
               PracticalKit
             </Link>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            <ToolFinder variant="header" />
             <ThemeToggle />
             <LangSwitch />
           </div>
@@ -259,14 +272,15 @@ export function SiteChrome({
     <NextIntlClientProvider locale={locale} messages={messages} timeZone="UTC">
       <AdsenseScript />
       <NavInner />
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <main id="pk-main-content" className="min-h-[50vh] space-y-6">
+      <div className="page-shell">
+        <main id="pk-main-content" className="min-h-[50vh]">
+          <ToolWelcomeOverlay />
           {children}
           <ContentFirstAds />
         </main>
       </div>
+      <SiteFooter />
       <RecentToolsTracker />
-      <CursorTrail />
       <CookieAndAnalytics />
     </NextIntlClientProvider>
   );

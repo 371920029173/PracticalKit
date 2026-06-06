@@ -20,24 +20,27 @@ export default async function BlogPage({
   const posts = messages.blogPage.posts as BlogPost[];
 
   return (
-    <div className="prose prose-slate max-w-3xl space-y-8 dark:prose-invert">
-      <div>
-        <h1 className="text-slate-900 dark:text-white">{messages.blogPage.title}</h1>
-        <p className="text-slate-700 dark:text-zinc-300">{messages.blogPage.lead}</p>
-      </div>
-      <ul className="list-none space-y-10 p-0">
+    <div className="prose-page space-y-10">
+      <header className="space-y-3 not-prose">
+        <p className="section-kicker">{messages.blogPage.title}</p>
+        <h1 className="section-title">{messages.blogPage.title}</h1>
+        <p className="max-w-2xl text-lg text-slate-600 dark:text-zinc-400">
+          {messages.blogPage.lead}
+        </p>
+      </header>
+      <ul className="list-none space-y-8 p-0 not-prose">
         {posts.map((post, i) => (
           <li
             key={i}
-            className="rounded-xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50"
+            className="glass-panel rounded-2xl p-6 sm:p-8"
           >
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-zinc-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-indigo-600 dark:text-indigo-400">
               {post.date}
             </p>
-            <h2 className="mt-0 text-xl font-semibold text-slate-900 dark:text-white">
+            <h2 className="mt-2 text-xl font-bold text-slate-900 dark:text-white">
               {post.title}
             </h2>
-            <div className="whitespace-pre-wrap text-slate-700 dark:text-zinc-300">
+            <div className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-slate-700 dark:text-zinc-300">
               {post.body}
             </div>
           </li>

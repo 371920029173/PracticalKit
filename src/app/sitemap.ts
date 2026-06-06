@@ -1,50 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-
-const locales = ["en", "zh", "ru", "es"] as const;
-const routes = [
-  "",
-  "pdf",
-  "image",
-  "data",
-  "text",
-  "qr",
-  "units",
-  "time",
-  "calc",
-  "encoding",
-  "password",
-  "translate",
-  "code",
-  "money",
-  "markdown",
-  "random",
-  "json-diff",
-  "hash",
-  "jwt",
-  "csv-json",
-  "slug",
-  "html-entities",
-  "css-min",
-  "lorem",
-  "unicode",
-  "cidr",
-  "function-plot",
-  "cron",
-  "http-status",
-  "api-snippet",
-  "color",
-  "video-gif",
-  "audio",
-  "regex",
-  "rgbv3d",
-  "privacy",
-  "terms",
-  "disclaimer",
-  "about",
-  "blog",
-  "contact",
-] as const;
+import {
+  SITEMAP_LOCALES,
+  STATIC_PAGE_ROUTES,
+  TOOL_SEGMENTS,
+} from "@/lib/tools-registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -56,16 +16,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
   ];
-  for (const locale of locales) {
-    for (const route of routes) {
-      const suffix = route ? `/${route}/` : "/";
+
+  for (const locale of SITEMAP_LOCALES) {
+    items.push({
+      url: `${SITE_URL}/${locale}/`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.9,
+    });
+
+    for (const route of [...TOOL_SEGMENTS, ...STATIC_PAGE_ROUTES]) {
       items.push({
-        url: `${SITE_URL}/${locale}${suffix}`,
+        url: `${SITE_URL}/${locale}/${route}/`,
         lastModified: now,
-        changeFrequency: route ? "weekly" : "daily",
-        priority: route ? 0.7 : 0.9,
+        changeFrequency: route === "blog" ? "weekly" : "weekly",
+        priority: STATIC_PAGE_ROUTES.includes(route as (typeof STATIC_PAGE_ROUTES)[number])
+          ? 0.5
+          : 0.7,
       });
     }
   }
+
   return items;
 }
