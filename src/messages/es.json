@@ -51,6 +51,11 @@
     "bmiCalc": "Calculadora IMC",
     "percentCalc": "Porcentajes",
     "urlParser": "Analizador URL",
+    "passwordAudit": "Fortaleza contraseña",
+    "timezone": "Zona horaria",
+    "luhnCheck": "Luhn tarjeta",
+    "romanNumeral": "Números romanos",
+    "countdown": "Cuenta atrás",
     "about": "Acerca de",
     "privacy": "Privacidad",
     "terms": "Términos",
@@ -153,7 +158,7 @@
   },
   "home": {
     "heroBadge": "Utilidades en el navegador",
-    "statTools": "44+",
+    "statTools": "49+",
     "statToolsLabel": "Herramientas gratis",
     "statLangs": "5",
     "statLangsLabel": "Idiomas",
@@ -227,7 +232,12 @@
       "morse": "Texto ↔ Morse en el navegador.",
       "bmiCalc": "IMC a partir de peso y altura.",
       "percentCalc": "Porcentaje de, ratio y aumento.",
-      "urlParser": "Descompone URLs localmente."
+      "urlParser": "Descompone URLs localmente.",
+      "passwordAudit": "Auditoría de contraseña local.",
+      "timezone": "UTC a zonas IANA.",
+      "luhnCheck": "Validación Luhn (formato).",
+      "romanNumeral": "Romanos ↔ arábigos 1–3999.",
+      "countdown": "Temporizador en el navegador."
     }
   },
   "toolFinder": {
@@ -761,5 +771,10 @@
   "dnsLookupPage": { "title": "Consulta DNS", "note": "API JSON de Cloudflare DNS.", "placeholder": "example.com", "sample": "cloudflare.com", "empty": "Introduce un dominio", "noRecords": "Sin registros", "error": "Error", "provider": "cloudflare-dns.com" },
   "bmiPage": { "title": "Calculadora IMC", "note": "Solo educativo.", "weight": "Peso (kg)", "height": "Altura (cm)", "under": "Bajo peso", "normal": "Normal", "over": "Sobrepeso", "obese": "Obesidad", "disclaimer": "No es consejo médico." },
   "morsePage": { "title": "Código Morse", "note": "Local.", "encode": "Texto → Morse", "decode": "Morse → texto", "textIn": "Texto", "morseIn": "Morse", "sample": "SOS" },
-  "percentPage": { "title": "Porcentajes", "note": "Local.", "mode_of": "X% de Y", "mode_is": "X es ?% de Y", "mode_change": "X + Y%", "hint_of": "20% de 150", "hint_is": "30 de 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Entrada no válida" }
+  "percentPage": { "title": "Porcentajes", "note": "Local.", "mode_of": "X% de Y", "mode_is": "X es ?% de Y", "mode_change": "X + Y%", "hint_of": "20% de 150", "hint_is": "30 de 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Entrada no válida" },
+  "passwordAuditPage": { "title": "Fortaleza", "note": "Local.", "placeholder": "Contraseña", "sample": "Tr0ub4dor&3", "length": "Longitud", "charset": "Charset", "entropy": "Entropía", "rating": "Nota", "labelWeak": "Débil", "labelFair": "Regular", "labelGood": "Buena", "labelStrong": "Fuerte", "commonWarning": "Contraseña común", "privacy": "No en PCs públicos" },
+  "timezonePage": { "title": "Zona horaria", "note": "Intl API.", "datetime": "UTC datetime", "fromZone": "From", "toZone": "To", "invalid": "Formato inválido" },
+  "luhnPage": { "title": "Luhn", "note": "Solo formato.", "placeholder": "4242…", "valid": "Válido", "invalid": "Inválido", "disclaimer": "No tarjetas reales" },
+  "romanPage": { "title": "Romanos", "note": "1–3999", "to": "→ Romano", "from": "Romano →", "numberIn": "Número", "romanIn": "Romano", "invalid": "Inválido" },
+  "countdownPage": { "title": "Cuenta atrás", "note": "Local", "minutes": "Min", "seconds": "Seg", "start": "Iniciar", "resume": "Reanudar", "pause": "Pausa", "reset": "Reset", "done": "¡Fin!" }
 }

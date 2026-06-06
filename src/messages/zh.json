@@ -3,7 +3,7 @@
   "seo": {
     "defaultDescription": "实用百宝箱 PracticalKit：PDF、图片、JSON/XML、文本与开发场景的浏览器在线工具；可行时本地处理，保护隐私。",
     "homeTitle": "实用百宝箱 PracticalKit — 免费在线 PDF/图片/数据工具",
-    "homeDescription": "实用百宝箱（PracticalKit）— 44+ 免费浏览器工具：PDF 合并压缩、图片转换、JSON 格式化、IP/DNS 查询、趣味测验与开发小工具；中英俄西法多语言，尽量本地处理不上传服务器。"
+    "homeDescription": "实用百宝箱（PracticalKit）— 49+ 免费浏览器工具：PDF、图片、数据、IP/DNS、密码检测、时区转换与开发小工具；多语言，尽量本地处理。"
   },
   "nav": {
     "home": "首页",
@@ -51,6 +51,11 @@
     "bmiCalc": "BMI 计算",
     "percentCalc": "百分比计算",
     "urlParser": "URL 解析",
+    "passwordAudit": "密码强度检测",
+    "timezone": "时区转换",
+    "luhnCheck": "银行卡 Luhn 校验",
+    "romanNumeral": "罗马数字",
+    "countdown": "倒计时",
     "about": "关于",
     "privacy": "隐私",
     "terms": "条款",
@@ -153,7 +158,7 @@
   },
   "home": {
     "heroBadge": "浏览器优先工具集",
-    "statTools": "44+",
+    "statTools": "49+",
     "statToolsLabel": "免费在线工具",
     "statLangs": "5",
     "statLangsLabel": "种语言",
@@ -227,7 +232,12 @@
       "morse": "文本与摩斯电码互转，纯浏览器本地处理。",
       "bmiCalc": "根据身高体重估算 BMI，并给出通俗区间提示。",
       "percentCalc": "算 X% 的 Y、占比、或按比例增减——本地计算。",
-      "urlParser": "把 URL 拆成协议、主机、路径、参数与锚点，本地解析。"
+      "urlParser": "把 URL 拆成协议、主机、路径、参数与锚点，本地解析。",
+      "passwordAudit": "检测密码长度、字符集、熵值与常见弱口令，纯本地不上传。",
+      "timezone": "UTC 时间转换到常见 IANA 时区，浏览器 Intl API 计算。",
+      "luhnCheck": "Luhn 算法校验卡号格式（非支付、不联网验卡）。",
+      "romanNumeral": "阿拉伯数字 1–3999 与罗马数字互转。",
+      "countdown": "分秒倒计时，支持暂停与重置。"
     }
   },
   "toolFinder": {
@@ -875,5 +885,57 @@
     "valueA": "数值 A",
     "valueB": "数值 B",
     "invalid": "请输入有效数字（占比模式下 B 不能为 0）。"
+  },
+  "passwordAuditPage": {
+    "title": "密码强度检测",
+    "note": "估算熵值并识别常见弱口令；仅在浏览器内分析，不上传。",
+    "placeholder": "输入要检测的密码（不会保存）",
+    "sample": "Tr0ub4dor&3",
+    "length": "长度",
+    "charset": "字符集大小",
+    "entropy": "估算熵值",
+    "rating": "评级",
+    "labelWeak": "弱",
+    "labelFair": "一般",
+    "labelGood": "较好",
+    "labelStrong": "强",
+    "commonWarning": "命中常见弱口令列表。",
+    "privacy": "请勿在公共设备上检测真实生产密码。"
+  },
+  "timezonePage": {
+    "title": "时区转换",
+    "note": "输入 UTC 时间（ISO 格式），转换到所选 IANA 时区显示。",
+    "datetime": "UTC 时间 (YYYY-MM-DDTHH:mm:ss)",
+    "fromZone": "参考时区（说明用）",
+    "toZone": "显示时区",
+    "invalid": "时间格式无效，请用 2026-06-06T12:00:00"
+  },
+  "luhnPage": {
+    "title": "Luhn 卡号校验",
+    "note": "校验号码是否符合 Luhn 算法；不连接银行，不做支付。",
+    "placeholder": "4242 4242 4242 4242",
+    "valid": "通过 Luhn 校验",
+    "invalid": "未通过 Luhn 校验",
+    "disclaimer": "仅用于格式/测试校验。请勿在不可信网站输入真实卡号；本站不存储输入。"
+  },
+  "romanPage": {
+    "title": "罗马数字转换",
+    "note": "1–3999 整数与罗马数字互转，本地计算。",
+    "to": "数字 → 罗马",
+    "from": "罗马 → 数字",
+    "numberIn": "阿拉伯数字",
+    "romanIn": "罗马数字",
+    "invalid": "超出范围或罗马数字无效。"
+  },
+  "countdownPage": {
+    "title": "倒计时",
+    "note": "轻量浏览器计时器；保持标签页打开才能看到结束提示。",
+    "minutes": "分钟",
+    "seconds": "秒",
+    "start": "开始",
+    "resume": "继续",
+    "pause": "暂停",
+    "reset": "重置",
+    "done": "时间到！"
   }
 }

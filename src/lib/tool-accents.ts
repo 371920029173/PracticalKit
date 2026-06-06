@@ -47,6 +47,11 @@ export const TOOL_ACCENT: Record<string, ToolAccent> = {
   bmiCalc: "rose",
   percentCalc: "violet",
   urlParser: "cyan",
+  passwordAudit: "emerald",
+  timezone: "sky",
+  luhnCheck: "rose",
+  romanNumeral: "violet",
+  countdown: "amber",
 };
 
 export const ACCENT_CLASSES: Record<

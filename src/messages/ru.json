@@ -51,6 +51,11 @@
     "bmiCalc": "BMI",
     "percentCalc": "Проценты",
     "urlParser": "Разбор URL",
+    "passwordAudit": "Сила пароля",
+    "timezone": "Часовые пояса",
+    "luhnCheck": "Luhn карты",
+    "romanNumeral": "Римские цифры",
+    "countdown": "Таймер",
     "about": "О нас",
     "privacy": "Конфиденциальность",
     "terms": "Условия",
@@ -153,7 +158,7 @@
   },
   "home": {
     "heroBadge": "Утилиты в браузере",
-    "statTools": "44+",
+    "statTools": "49+",
     "statToolsLabel": "Бесплатных инструментов",
     "statLangs": "5",
     "statLangsLabel": "Языков",
@@ -227,7 +232,12 @@
       "morse": "Текст ↔ азбука Морзе в браузере.",
       "bmiCalc": "Индекс массы тела по росту и весу.",
       "percentCalc": "Процент от числа, доля и прирост.",
-      "urlParser": "Разбор URL на части локально."
+      "urlParser": "Разбор URL на части локально.",
+      "passwordAudit": "Аудит пароля локально.",
+      "timezone": "Конвертация UTC в IANA зоны.",
+      "luhnCheck": "Проверка Luhn (только формат).",
+      "romanNumeral": "Римские ↔ арабские 1–3999.",
+      "countdown": "Обратный отсчёт в браузере."
     }
   },
   "toolFinder": {
@@ -761,5 +771,10 @@
   "dnsLookupPage": { "title": "DNS lookup", "note": "Через Cloudflare DNS JSON.", "placeholder": "example.com", "sample": "cloudflare.com", "empty": "Введите домен", "noRecords": "Нет записей", "error": "Ошибка", "provider": "cloudflare-dns.com" },
   "bmiPage": { "title": "BMI", "note": "Образовательно.", "weight": "Вес (кг)", "height": "Рост (см)", "under": "Недостаток", "normal": "Норма", "over": "Избыток", "obese": "Ожирение", "disclaimer": "Не медсовет." },
   "morsePage": { "title": "Морзе", "note": "Локально.", "encode": "Текст → Morse", "decode": "Morse → текст", "textIn": "Текст", "morseIn": "Morse", "sample": "SOS" },
-  "percentPage": { "title": "Проценты", "note": "Локально.", "mode_of": "X% от Y", "mode_is": "X это ?% от Y", "mode_change": "X + Y%", "hint_of": "20% от 150", "hint_is": "30 от 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Некорректный ввод" }
+  "percentPage": { "title": "Проценты", "note": "Локально.", "mode_of": "X% от Y", "mode_is": "X это ?% от Y", "mode_change": "X + Y%", "hint_of": "20% от 150", "hint_is": "30 от 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Некорректный ввод" },
+  "passwordAuditPage": { "title": "Сила пароля", "note": "Локально.", "placeholder": "Пароль", "sample": "Tr0ub4dor&3", "length": "Длина", "charset": "Charset", "entropy": "Энтропия", "rating": "Оценка", "labelWeak": "Слабый", "labelFair": "Средний", "labelGood": "Хороший", "labelStrong": "Сильный", "commonWarning": "Частый пароль", "privacy": "Не на чужих ПК" },
+  "timezonePage": { "title": "Часовые пояса", "note": "Intl API.", "datetime": "UTC datetime", "fromZone": "From", "toZone": "To", "invalid": "Неверный формат" },
+  "luhnPage": { "title": "Luhn", "note": "Только формат.", "placeholder": "4242…", "valid": "OK", "invalid": "Fail", "disclaimer": "Не для реальных карт" },
+  "romanPage": { "title": "Римские", "note": "1–3999", "to": "→ Roman", "from": "Roman →", "numberIn": "Number", "romanIn": "Roman", "invalid": "Ошибка" },
+  "countdownPage": { "title": "Таймер", "note": "Локально", "minutes": "Min", "seconds": "Sec", "start": "Start", "resume": "Resume", "pause": "Pause", "reset": "Reset", "done": "Done!" }
 }

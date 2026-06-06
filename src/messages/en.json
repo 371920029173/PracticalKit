@@ -51,6 +51,11 @@
     "bmiCalc": "BMI calculator",
     "percentCalc": "Percentage calc",
     "urlParser": "URL parser",
+    "passwordAudit": "Password strength",
+    "timezone": "Timezone converter",
+    "luhnCheck": "Luhn / card check",
+    "romanNumeral": "Roman numerals",
+    "countdown": "Countdown timer",
     "about": "About",
     "privacy": "Privacy",
     "terms": "Terms",
@@ -153,7 +158,7 @@
   },
   "home": {
     "heroBadge": "Browser-first utilities",
-    "statTools": "44+",
+    "statTools": "49+",
     "statToolsLabel": "Free online tools",
     "statLangs": "5",
     "statLangsLabel": "Languages",
@@ -227,7 +232,12 @@
       "morse": "Encode text to Morse and decode dots/dashes back—runs entirely in your browser.",
       "bmiCalc": "Estimate BMI from height and weight with a plain-language category hint.",
       "percentCalc": "What is X% of Y, what percent is X of Y, or apply a percent increase.",
-      "urlParser": "Split a URL into protocol, host, path, query, and hash locally."
+      "urlParser": "Split a URL into protocol, host, path, query, and hash locally.",
+      "passwordAudit": "Audit password length, charset, entropy, and common weak patterns—locally only.",
+      "timezone": "Compare or convert a UTC datetime across common IANA time zones.",
+      "luhnCheck": "Validate card numbers with the Luhn checksum (format only—not payment processing).",
+      "romanNumeral": "Convert Arabic numbers 1–3999 to Roman numerals and back.",
+      "countdown": "Simple minutes/seconds countdown with pause and reset."
     }
   },
   "toolFinder": {
@@ -875,5 +885,57 @@
     "valueA": "Value A",
     "valueB": "Value B",
     "invalid": "Enter valid numbers (B must be non-zero for ratio mode)."
+  },
+  "passwordAuditPage": {
+    "title": "Password strength audit",
+    "note": "Estimates entropy and flags common weak passwords. Analysis runs in your browser—we do not upload your input.",
+    "placeholder": "Enter a password to audit (not saved)",
+    "sample": "Tr0ub4dor&3",
+    "length": "Length",
+    "charset": "Charset size",
+    "entropy": "Estimated entropy",
+    "rating": "Rating",
+    "labelWeak": "Weak",
+    "labelFair": "Fair",
+    "labelGood": "Good",
+    "labelStrong": "Strong",
+    "commonWarning": "Matches a commonly leaked or guessed password.",
+    "privacy": "Do not audit real production passwords on shared devices."
+  },
+  "timezonePage": {
+    "title": "Timezone converter",
+    "note": "Enter a UTC datetime (ISO) and see it formatted in another IANA zone using the browser Intl API.",
+    "datetime": "UTC datetime (YYYY-MM-DDTHH:mm:ss)",
+    "fromZone": "Reference (informational)",
+    "toZone": "Display timezone",
+    "invalid": "Invalid datetime. Use format 2026-06-06T12:00:00"
+  },
+  "luhnPage": {
+    "title": "Luhn card number check",
+    "note": "Checks whether a number passes the Luhn algorithm. This is not a payment gateway and does not contact banks.",
+    "placeholder": "4242 4242 4242 4242",
+    "valid": "Passes Luhn checksum",
+    "invalid": "Fails Luhn checksum",
+    "disclaimer": "For test/format validation only. Never enter real card numbers on untrusted sites; we do not store input."
+  },
+  "romanPage": {
+    "title": "Roman numeral converter",
+    "note": "Classical Roman numerals for integers 1–3999, computed locally.",
+    "to": "Number → Roman",
+    "from": "Roman → Number",
+    "numberIn": "Arabic number",
+    "romanIn": "Roman numeral",
+    "invalid": "Out of range or invalid Roman numeral."
+  },
+  "countdownPage": {
+    "title": "Countdown timer",
+    "note": "Lightweight timer in your browser—no notifications unless you keep the tab open.",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "start": "Start",
+    "resume": "Resume",
+    "pause": "Pause",
+    "reset": "Reset",
+    "done": "Time's up!"
   }
 }
