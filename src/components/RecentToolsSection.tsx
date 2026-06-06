@@ -114,7 +114,7 @@ const SUGGESTION_BY_NAV_KEY: Record<string, string[]> = {
   regex: ["textDiff", "code"],
   textDiff: ["slug", "markdown"],
   baseConvert: ["hash", "code"],
-  ipLookup: ["userAgent", "cidr"],
+  ipLookup: ["userAgent", "dnsLookup", "cidr"],
   mushroomQuiz: ["random", "hash"],
 };
 

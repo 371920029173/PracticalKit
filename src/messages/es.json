@@ -46,6 +46,11 @@
     "ipLookup": "Geolocalización IP",
     "userAgent": "User-Agent",
     "mushroomQuiz": "Quiz de setas",
+    "dnsLookup": "Consulta DNS",
+    "morse": "Código Morse",
+    "bmiCalc": "Calculadora IMC",
+    "percentCalc": "Porcentajes",
+    "urlParser": "Analizador URL",
     "about": "Acerca de",
     "privacy": "Privacidad",
     "terms": "Términos",
@@ -148,7 +153,7 @@
   },
   "home": {
     "heroBadge": "Utilidades en el navegador",
-    "statTools": "43+",
+    "statTools": "44+",
     "statToolsLabel": "Herramientas gratis",
     "statLangs": "5",
     "statLangsLabel": "Idiomas",
@@ -217,7 +222,12 @@
       "rgbv3d": "Decodifica RGBV3D y previsualiza los datos de imagen empaquetados.",
       "ipLookup": "IP pública, ciudad, ISP y zona horaria (API de terceros).",
       "userAgent": "User-Agent y pantalla solo en el navegador.",
-      "mushroomQuiz": "Quiz educativo sobre setas tóxicas — no es guía de campo."
+      "mushroomQuiz": "Quiz educativo sobre setas tóxicas — no es guía de campo.",
+      "dnsLookup": "Registros DNS vía Cloudflare (tercero).",
+      "morse": "Texto ↔ Morse en el navegador.",
+      "bmiCalc": "IMC a partir de peso y altura.",
+      "percentCalc": "Porcentaje de, ratio y aumento.",
+      "urlParser": "Descompone URLs localmente."
     }
   },
   "toolFinder": {
@@ -746,5 +756,10 @@
     "q4": { "prompt": "¿Confusión mortal común?", "correct": "2", "options": { "0": "Champiñones", "1": "Shiitake", "2": "Puffball vs Amanita joven", "3": "Rebozuelos" }, "explain": "Se requiere experto." },
     "q5": { "prompt": "¿Pelar la cutícula la hace segura?", "correct": "1", "options": { "0": "Sí", "1": "No", "2": "Sí todas", "3": "No sin almendra" }, "explain": "Toxinas en todo el cuerpo." },
     "q6": { "prompt": "¿Mejor práctica antes de comer?", "correct": "3", "options": { "0": "Preguntar en redes", "1": "Oler", "2": "Probar un poco", "3": "ID experta o no comer" }, "explain": "Solo experto o tienda certificada." }
-  }
+  },
+  "urlParserPage": { "title": "Analizador URL", "note": "Solo en el navegador.", "placeholder": "https://example.com", "sample": "https://practicalkithub.com/es/pdf/", "invalid": "URL no válida", "href": "href", "origin": "origin", "protocol": "protocol", "hostname": "hostname", "port": "port", "pathname": "pathname", "search": "search", "hash": "hash", "params": "params" },
+  "dnsLookupPage": { "title": "Consulta DNS", "note": "API JSON de Cloudflare DNS.", "placeholder": "example.com", "sample": "cloudflare.com", "empty": "Introduce un dominio", "noRecords": "Sin registros", "error": "Error", "provider": "cloudflare-dns.com" },
+  "bmiPage": { "title": "Calculadora IMC", "note": "Solo educativo.", "weight": "Peso (kg)", "height": "Altura (cm)", "under": "Bajo peso", "normal": "Normal", "over": "Sobrepeso", "obese": "Obesidad", "disclaimer": "No es consejo médico." },
+  "morsePage": { "title": "Código Morse", "note": "Local.", "encode": "Texto → Morse", "decode": "Morse → texto", "textIn": "Texto", "morseIn": "Morse", "sample": "SOS" },
+  "percentPage": { "title": "Porcentajes", "note": "Local.", "mode_of": "X% de Y", "mode_is": "X es ?% de Y", "mode_change": "X + Y%", "hint_of": "20% de 150", "hint_is": "30 de 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Entrada no válida" }
 }

@@ -3,7 +3,7 @@
   "seo": {
     "defaultDescription": "实用百宝箱 PracticalKit：PDF、图片、JSON/XML、文本与开发场景的浏览器在线工具；可行时本地处理，保护隐私。",
     "homeTitle": "实用百宝箱 PracticalKit — 免费在线 PDF/图片/数据工具",
-    "homeDescription": "实用百宝箱（PracticalKit）— 43+ 免费浏览器工具：PDF 合并压缩、图片转换、JSON 格式化、IP 查询、趣味测验与开发小工具；中英俄西法多语言，尽量本地处理不上传服务器。"
+    "homeDescription": "实用百宝箱（PracticalKit）— 44+ 免费浏览器工具：PDF 合并压缩、图片转换、JSON 格式化、IP/DNS 查询、趣味测验与开发小工具；中英俄西法多语言，尽量本地处理不上传服务器。"
   },
   "nav": {
     "home": "首页",
@@ -46,6 +46,11 @@
     "ipLookup": "IP 位置查询",
     "userAgent": "浏览器 UA",
     "mushroomQuiz": "毒蘑菇测验",
+    "dnsLookup": "DNS 查询",
+    "morse": "摩斯电码",
+    "bmiCalc": "BMI 计算",
+    "percentCalc": "百分比计算",
+    "urlParser": "URL 解析",
     "about": "关于",
     "privacy": "隐私",
     "terms": "条款",
@@ -148,7 +153,7 @@
   },
   "home": {
     "heroBadge": "浏览器优先工具集",
-    "statTools": "43+",
+    "statTools": "44+",
     "statToolsLabel": "免费在线工具",
     "statLangs": "5",
     "statLangsLabel": "种语言",
@@ -217,7 +222,12 @@
       "rgbv3d": "解码 RGBV3D 数据并预览打包后的图像信息。",
       "ipLookup": "查看公网 IP、城市、运营商与时区（经第三方接口，页面已标明）。",
       "userAgent": "在本机读取浏览器 UA 与屏幕信息，不上传服务器。",
-      "mushroomQuiz": "毒蘑菇安全常识小测验，仅供教育，不能替代野外鉴定。"
+      "mushroomQuiz": "毒蘑菇安全常识小测验，仅供教育，不能替代野外鉴定。",
+      "dnsLookup": "查询域名的 A/AAAA/MX/TXT 等记录（经 Cloudflare DNS，页面已标明）。",
+      "morse": "文本与摩斯电码互转，纯浏览器本地处理。",
+      "bmiCalc": "根据身高体重估算 BMI，并给出通俗区间提示。",
+      "percentCalc": "算 X% 的 Y、占比、或按比例增减——本地计算。",
+      "urlParser": "把 URL 拆成协议、主机、路径、参数与锚点，本地解析。"
     }
   },
   "toolFinder": {
@@ -806,5 +816,64 @@
       },
       "explain": "只有可靠专家鉴定（或正规渠道采购）才可食用，部分试毒每年仍致死亡。"
     }
+  },
+  "urlParserPage": {
+    "title": "URL 解析",
+    "note": "用浏览器 URL API 拆分链接，不上传服务器。",
+    "placeholder": "https://example.com/path?q=1#section",
+    "sample": "https://practicalkithub.com/zh/pdf/?ref=home#tools",
+    "invalid": "无法解析，请检查主机名或补上 https://",
+    "href": "完整 URL",
+    "origin": "Origin",
+    "protocol": "协议",
+    "hostname": "主机名",
+    "port": "端口",
+    "pathname": "路径",
+    "search": "查询串",
+    "hash": "锚点",
+    "params": "查询参数"
+  },
+  "dnsLookupPage": {
+    "title": "DNS 查询",
+    "note": "查询域名 DNS 记录；浏览器直接请求 Cloudflare 公共 DNS JSON 接口。",
+    "placeholder": "example.com",
+    "sample": "cloudflare.com",
+    "empty": "请输入域名。",
+    "noRecords": "该类型无记录或域名不存在。",
+    "error": "查询失败，请检查域名或稍后重试。",
+    "provider": "解析来源：cloudflare-dns.com（第三方）。"
+  },
+  "bmiPage": {
+    "title": "BMI 计算器",
+    "note": "根据体重（kg）与身高（cm）估算 BMI，仅供参考。",
+    "weight": "体重 (kg)",
+    "height": "身高 (cm)",
+    "under": "偏瘦 (BMI < 18.5)",
+    "normal": "正常 (BMI 18.5–24.9)",
+    "over": "超重 (BMI 25–29.9)",
+    "obese": "肥胖 (BMI ≥ 30)",
+    "disclaimer": "非医疗建议。BMI 未考虑肌肉量、年龄等因素，健康问题请咨询医生。"
+  },
+  "morsePage": {
+    "title": "摩斯电码转换",
+    "note": "国际摩斯电码对照；解码时词间用 / 或双空格分隔。",
+    "encode": "文本 → 摩斯",
+    "decode": "摩斯 → 文本",
+    "textIn": "明文",
+    "morseIn": "摩斯码（点划与空格）",
+    "sample": "SOS"
+  },
+  "percentPage": {
+    "title": "百分比计算器",
+    "note": "三种常见百分比运算，本地计算。",
+    "mode_of": "X% 的 Y",
+    "mode_is": "X 是 Y 的百分之几",
+    "mode_change": "X 增加 Y%",
+    "hint_of": "例：150 的 20% 是多少？",
+    "hint_is": "例：30 是 150 的百分之几？",
+    "hint_change": "例：100 增加 15%",
+    "valueA": "数值 A",
+    "valueB": "数值 B",
+    "invalid": "请输入有效数字（占比模式下 B 不能为 0）。"
   }
 }

@@ -46,6 +46,11 @@
     "ipLookup": "Геолокация IP",
     "userAgent": "User-Agent",
     "mushroomQuiz": "Тест о грибах",
+    "dnsLookup": "DNS lookup",
+    "morse": "Морзе",
+    "bmiCalc": "BMI",
+    "percentCalc": "Проценты",
+    "urlParser": "Разбор URL",
     "about": "О нас",
     "privacy": "Конфиденциальность",
     "terms": "Условия",
@@ -148,7 +153,7 @@
   },
   "home": {
     "heroBadge": "Утилиты в браузере",
-    "statTools": "43+",
+    "statTools": "44+",
     "statToolsLabel": "Бесплатных инструментов",
     "statLangs": "5",
     "statLangsLabel": "Языков",
@@ -217,7 +222,12 @@
       "rgbv3d": "Декодирование RGBV3D и предпросмотр упакованных данных.",
       "ipLookup": "Публичный IP, город, провайдер и часовой пояс (через сторонний API).",
       "userAgent": "Строка User-Agent и параметры экрана только в браузере.",
-      "mushroomQuiz": "Образовательный тест о ядовитых грибах — не руководство для сбора."
+      "mushroomQuiz": "Образовательный тест о ядовитых грибах — не руководство для сбора.",
+      "dnsLookup": "DNS A/AAAA/MX/TXT через Cloudflare (третья сторона).",
+      "morse": "Текст ↔ азбука Морзе в браузере.",
+      "bmiCalc": "Индекс массы тела по росту и весу.",
+      "percentCalc": "Процент от числа, доля и прирост.",
+      "urlParser": "Разбор URL на части локально."
     }
   },
   "toolFinder": {
@@ -746,5 +756,10 @@
     "q4": { "prompt": "Опасная путаница в лесу?", "correct": "2", "options": { "0": "Шампиньоны", "1": "Шиитake", "2": "Puffball vs молодая Amanita", "3": "Лисички" }, "explain": "Нужна экспертная идентификация." },
     "q5": { "prompt": "Снятие кожицы делает гриб безопасным?", "correct": "1", "options": { "0": "Да", "1": "Нет", "2": "Да для всех", "3": "Нет без миндаля" }, "explain": "Токсины по всему телу." },
     "q6": { "prompt": "Лучшая практика перед едой?", "correct": "3", "options": { "0": "Спросить в чате", "1": "Понюхать", "2": "Попробовать кусочек", "3": "Экспертная ID или не есть" }, "explain": "Только эксперт или магазин." }
-  }
+  },
+  "urlParserPage": { "title": "Разбор URL", "note": "Локально в браузере.", "placeholder": "https://example.com", "sample": "https://practicalkithub.com/en/pdf/", "invalid": "Некорректный URL", "href": "href", "origin": "origin", "protocol": "protocol", "hostname": "hostname", "port": "port", "pathname": "pathname", "search": "search", "hash": "hash", "params": "params" },
+  "dnsLookupPage": { "title": "DNS lookup", "note": "Через Cloudflare DNS JSON.", "placeholder": "example.com", "sample": "cloudflare.com", "empty": "Введите домен", "noRecords": "Нет записей", "error": "Ошибка", "provider": "cloudflare-dns.com" },
+  "bmiPage": { "title": "BMI", "note": "Образовательно.", "weight": "Вес (кг)", "height": "Рост (см)", "under": "Недостаток", "normal": "Норма", "over": "Избыток", "obese": "Ожирение", "disclaimer": "Не медсовет." },
+  "morsePage": { "title": "Морзе", "note": "Локально.", "encode": "Текст → Morse", "decode": "Morse → текст", "textIn": "Текст", "morseIn": "Morse", "sample": "SOS" },
+  "percentPage": { "title": "Проценты", "note": "Локально.", "mode_of": "X% от Y", "mode_is": "X это ?% от Y", "mode_change": "X + Y%", "hint_of": "20% от 150", "hint_is": "30 от 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Некорректный ввод" }
 }

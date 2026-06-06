@@ -41,7 +41,12 @@ export const TOOL_ACCENT: Record<string, ToolAccent> = {
   rgbv3d: "amber",
   ipLookup: "sky",
   userAgent: "cyan",
+  dnsLookup: "violet",
   mushroomQuiz: "emerald",
+  morse: "amber",
+  bmiCalc: "rose",
+  percentCalc: "violet",
+  urlParser: "cyan",
 };
 
 export const ACCENT_CLASSES: Record<
