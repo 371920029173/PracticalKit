@@ -354,23 +354,135 @@ export function writeCachedGeo(geo: GeoSnapshot) {
   }
 }
 
-export function resolveFlair(countryCode: string | null, locale: string): FlairDef | null {
+export function resolveCountryFlair(countryCode: string | null): FlairDef | null {
   const cc = countryCode?.toUpperCase() ?? null;
   if (!cc) return null;
 
-  const matches = FLAIR_DEFS.filter(
-    (d) => d.countries.includes(cc) && (!d.locales || d.locales.includes(locale)),
-  );
-
+  const matches = FLAIR_DEFS.filter((d) => d.countries.includes(cc));
   if (!matches.length) return null;
   if (matches.length === 1) return matches[0]!;
 
   return matches.sort((a, b) => a.countries.length - b.countries.length)[0] ?? null;
 }
 
-export function applyFlairToDocument(flair: FlairDef | null, daypart: Daypart) {
+export type SiteLocale = "en" | "zh" | "ru" | "es" | "fr";
+
+export type LocaleFlairDef = {
+  id: SiteLocale;
+  badge: FlairBadgeKind;
+  decoration: FlairDef["decoration"];
+  paletteId: FlairId;
+};
+
+export const LOCALE_FLAIR_DEFS: LocaleFlairDef[] = [
+  { id: "en", badge: "gb", decoration: "stars", paletteId: "gb" },
+  { id: "zh", badge: "lantern", decoration: "lantern", paletteId: "cn" },
+  { id: "fr", badge: "fr", decoration: "tricolor", paletteId: "fr" },
+  { id: "es", badge: "es", decoration: "sunset", paletteId: "es" },
+  { id: "ru", badge: "aurora", decoration: "aurora", paletteId: "ru" },
+];
+
+export function resolveLocaleFlair(locale: string): LocaleFlairDef | null {
+  return LOCALE_FLAIR_DEFS.find((d) => d.id === locale) ?? null;
+}
+
+export type FlairPickMode = "auto" | "off";
+
+export type FlairUserPrefs = {
+  country: FlairPickMode | FlairId;
+  locale: FlairPickMode | SiteLocale;
+  decorFrom: "auto" | "country" | "locale";
+};
+
+export const DEFAULT_FLAIR_PREFS: FlairUserPrefs = {
+  country: "auto",
+  locale: "auto",
+  decorFrom: "auto",
+};
+
+const PREFS_KEY = "pk-flair-prefs-v2";
+
+export function readFlairPrefs(): FlairUserPrefs {
+  if (typeof window === "undefined") return DEFAULT_FLAIR_PREFS;
+  try {
+    const raw = localStorage.getItem(PREFS_KEY);
+    if (!raw) return DEFAULT_FLAIR_PREFS;
+    const parsed = JSON.parse(raw) as Partial<FlairUserPrefs>;
+    return {
+      country: parsed.country ?? "auto",
+      locale: parsed.locale ?? "auto",
+      decorFrom: parsed.decorFrom ?? "auto",
+    };
+  } catch {
+    return DEFAULT_FLAIR_PREFS;
+  }
+}
+
+export function writeFlairPrefs(prefs: FlairUserPrefs) {
+  try {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  } catch {
+    /* ignore */
+  }
+}
+
+export type ResolvedFlair = {
+  country: FlairDef | null;
+  locale: LocaleFlairDef | null;
+  countryBadge: FlairBadgeKind | null;
+  localeBadge: FlairBadgeKind | null;
+  decoration: FlairDef["decoration"];
+  paletteId: FlairId;
+};
+
+export function resolveCombinedFlair(
+  countryCode: string | null,
+  locale: string,
+  prefs: FlairUserPrefs,
+): ResolvedFlair | null {
+  let country: FlairDef | null = null;
+  if (prefs.country !== "off") {
+    country =
+      prefs.country === "auto"
+        ? resolveCountryFlair(countryCode)
+        : (FLAIR_DEFS.find((d) => d.id === prefs.country) ?? null);
+  }
+
+  let localeFlair: LocaleFlairDef | null = null;
+  if (prefs.locale !== "off") {
+    localeFlair =
+      prefs.locale === "auto"
+        ? resolveLocaleFlair(locale)
+        : (LOCALE_FLAIR_DEFS.find((d) => d.id === prefs.locale) ?? null);
+  }
+
+  if (!country && !localeFlair) return null;
+
+  const countryBadge = country?.badge ?? null;
+  const localeBadge = localeFlair?.badge ?? null;
+
+  let decoration: FlairDef["decoration"];
+  if (prefs.decorFrom === "country") {
+    decoration = country?.decoration ?? localeFlair!.decoration;
+  } else if (prefs.decorFrom === "locale") {
+    decoration = localeFlair?.decoration ?? country!.decoration;
+  } else {
+    decoration = country?.decoration ?? localeFlair!.decoration;
+  }
+
+  const paletteId = country?.id ?? localeFlair!.paletteId;
+
+  return { country, locale: localeFlair, countryBadge, localeBadge, decoration, paletteId };
+}
+
+/** @deprecated Use resolveCombinedFlair */
+export function resolveFlair(countryCode: string | null, locale: string): FlairDef | null {
+  return resolveCombinedFlair(countryCode, locale, DEFAULT_FLAIR_PREFS)?.country ?? null;
+}
+
+export function applyResolvedFlairToDocument(resolved: ResolvedFlair | null, daypart: Daypart) {
   const root = document.documentElement;
-  if (!flair) {
+  if (!resolved) {
     delete root.dataset.flair;
     delete root.dataset.flairDecoration;
     for (const key of [
@@ -390,9 +502,9 @@ export function applyFlairToDocument(flair: FlairDef | null, daypart: Daypart) {
     return;
   }
 
-  const palette = FLAIR_PALETTES[flair.id][daypart];
-  root.dataset.flair = flair.id;
-  root.dataset.flairDecoration = flair.decoration;
+  const palette = FLAIR_PALETTES[resolved.paletteId][daypart];
+  root.dataset.flair = resolved.paletteId;
+  root.dataset.flairDecoration = resolved.decoration;
   root.dataset.daypart = daypart;
   root.style.setProperty("--flair-mesh-a", palette.meshA);
   root.style.setProperty("--flair-mesh-b", palette.meshB);
@@ -404,4 +516,22 @@ export function applyFlairToDocument(flair: FlairDef | null, daypart: Daypart) {
   root.style.setProperty("--mesh-c", palette.meshC);
   root.style.setProperty("--accent", palette.accent);
   root.style.setProperty("--accent-soft", palette.accentSoft);
+}
+
+export function applyFlairToDocument(flair: FlairDef | null, daypart: Daypart) {
+  if (!flair) {
+    applyResolvedFlairToDocument(null, daypart);
+    return;
+  }
+  applyResolvedFlairToDocument(
+    {
+      country: flair,
+      locale: null,
+      countryBadge: flair.badge,
+      localeBadge: null,
+      decoration: flair.decoration,
+      paletteId: flair.id,
+    },
+    daypart,
+  );
 }

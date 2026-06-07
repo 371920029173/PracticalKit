@@ -13,7 +13,7 @@ import { AdsenseScript } from "@/components/Adsense";
 import { ContentFirstAds } from "@/components/ContentFirstAds";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolFinder } from "@/components/ToolFinder";
-import { RegionalFlairBadge, RegionalFlairProvider } from "@/components/RegionalFlair";
+import { RegionalFlairControl, RegionalFlairProvider } from "@/components/RegionalFlair";
 import { RegionalFlairPageDecor } from "@/components/RegionalFlairPageDecor";
 
 const locales = ["en", "zh", "ru", "es", "fr"] as const;
@@ -251,7 +251,7 @@ function NavInner() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <ToolFinder variant="header" />
-            <RegionalFlairBadge />
+            <RegionalFlairControl />
             <ThemeToggle />
             <LangSwitch />
           </div>

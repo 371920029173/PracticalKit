@@ -275,7 +275,44 @@
     "new": "New"
   },
   "regionalFlair": {
-    "hint": "Regional touch for your locale and area: {badge}"
+    "hint": "Regional touch: {badge}",
+    "openPicker": "Customize regional decorations",
+    "pickerTitle": "Regional flair",
+    "pickerDesc": "IP region and site language each have their own icon. Mix and match below.",
+    "countryLabel": "IP region icon",
+    "localeLabel": "Language icon",
+    "decorLabel": "Page decoration",
+    "auto": "Auto detect",
+    "off": "Hidden",
+    "decorAuto": "Auto (region first)",
+    "decorCountry": "From IP region",
+    "decorLocale": "From language",
+    "reset": "Reset to auto",
+    "country": {
+      "ca": "Canada",
+      "us": "United States",
+      "cn": "China",
+      "tw": "Taiwan",
+      "hk": "Hong Kong / Macau",
+      "sg": "Singapore",
+      "fr": "France",
+      "fr-be": "French (BE/LU/MC)",
+      "fr-ch": "French (Switzerland)",
+      "es": "Spain",
+      "es-latam": "Latin America",
+      "ru": "Russia / CIS",
+      "gb": "UK / Ireland",
+      "au": "Australia / NZ",
+      "jp": "Japan",
+      "kr": "Korea"
+    },
+    "locale": {
+      "en": "English",
+      "zh": "Chinese",
+      "fr": "French",
+      "es": "Spanish",
+      "ru": "Russian"
+    }
   },
   "aboutPage": {
     "title": "About PracticalKit",

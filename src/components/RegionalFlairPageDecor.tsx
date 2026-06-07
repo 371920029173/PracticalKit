@@ -5,23 +5,31 @@ import { RegionalFlairContext } from "@/components/RegionalFlair";
 import { FlairBadgeIcon } from "@/components/FlairBadgeIcon";
 
 export function RegionalFlairPageDecor() {
-  const { flair, daypart } = useContext(RegionalFlairContext);
-  if (!flair) return null;
+  const { resolved, daypart } = useContext(RegionalFlairContext);
+  if (!resolved) return null;
 
   return (
-    <div className="flair-page-decor" aria-hidden data-decoration={flair.decoration}>
-      <span className="flair-page-corner flair-page-corner-tl">
-        <FlairBadgeIcon kind={flair.badge} size="lg" />
-      </span>
-      <span className="flair-page-corner flair-page-corner-tr">
-        <FlairBadgeIcon kind={flair.badge} size="md" />
-      </span>
-      <span className="flair-page-corner flair-page-corner-bl">
-        <FlairBadgeIcon kind={flair.badge} size="md" />
-      </span>
-      <span className="flair-page-corner flair-page-corner-br">
-        <FlairBadgeIcon kind={flair.badge} size="lg" />
-      </span>
+    <div className="flair-page-decor" aria-hidden data-decoration={resolved.decoration}>
+      {resolved.countryBadge ? (
+        <span className="flair-page-corner flair-page-corner-tl">
+          <FlairBadgeIcon kind={resolved.countryBadge} size="lg" />
+        </span>
+      ) : null}
+      {resolved.localeBadge ? (
+        <span className="flair-page-corner flair-page-corner-tr">
+          <FlairBadgeIcon kind={resolved.localeBadge} size="md" />
+        </span>
+      ) : null}
+      {resolved.localeBadge ? (
+        <span className="flair-page-corner flair-page-corner-bl">
+          <FlairBadgeIcon kind={resolved.localeBadge} size="md" />
+        </span>
+      ) : null}
+      {resolved.countryBadge ? (
+        <span className="flair-page-corner flair-page-corner-br">
+          <FlairBadgeIcon kind={resolved.countryBadge} size="lg" />
+        </span>
+      ) : null}
       <div className={`flair-page-band flair-page-band-${daypart}`} />
       <div className="flair-page-drift">
         {Array.from({ length: daypart === "day" ? 6 : 4 }, (_, i) => (

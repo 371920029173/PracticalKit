@@ -1,17 +1,19 @@
 "use client";
 
 import {
-  applyFlairToDocument,
-  resolveFlair,
-  type FlairDef,
+  applyResolvedFlairToDocument,
+  readFlairPrefs,
+  resolveCombinedFlair,
+  writeFlairPrefs,
+  type FlairUserPrefs,
+  type ResolvedFlair,
 } from "@/lib/regional-flair";
 import { fetchCountryCode } from "@/lib/geo-api";
-import { FlairBadgeIcon, flairBadgeLabel } from "@/components/FlairBadgeIcon";
 import { useTheme } from "@/components/ThemeProvider";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import {
   createContext,
-  useContext,
+  useCallback,
   useEffect,
   useMemo,
   useState,
@@ -20,20 +22,20 @@ import {
 } from "react";
 
 type RegionalFlairContextValue = {
-  flair: FlairDef | null;
+  resolved: ResolvedFlair | null;
   countryCode: string | null;
   daypart: "day" | "night";
+  prefs: FlairUserPrefs;
+  setPrefs: (prefs: FlairUserPrefs) => void;
 };
 
 export const RegionalFlairContext = createContext<RegionalFlairContextValue>({
-  flair: null,
+  resolved: null,
   countryCode: null,
   daypart: "day",
+  prefs: { country: "auto", locale: "auto", decorFrom: "auto" },
+  setPrefs: () => {},
 });
-
-async function fetchGeoCountry(): Promise<string | null> {
-  return fetchCountryCode();
-}
 
 function MapleLeaf({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
@@ -127,15 +129,23 @@ export function RegionalFlairProvider({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
   const daypart = theme === "dark" ? "night" : "day";
   const [countryCode, setCountryCode] = useState<string | null>(null);
+  const [prefs, setPrefsState] = useState<FlairUserPrefs>(() =>
+    typeof window !== "undefined" ? readFlairPrefs() : { country: "auto", locale: "auto", decorFrom: "auto" },
+  );
 
-  const flair = useMemo(
-    () => resolveFlair(countryCode, locale),
-    [countryCode, locale],
+  const setPrefs = useCallback((next: FlairUserPrefs) => {
+    setPrefsState(next);
+    writeFlairPrefs(next);
+  }, []);
+
+  const resolved = useMemo(
+    () => resolveCombinedFlair(countryCode, locale, prefs),
+    [countryCode, locale, prefs],
   );
 
   useEffect(() => {
     let cancelled = false;
-    void fetchGeoCountry().then((cc) => {
+    void fetchCountryCode().then((cc) => {
       if (!cancelled) setCountryCode(cc);
     });
     return () => {
@@ -144,15 +154,15 @@ export function RegionalFlairProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    applyFlairToDocument(flair, daypart);
-  }, [flair, daypart]);
+    applyResolvedFlairToDocument(resolved, daypart);
+  }, [resolved, daypart]);
 
   return (
-    <RegionalFlairContext.Provider value={{ flair, countryCode, daypart }}>
-      {flair ? (
+    <RegionalFlairContext.Provider value={{ resolved, countryCode, daypart, prefs, setPrefs }}>
+      {resolved ? (
         <>
           <div className="flair-ambient" aria-hidden />
-          <FloatingDecor decoration={flair.decoration} daypart={daypart} />
+          <FloatingDecor decoration={resolved.decoration} daypart={daypart} />
         </>
       ) : null}
       {children}
@@ -160,21 +170,7 @@ export function RegionalFlairProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function RegionalFlairBadge() {
-  const t = useTranslations("regionalFlair");
-  const { flair } = useContext(RegionalFlairContext);
-  if (!flair) return null;
-
-  return (
-    <span
-      className="flair-badge btn-motion"
-      title={t("hint", { badge: flairBadgeLabel(flair.badge) })}
-      aria-label={t("hint", { badge: flairBadgeLabel(flair.badge) })}
-    >
-      <FlairBadgeIcon kind={flair.badge} size="sm" />
-    </span>
-  );
-}
+export { RegionalFlairControl, RegionalFlairBadge } from "@/components/FlairPicker";
 
 /** @deprecated Use RegionalFlairProvider */
 export function RegionalFlairLayer() {

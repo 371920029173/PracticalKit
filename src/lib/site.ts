@@ -1,11 +1,14 @@
 /**
  * Canonical site origin (no trailing slash).
  *
- * 1) NEXT_PUBLIC_SITE_URL — use your real custom domain in production.
- * 2) CF_PAGES_URL — set automatically on Cloudflare Pages builds (`*.pages.dev` or preview URL)
- *    so sitemap/robots/canonical work even before you add a custom domain.
- * 3) Otherwise https://example.com (replace via env before expecting search indexing).
+ * Priority:
+ * 1) NEXT_PUBLIC_SITE_URL — set in Cloudflare Pages for production
+ * 2) Production branch on Cloudflare → practicalkithub.com
+ * 3) CF_PAGES_URL — preview deployments only
+ * 4) Hard-coded production domain
  */
+export const CANONICAL_PRODUCTION_URL = "https://practicalkithub.com";
+
 function normalizeSiteOrigin(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (explicit) {
@@ -15,6 +18,12 @@ function normalizeSiteOrigin(): string {
       /* fall through */
     }
   }
+
+  const branch = process.env.CF_PAGES_BRANCH?.trim();
+  if (branch === "master" || branch === "main") {
+    return CANONICAL_PRODUCTION_URL;
+  }
+
   const cf = process.env.CF_PAGES_URL?.trim();
   if (cf) {
     try {
@@ -24,7 +33,8 @@ function normalizeSiteOrigin(): string {
       /* fall through */
     }
   }
-  return "https://example.com";
+
+  return CANONICAL_PRODUCTION_URL;
 }
 
 export const SITE_URL = normalizeSiteOrigin();

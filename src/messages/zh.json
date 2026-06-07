@@ -275,7 +275,44 @@
     "new": "新"
   },
   "regionalFlair": {
-    "hint": "根据您的语言与地区呈现的小装饰：{badge}"
+    "hint": "地区小装饰：{badge}",
+    "openPicker": "自定义地区装饰",
+    "pickerTitle": "地区装饰",
+    "pickerDesc": "IP 地区与界面语言各有一套图标，可自由搭配。",
+    "countryLabel": "IP 地区图标",
+    "localeLabel": "语言图标",
+    "decorLabel": "页面氛围",
+    "auto": "自动检测",
+    "off": "不显示",
+    "decorAuto": "自动（地区优先）",
+    "decorCountry": "跟随 IP 地区",
+    "decorLocale": "跟随界面语言",
+    "reset": "恢复自动",
+    "country": {
+      "ca": "加拿大",
+      "us": "美国",
+      "cn": "中国大陆",
+      "tw": "台湾",
+      "hk": "港澳",
+      "sg": "新加坡",
+      "fr": "法国",
+      "fr-be": "法语区（比/卢/摩）",
+      "fr-ch": "瑞士法语区",
+      "es": "西班牙",
+      "es-latam": "拉美西语区",
+      "ru": "俄罗斯/独联体",
+      "gb": "英国/爱尔兰",
+      "au": "澳新",
+      "jp": "日本",
+      "kr": "韩国"
+    },
+    "locale": {
+      "en": "英语",
+      "zh": "中文",
+      "fr": "法语",
+      "es": "西班牙语",
+      "ru": "俄语"
+    }
   },
   "aboutPage": {
     "title": "关于 PracticalKit",
