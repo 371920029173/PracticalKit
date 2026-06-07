@@ -176,6 +176,15 @@
     "recentHint": "Solo en tu navegador. Al cambiar el idioma, los enlaces usan tu idioma actual.",
     "recentClear": "Borrar",
     "nextTitle": "Prueba esto después",
+    "returnKicker": "Retoma donde lo dejaste",
+    "returnTitle": "Continúa con tus herramientas",
+    "recentBadge": "Reciente",
+    "relatedTitle": "Herramientas relacionadas",
+    "headerRecents": "Recientes",
+    "pinTool": "Fijar arriba",
+    "unpinTool": "Quitar fijación",
+    "proExpand": "Mostrar guía y FAQ",
+    "proCollapse": "Ocultar guía del sitio",
     "qualityTitle": "Capa editorial, no solo formularios",
     "qualityLead": "Si la mayoría de las URLs parecen utilidades breves sin explicación propia, los sistemas automáticos pueden clasificar el sitio como de «bajo valor» o plantilla. PracticalKit añade textos persistentes: narrativa en la portada, una página «Acerca de» ampliada y un blog con artículos sobre datos, límites y novedades — sin obligarte a ejecutar primero una herramienta.",
     "qualityP2": "En cada página de herramienta se indica qué corre en local, qué llama a terceros, límites típicos del navegador y qué no registramos en nuestro origen. Para programas de anuncios, esa transparencia importa tanto como la propia función.",
@@ -248,7 +257,8 @@
     "openSearch": "Buscar",
     "dialogTitle": "Encontrar herramienta",
     "close": "Cerrar",
-    "newBadge": "Nuevo"
+    "newBadge": "Nuevo",
+    "recentRow": "Usadas recientemente"
   },
   "toolWelcome": {
     "kicker": "Antes de empezar",

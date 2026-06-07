@@ -1,11 +1,8 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import {
-  TOOLS,
-  type ToolCategory,
-  type ToolDef,
-} from "@/lib/tools-registry";
+import { readRecentTools, subscribeRecentTools } from "@/lib/recent-tools";
+import { TOOLS, type ToolCategory, type ToolDef } from "@/lib/tools-registry";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
@@ -62,7 +59,12 @@ export function ToolFinder({
   const [query, setQuery] = useState(initialQuery);
   const [category, setCategory] = useState<ToolCategory | "all">("all");
   const [modalOpen, setModalOpen] = useState(false);
+  const [recentKey, setRecentKey] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    return subscribeRecentTools(() => setRecentKey((k) => k + 1));
+  }, []);
 
   useEffect(() => {
     if (initialQuery) setQuery(initialQuery);
@@ -95,12 +97,23 @@ export function ToolFinder({
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const recentSet = useMemo(() => {
+    void recentKey;
+    return new Set(readRecentTools().map((r) => r.segment));
+  }, [recentKey]);
+
+  const recentNavKeys = useMemo(() => {
+    void recentKey;
+    return readRecentTools().slice(0, 5);
+  }, [recentKey]);
+
   const results = useMemo(() => {
     const q = normalize(query);
     return TOOLS.map((tool) => {
       const title = nav(tool.navKey);
       const blurb = home(`toolBlurbs.${tool.navKey}` as "toolBlurbs.pdf");
-      const score = scoreTool(tool, q, title, blurb);
+      let score = scoreTool(tool, q, title, blurb);
+      if (recentSet.has(tool.segment)) score += q ? 8 : 25;
       return { tool, title, blurb, score };
     })
       .filter(({ tool, score }) => {
@@ -109,7 +122,7 @@ export function ToolFinder({
         return score > 0;
       })
       .sort((a, b) => b.score - a.score);
-  }, [query, category, nav, home]);
+  }, [query, category, nav, home, recentSet]);
 
   const openModal = useCallback(() => setModalOpen(true), []);
 
@@ -244,6 +257,26 @@ export function ToolFinder({
                   </button>
                 ))}
               </div>
+              {!query && recentNavKeys.length > 0 ? (
+                <div className="mt-4 space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-zinc-500">
+                    {t("recentRow")}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {recentNavKeys.map((e) => (
+                      <Link
+                        key={e.segment}
+                        href={`/${e.segment}/`}
+                        prefetch={false}
+                        onClick={() => setModalOpen(false)}
+                        className="btn-motion rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-900 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-100"
+                      >
+                        {nav(e.navKey as never)}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
               {resultList}
             </div>
           </div>

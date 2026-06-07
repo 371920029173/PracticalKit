@@ -13,6 +13,8 @@ import { AdsenseScript } from "@/components/Adsense";
 import { ContentFirstAds } from "@/components/ContentFirstAds";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolFinder } from "@/components/ToolFinder";
+import { HeaderRecents } from "@/components/HeaderRecents";
+import { RelatedToolsBar } from "@/components/RelatedToolsBar";
 import { RegionalFlairControl, RegionalFlairProvider } from "@/components/RegionalFlair";
 import { RegionalFlairPageDecor } from "@/components/RegionalFlairPageDecor";
 
@@ -251,6 +253,7 @@ function NavInner() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <ToolFinder variant="header" />
+            <HeaderRecents />
             <RegionalFlairControl />
             <ThemeToggle />
             <LangSwitch />
@@ -279,6 +282,7 @@ export function SiteChrome({
         <RegionalFlairPageDecor />
         <main id="pk-main-content" className="flair-page-main min-h-[50vh]">
           {children}
+          <RelatedToolsBar />
           <ContentFirstAds />
         </main>
       </div>

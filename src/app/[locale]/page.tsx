@@ -1,10 +1,10 @@
 import { HomeHero } from "@/components/HomeHero";
+import { HomeContinuePanel } from "@/components/HomeContinuePanel";
 import { HomeProSection } from "@/components/HomeProSection";
-import { RecentToolsSection } from "@/components/RecentToolsSection";
+import { HomeProWrapper } from "@/components/HomeProWrapper";
+import { HomeToolsGrid } from "@/components/HomeToolsGrid";
 import { ToolFinder } from "@/components/ToolFinder";
-import { ToolTile } from "@/components/ToolTile";
 import { createHomeMetadata } from "@/lib/seo-metadata";
-import { TOOLS } from "@/lib/tools-registry";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = createHomeMetadata();
@@ -16,11 +16,11 @@ export default async function HomePage({
 }) {
   setRequestLocale(params.locale);
   const t = await getTranslations("home");
-  const nav = await getTranslations("nav");
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12">
       <HomeHero />
+      <HomeContinuePanel />
       <section className="scroll-mt-28 space-y-4">
         <div>
           <p className="section-kicker">{t("searchKicker")}</p>
@@ -31,32 +31,16 @@ export default async function HomePage({
         </div>
         <ToolFinder variant="bar" />
       </section>
-      <HomeProSection />
-      <RecentToolsSection />
       <section id="tools" className="scroll-mt-28 space-y-6">
         <div>
           <p className="section-kicker">{t("heroBadge")}</p>
           <h2 className="section-title mt-2">{t("toolsSectionTitle")}</h2>
         </div>
-        <div className="stagger-fade grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {TOOLS.map((tool) => (
-            <ToolTile
-              key={tool.segment}
-              href={`/${tool.segment}/`}
-              navKey={tool.navKey}
-              title={nav(tool.navKey)}
-              blurb={t(`toolBlurbs.${tool.navKey}` as "toolBlurbs.pdf")}
-              isNew={tool.isNew}
-            />
-          ))}
-          <ToolTile
-            href="/blog/"
-            navKey="blog"
-            title={nav("blog")}
-            blurb={t("toolBlurbs.blog")}
-          />
-        </div>
+        <HomeToolsGrid />
       </section>
+      <HomeProWrapper>
+        <HomeProSection />
+      </HomeProWrapper>
     </div>
   );
 }

@@ -1,9 +1,12 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
 import {
   ACCENT_CLASSES,
   TOOL_ACCENT,
   type ToolAccent,
 } from "@/lib/tool-accents";
+import { useTranslations } from "next-intl";
 
 type ToolTileProps = {
   href: string;
@@ -11,6 +14,7 @@ type ToolTileProps = {
   title: string;
   blurb: string;
   isNew?: boolean;
+  isRecent?: boolean;
 };
 
 function ToolIcon({ accent }: { accent: ToolAccent }) {
@@ -24,7 +28,8 @@ function ToolIcon({ accent }: { accent: ToolAccent }) {
   );
 }
 
-export function ToolTile({ href, navKey, title, blurb, isNew }: ToolTileProps) {
+export function ToolTile({ href, navKey, title, blurb, isNew, isRecent }: ToolTileProps) {
+  const t = useTranslations("home");
   const accent = TOOL_ACCENT[navKey] ?? "cyan";
   const styles = ACCENT_CLASSES[accent];
 
@@ -40,6 +45,11 @@ export function ToolTile({ href, navKey, title, blurb, isNew }: ToolTileProps) {
         <div className="min-w-0 space-y-1.5">
           <span className="flex items-center gap-2 text-base font-semibold leading-snug tracking-tight text-slate-900 transition-colors group-hover:text-indigo-700 dark:text-white dark:group-hover:text-indigo-300">
             {title}
+            {isRecent ? (
+              <span className="rounded-full bg-indigo-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-indigo-700 dark:text-indigo-300">
+                {t("recentBadge")}
+              </span>
+            ) : null}
             {isNew ? (
               <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
                 NEW

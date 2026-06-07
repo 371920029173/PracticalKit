@@ -176,6 +176,15 @@
     "recentHint": "Stored in your browser. When you change language, these links open in your current locale.",
     "recentClear": "Clear",
     "nextTitle": "Try these next",
+    "returnKicker": "Pick up where you left off",
+    "returnTitle": "Continue with your tools",
+    "recentBadge": "Recent",
+    "relatedTitle": "Related tools",
+    "headerRecents": "Recent",
+    "pinTool": "Pin to top",
+    "unpinTool": "Unpin",
+    "proExpand": "Show site guide & FAQ",
+    "proCollapse": "Hide site guide",
     "qualityTitle": "Editorial depth beyond tool forms",
     "qualityLead": "Search and advertising quality systems may label a site low-value when most URLs look like thin utility shells with little surrounding explanation. PracticalKit publishes this homepage narrative, an expanded About page, and a Blog with articles that explain engineering choices, data flows, and update history—without requiring you to run a tool first.",
     "qualityP2": "Each utility page states scope clearly: what runs locally, what calls third parties, approximate browser limits, and what we do not collect on our origin. That transparency is the same standard we apply when preparing the site for monetization: substantive editorial pages first, then tools.",
@@ -248,7 +257,8 @@
     "openSearch": "Search tools",
     "dialogTitle": "Find a tool",
     "close": "Close",
-    "newBadge": "New"
+    "newBadge": "New",
+    "recentRow": "Recently used"
   },
   "toolWelcome": {
     "kicker": "Before you start",

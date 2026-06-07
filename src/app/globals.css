@@ -43,6 +43,12 @@ body {
   background-attachment: fixed;
 }
 
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
 .font-mono {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
@@ -332,6 +338,21 @@ body {
 .stagger-fade > *:nth-child(5) { animation-delay: 160ms; }
 .stagger-fade > *:nth-child(6) { animation-delay: 200ms; }
 .stagger-fade > *:nth-child(n+7) { animation-delay: 240ms; }
+
+.home-tools-grid > * {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-fade > * {
+    animation: none;
+  }
+  .flair-float-layer,
+  .flair-page-orb,
+  .flair-maple-leaf {
+    animation: none !important;
+  }
+}
 
 @layer base {
   input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="color"]),

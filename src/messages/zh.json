@@ -176,6 +176,15 @@
     "recentHint": "仅存于本机；切换语言后，这些入口会按当前语言打开。",
     "recentClear": "清空",
     "nextTitle": "接下来可试试",
+    "returnKicker": "继续上次的进度",
+    "returnTitle": "继续用你的工具",
+    "recentBadge": "最近",
+    "relatedTitle": "相关工具",
+    "headerRecents": "最近使用",
+    "pinTool": "置顶",
+    "unpinTool": "取消置顶",
+    "proExpand": "展开站点说明与 FAQ",
+    "proCollapse": "收起站点说明",
     "qualityTitle": "不止工具表单：编辑型内容说明",
     "qualityLead": "当网站大量页面只有简短表单、缺少独立说明时，自动审核可能判定为「低价值内容」或模板化页面。PracticalKit 在首页提供持续更新的叙述，在「关于」页写明运营主体与内容标准，在「博客」发布可单独阅读的长文，解释数据如何流动、功能边界与更新原因——不要求你先点开某个工具才看得到价值。",
     "qualityP2": "各工具页会写明：哪些步骤在本机完成、哪些会访问第三方、浏览器能力的大致上限，以及我们不会在源站记录哪些内容。对广告与合规而言，这种透明度与可核验说明，和工具本身同样重要。",
@@ -248,7 +257,8 @@
     "openSearch": "搜索工具",
     "dialogTitle": "查找工具",
     "close": "关闭",
-    "newBadge": "新"
+    "newBadge": "新",
+    "recentRow": "最近使用"
   },
   "toolWelcome": {
     "kicker": "开始使用前",
