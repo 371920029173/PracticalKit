@@ -1,17 +1,18 @@
 "use client";
 
+import { GpuMorphBench, type GpuBenchResult } from "@/components/bench/GpuMorphBench";
 import { ToolPageShell, ToolSection, ToolStatGrid } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useRef, useState } from "react";
 
-type BenchKey = "cpu" | "memory" | "canvas" | "dom";
+type BenchKey = "cpu" | "memory" | "gpu" | "dom";
 type BenchResult = { score: number; ms: number; detail: string };
 
 function tierFromScore(total: number): "low" | "mid" | "high" | "beast" {
-  if (total >= 280) return "beast";
-  if (total >= 200) return "high";
-  if (total >= 120) return "mid";
+  if (total >= 400) return "beast";
+  if (total >= 300) return "high";
+  if (total >= 180) return "mid";
   return "low";
 }
 
@@ -29,8 +30,7 @@ async function runCpuBench(): Promise<BenchResult> {
     if (prime) n++;
   }
   const ms = performance.now() - start;
-  const score = Math.min(100, Math.round(4200 / ms));
-  return { score, ms, detail: String(n) };
+  return { score: Math.min(100, Math.round(4200 / ms)), ms, detail: String(n) };
 }
 
 async function runMemoryBench(): Promise<BenchResult> {
@@ -43,33 +43,7 @@ async function runMemoryBench(): Promise<BenchResult> {
   let checksum = 0;
   for (const c of chunks) checksum = (checksum + c[0]! + c.at(-1)!) & 0xffff;
   const ms = performance.now() - start;
-  const score = Math.min(100, Math.round(900 / ms));
-  return { score, ms, detail: String(checksum) };
-}
-
-async function runCanvasBench(): Promise<BenchResult> {
-  const canvas = document.createElement("canvas");
-  canvas.width = 640;
-  canvas.height = 360;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return { score: 0, ms: 0, detail: "—" };
-
-  const start = performance.now();
-  for (let frame = 0; frame < 120; frame++) {
-    ctx.fillStyle = "#06060a";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < 900; i++) {
-      const x = (i * 17 + frame * 3) % canvas.width;
-      const y = (i * 31 + frame * 5) % canvas.height;
-      ctx.fillStyle = `hsla(${(i + frame) % 360},70%,60%,0.85)`;
-      ctx.beginPath();
-      ctx.arc(x, y, 2 + (i % 4), 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-  const ms = performance.now() - start;
-  const score = Math.min(100, Math.round(5200 / ms));
-  return { score, ms, detail: "120f" };
+  return { score: Math.min(100, Math.round(900 / ms)), ms, detail: String(checksum) };
 }
 
 async function runDomBench(): Promise<BenchResult> {
@@ -89,20 +63,23 @@ async function runDomBench(): Promise<BenchResult> {
   host.innerHTML = "";
   document.body.removeChild(host);
   const ms = performance.now() - start;
-  const score = Math.min(100, Math.round(1800 / ms));
-  return { score, ms, detail: "4k" };
+  return { score: Math.min(100, Math.round(1800 / ms)), ms, detail: "4k" };
 }
 
-const BENCH_ORDER: BenchKey[] = ["cpu", "memory", "canvas", "dom"];
+const BENCH_ORDER: BenchKey[] = ["cpu", "memory", "gpu", "dom"];
 
 export default function MushroomBenchPage() {
   const t = useTranslations("mushroomQuizPage");
   const tc = useTranslations("common");
   const [busy, setBusy] = useState(false);
-  const [active, setActive] = useState<BenchKey | "all" | null>(null);
+  const [gpuRunning, setGpuRunning] = useState(false);
+  const [gpuBenchKey, setGpuBenchKey] = useState(0);
+  const [liveFps, setLiveFps] = useState<number | null>(null);
+  const [active, setActive] = useState<BenchKey | null>(null);
   const [results, setResults] = useState<Partial<Record<BenchKey, BenchResult>>>({});
   const [progress, setProgress] = useState(0);
   const cancelRef = useRef(false);
+  const gpuWaitRef = useRef<((r: BenchResult) => void) | null>(null);
 
   const deviceInfo = useMemo(
     () => ({
@@ -124,56 +101,106 @@ export default function MushroomBenchPage() {
 
   const tier = useMemo(() => tierFromScore(totalScore), [totalScore]);
 
-  const runOne = useCallback(async (key: BenchKey) => {
-    switch (key) {
-      case "cpu":
-        return runCpuBench();
-      case "memory":
-        return runMemoryBench();
-      case "canvas":
-        return runCanvasBench();
-      case "dom":
-        return runDomBench();
-    }
+  const toBenchResult = (r: GpuBenchResult): BenchResult => ({
+    score: r.score,
+    ms: r.ms,
+    detail: r.detail,
+  });
+
+  const startGpuBench = useCallback(
+    () =>
+      new Promise<BenchResult>((resolve) => {
+        gpuWaitRef.current = resolve;
+        setGpuRunning(true);
+        setGpuBenchKey((k) => k + 1);
+      }),
+    [],
+  );
+
+  const onGpuComplete = useCallback((raw: GpuBenchResult) => {
+    const result = toBenchResult(raw);
+    setGpuRunning(false);
+    setLiveFps(raw.fps);
+    setResults((prev) => ({ ...prev, gpu: result }));
+    gpuWaitRef.current?.(result);
+    gpuWaitRef.current = null;
   }, []);
 
-  const runSuite = useCallback(
+  const runOne = useCallback(
+    async (key: BenchKey): Promise<BenchResult> => {
+      if (key === "gpu") return startGpuBench();
+      if (key === "cpu") return runCpuBench();
+      if (key === "memory") return runMemoryBench();
+      return runDomBench();
+    },
+    [startGpuBench],
+  );
+
+  const runSequence = useCallback(
     async (keys: BenchKey[]) => {
       cancelRef.current = false;
       setBusy(true);
       setProgress(0);
-      const next: Partial<Record<BenchKey, BenchResult>> = {};
       for (let i = 0; i < keys.length; i++) {
         if (cancelRef.current) break;
         const key = keys[i]!;
         setActive(key);
         const result = await runOne(key);
-        next[key] = result;
+        if (cancelRef.current) break;
         setResults((prev) => ({ ...prev, [key]: result }));
         setProgress(Math.round(((i + 1) / keys.length) * 100));
-        await new Promise((r) => setTimeout(r, 120));
       }
       setActive(null);
       setBusy(false);
+      setGpuRunning(false);
     },
     [runOne],
   );
 
   const runAll = useCallback(() => {
     setResults({});
-    void runSuite(BENCH_ORDER);
-  }, [runSuite]);
+    setLiveFps(null);
+    void runSequence(BENCH_ORDER);
+  }, [runSequence]);
 
   const resetAndRun = useCallback(() => {
     setResults({});
-    void runSuite(BENCH_ORDER);
-  }, [runSuite]);
+    setLiveFps(null);
+    void runSequence(BENCH_ORDER);
+  }, [runSequence]);
 
   const stop = useCallback(() => {
     cancelRef.current = true;
+    gpuWaitRef.current = null;
     setBusy(false);
+    setGpuRunning(false);
     setActive(null);
   }, []);
+
+  const runGpuOnly = useCallback(() => {
+    setResults((prev) => {
+      const copy = { ...prev };
+      delete copy.gpu;
+      return copy;
+    });
+    setLiveFps(null);
+    setBusy(true);
+    setActive("gpu");
+    void runOne("gpu").then((result) => {
+      setResults((prev) => ({ ...prev, gpu: result }));
+      setActive(null);
+      setBusy(false);
+    });
+  }, [runOne]);
+
+  const fpsOverlay =
+    gpuRunning
+      ? t("gpuRunning")
+      : liveFps != null
+        ? t("liveFps", { fps: liveFps })
+        : results.gpu
+          ? t("liveFps", { fps: parseInt(results.gpu.detail, 10) || 0 })
+          : t("gpuPreview");
 
   return (
     <ToolPageShell title={t("title")} note={t("note")} kicker={t("kicker")}>
@@ -186,6 +213,23 @@ export default function MushroomBenchPage() {
             { label: t("dpr"), value: deviceInfo.dpr },
           ]}
         />
+      </ToolSection>
+
+      <ToolSection title={t("gpuTitle")} description={t("gpuNote")} pad={false}>
+        <div className="overflow-hidden rounded-2xl border border-slate-200/80 dark:border-zinc-700/70">
+          <GpuMorphBench
+            key={gpuBenchKey}
+            running={gpuRunning}
+            idleSpin={!gpuRunning}
+            onComplete={onGpuComplete}
+            fpsLabel={fpsOverlay}
+          />
+        </div>
+        <div className="flex flex-wrap gap-2 px-5 pb-5 pt-3">
+          <button type="button" className="btn-primary text-sm" disabled={busy} onClick={runGpuOnly}>
+            {gpuRunning ? t("gpuRunning") : t("bench_gpu")}
+          </button>
+        </div>
       </ToolSection>
 
       <ToolSection title={t("suiteTitle")} description={t("suiteNote")}>
@@ -245,7 +289,11 @@ export default function MushroomBenchPage() {
                   <span className="tool-score-pill">{row ? row.score : "—"}</span>
                 </div>
                 <p className="mt-1 text-xs text-slate-500 dark:text-zinc-500">
-                  {row ? t("benchMeta", { ms: Math.round(row.ms), detail: row.detail }) : t("pending")}
+                  {row
+                    ? key === "gpu"
+                      ? t("benchMetaFps", { ms: Math.round(row.ms), fps: row.detail })
+                      : t("benchMeta", { ms: Math.round(row.ms), detail: row.detail })
+                    : t("pending")}
                 </p>
                 <div className="tool-meter mt-3">
                   <div className="tool-meter-fill" style={{ width: `${row?.score ?? 0}%` }} />

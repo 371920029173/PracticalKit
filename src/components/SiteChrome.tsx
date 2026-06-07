@@ -14,6 +14,7 @@ import { ContentFirstAds } from "@/components/ContentFirstAds";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolFinder } from "@/components/ToolFinder";
 import { RegionalFlairBadge, RegionalFlairProvider } from "@/components/RegionalFlair";
+import { RegionalFlairPageDecor } from "@/components/RegionalFlairPageDecor";
 
 const locales = ["en", "zh", "ru", "es", "fr"] as const;
 
@@ -274,8 +275,9 @@ export function SiteChrome({
       <RegionalFlairProvider>
       <AdsenseScript />
       <NavInner />
-      <div className="page-shell">
-        <main id="pk-main-content" className="min-h-[50vh]">
+      <div className="page-shell flair-page-shell">
+        <RegionalFlairPageDecor />
+        <main id="pk-main-content" className="flair-page-main min-h-[50vh]">
           {children}
           <ContentFirstAds />
         </main>
