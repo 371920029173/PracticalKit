@@ -75,7 +75,7 @@ export default function PasswordPage() {
           type="number"
           min={8}
           max={128}
-          className="w-24 rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1"
+          className="tool-field w-24"
           value={len}
           onChange={(e) => setLen(+e.target.value || 8)}
         />

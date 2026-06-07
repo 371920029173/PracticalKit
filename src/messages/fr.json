@@ -109,12 +109,15 @@
     "error": "Une erreur est survenue",
     "processing": "Traitement…",
     "lang": "Langue",
-    "themeLight": "Clair",
-    "themeDark": "Sombre",
+    "themeLight": "Jour",
+    "themeDark": "Nuit",
     "menu": "Menu",
     "close": "Fermer",
     "resetAndRun": "Réinitialiser et lancer",
     "new": "Nouveau"
+  },
+  "regionalFlair": {
+    "hint": "Petite touche régionale selon langue et zone : {badge}"
   },
   "aboutPage": {
     "p6": "Qualité éditoriale : PracticalKit n’est ni une ferme de liens, ni une porte dérobée, ni un modèle massif dupliqué. Chaque outil répond à une tâche précise (par ex. comparer du JSON en toute sécurité dans le navigateur), avec des explications humaines sur limites, pannes et confidentialité, afin que la valeur soit claire avant exécution.",

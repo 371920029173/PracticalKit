@@ -113,9 +113,7 @@ export default function UnitsPage() {
               setFromIdx(0);
               setToIdx(1 < TABLES[k].length ? 1 : 0);
             }}
-            className={`rounded-full px-3 py-1 text-sm ${
-              cat === k ? "bg-white text-zinc-900" : "border border-zinc-700"
-            }`}
+            className={`tool-chip ${cat === k ? "tool-chip-on" : "tool-chip-off"}`}
           >
             {lab}
           </button>
@@ -123,9 +121,9 @@ export default function UnitsPage() {
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
         <label className="space-y-1 text-sm">
-          <span className="text-zinc-500">From</span>
+          <span className="text-slate-600 dark:text-zinc-400">{t("from")}</span>
           <select
-            className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 py-2"
+            className="tool-select w-full"
             value={fromIdx}
             onChange={(e) => setFromIdx(+e.target.value)}
           >
@@ -137,17 +135,17 @@ export default function UnitsPage() {
           </select>
         </label>
         <label className="space-y-1 text-sm">
-          <span className="text-zinc-500">Value</span>
+          <span className="text-slate-600 dark:text-zinc-400">{t("value")}</span>
           <input
-            className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 py-2 font-mono"
+            className="tool-field w-full font-mono"
             value={val}
             onChange={(e) => setVal(e.target.value)}
           />
         </label>
         <label className="space-y-1 text-sm">
-          <span className="text-zinc-500">To</span>
+          <span className="text-slate-600 dark:text-zinc-400">{t("to")}</span>
           <select
-            className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 py-2"
+            className="tool-select w-full"
             value={toIdx}
             onChange={(e) => setToIdx(+e.target.value)}
           >
@@ -161,10 +159,10 @@ export default function UnitsPage() {
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <button type="button" className="btn-ghost text-sm" onClick={swapUnits}>
-          Swap
+          {t("swap")}
         </button>
       </div>
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-lg font-mono text-emerald-300">
+      <div className="tool-pre-out text-lg font-semibold text-indigo-700 dark:text-indigo-300">
         {converted} {rows[toIdx]?.unit}
       </div>
       <ToolRunActions onRun={copyResult} onResetAndRun={resetAndRun} />

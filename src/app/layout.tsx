@@ -77,7 +77,7 @@ export default function RootLayout({
       <body className="min-h-screen font-sans antialiased text-foreground">
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('pk-theme');document.documentElement.classList.toggle('dark',t!=='light');}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('pk-theme');var dark=t!=='light';document.documentElement.classList.toggle('dark',dark);document.documentElement.dataset.daypart=dark?'night':'day';}catch(e){}})()`,
           }}
         />
         {children}

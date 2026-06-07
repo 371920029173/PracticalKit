@@ -90,7 +90,7 @@ export default function ColorPage() {
       <label className="block text-sm">
         <span className="text-zinc-500">{t("hex")}</span>
         <input
-          className="mt-1 w-full max-w-xs rounded border border-zinc-700 bg-zinc-900 px-2 py-2 font-mono"
+          className="tool-field mt-1 w-full max-w-xs font-mono"
           value={hex}
           onChange={(e) => setHex(e.target.value)}
           onBlur={fromHex}
@@ -111,7 +111,7 @@ export default function ColorPage() {
               type="number"
               min={0}
               max={255}
-              className="mt-1 w-full rounded border border-zinc-700 bg-zinc-900 px-2 py-1"
+              className="tool-field mt-1 w-full"
               value={v}
               onChange={(e) => set(+e.target.value || 0)}
             />

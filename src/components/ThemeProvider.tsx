@@ -21,6 +21,7 @@ function applyDom(theme: Theme) {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
   root.dataset.theme = theme;
+  root.dataset.daypart = theme === "dark" ? "night" : "day";
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {

@@ -45,7 +45,7 @@
     "baseConvert": "Base converter",
     "ipLookup": "IP geolocation",
     "userAgent": "User agent",
-    "mushroomQuiz": "Mushroom safety quiz",
+    "mushroomQuiz": "Device stress test",
     "dnsLookup": "DNS lookup",
     "morse": "Morse code",
     "bmiCalc": "BMI calculator",
@@ -105,7 +105,7 @@
     "category_daily": "Timestamps, units, passwords, QR codes, colors, and quick conversions for everyday tasks.",
     "category_math": "Plot functions, run a scientific calculator, and convert units with readable on-page notes.",
     "category_network": "Look up IP geolocation, inspect your browser fingerprint, and troubleshoot connectivity basics.",
-    "category_fun": "Light educational quizzes and playful utilities that still ship with clear safety disclaimers.",
+    "category_fun": "Stress tests, playful utilities, and light experiments that still ship with clear disclaimers.",
     "category_extras": "Hashes, JWT decode, cron helpers, HTTP status lookup, and other sharp utilities for builders.",
     "howTitle": "How PracticalKit works",
     "step1Title": "Choose a category or search the grid",
@@ -227,7 +227,7 @@
       "rgbv3d": "Decode RGBV3D payloads and preview the packed image data.",
       "ipLookup": "See your public IP, city, ISP, and timezone via a named third-party API.",
       "userAgent": "Inspect your browser user-agent string and device hints locally.",
-      "mushroomQuiz": "Educational quiz on poisonous vs. safer mushrooms—not foraging advice.",
+      "mushroomQuiz": "Browser-side CPU, memory, canvas, and DOM micro-benchmarks—runs locally.",
       "dnsLookup": "Query A, AAAA, MX, TXT, and more via Cloudflare DNS (named third party).",
       "morse": "Encode text to Morse and decode dots/dashes back—runs entirely in your browser.",
       "bmiCalc": "Estimate BMI from height and weight with a plain-language category hint.",
@@ -267,12 +267,15 @@
     "error": "Something went wrong",
     "processing": "Working…",
     "lang": "Language",
-    "themeLight": "Light",
-    "themeDark": "Dark",
+    "themeLight": "Day mode",
+    "themeDark": "Night mode",
     "menu": "Menu",
     "close": "Close",
     "resetAndRun": "Reset & run",
     "new": "New"
+  },
+  "regionalFlair": {
+    "hint": "Regional touch for your locale and area: {badge}"
   },
   "aboutPage": {
     "title": "About PracticalKit",
@@ -440,11 +443,18 @@
   },
   "qr": {
     "title": "QR code",
+    "note": "Generate QR codes or decode from an uploaded image — all in your browser.",
     "gen": "Generate",
-    "scan": "Decode from image"
+    "scan": "Decode from image",
+    "size": "Output size",
+    "noQr": "No QR code found in this image."
   },
   "units": {
     "title": "Unit converter",
+    "from": "From",
+    "to": "To",
+    "value": "Value",
+    "swap": "Swap units",
     "length": "Length",
     "mass": "Mass",
     "temp": "Temperature",
@@ -565,7 +575,14 @@
     "run": "Hash",
     "digest": "Hex digest",
     "empty": "Empty input or file.",
-    "sampleText": "hello"
+    "sampleText": "hello",
+    "uppercase": "Uppercase output",
+    "charCount": "{count} characters",
+    "verifyTitle": "Verify digest",
+    "verifyNote": "Paste an expected hash to compare (hex, case-insensitive).",
+    "verifyPlaceholder": "Expected SHA hex…",
+    "verifyMatch": "Digests match.",
+    "verifyNoMatch": "Digests do not match."
   },
   "jwtPage": {
     "title": "JWT decoder",
@@ -752,80 +769,35 @@
     "dpr": "Device pixel ratio"
   },
   "mushroomQuizPage": {
-    "title": "Poisonous mushroom quiz",
-    "note": "Educational multiple-choice quiz about common mushroom safety myths. Not a field guide—never eat wild mushrooms based on an online quiz.",
-    "progress": "Question {current} of {total}",
-    "next": "Next question",
-    "finish": "See score",
-    "retry": "Try again",
-    "resultLead": "How did you do? Review the explanations and remember: when in doubt, do not forage or consume wild mushrooms.",
-    "disclaimer": "For education only. Misidentification can be fatal. Consult qualified mycologists and local regulations before any foraging.",
-    "q1": {
-      "prompt": "A bright red cap with white spots (fly agaric lookalike) is always safe after boiling.",
-      "correct": "1",
-      "options": {
-        "0": "True — boiling removes all toxins",
-        "1": "False — many toxic species stay dangerous",
-        "2": "True — red means edible in Europe",
-        "3": "False — only if paired with garlic"
-      },
-      "explain": "Heat does not reliably detoxify many mushroom toxins. Visual rules like color are unsafe."
-    },
-    "q2": {
-      "prompt": "If forest animals ate a mushroom, is it safe for humans?",
-      "correct": "1",
-      "options": {
-        "0": "Yes — animals know best",
-        "1": "No — species metabolize toxins differently",
-        "2": "Yes — if squirrels ate it",
-        "3": "Only if birds ignore it"
-      },
-      "explain": "Some toxins affect humans but not other mammals. Never use animal feeding as proof of edibility."
-    },
-    "q3": {
-      "prompt": "Silver spoon turning black while cooking mushrooms proves they are poisonous.",
-      "correct": "1",
-      "options": {
-        "0": "True — classic household test",
-        "1": "False — an old myth with no scientific basis",
-        "2": "True — unless the spoon is stainless",
-        "3": "False — only for morels"
-      },
-      "explain": "Silver discoloration is chemistry with sulfides, not a reliable mushroom toxicity test."
-    },
-    "q4": {
-      "prompt": "Which pairing is a well-known deadly mix-up in the wild?",
-      "correct": "2",
-      "options": {
-        "0": "Button mushroom vs. portobello",
-        "1": "Shiitake vs. oyster",
-        "2": "Edible puffball vs. young death cap stage",
-        "3": "Chanterelle vs. corn"
-      },
-      "explain": "Immature Amanita species have killed foragers who assumed they were puffballs. Expert ID is required."
-    },
-    "q5": {
-      "prompt": "Peeling the cap skin makes unknown mushrooms safe to eat.",
-      "correct": "1",
-      "options": {
-        "0": "True — peel removes poison",
-        "1": "False — toxins are not only in the skin",
-        "2": "True — for all gilled mushrooms",
-        "3": "False — unless it smells like almond"
-      },
-      "explain": "Many deadly toxins occur throughout the fruiting body. Peeling is not a safety step."
-    },
-    "q6": {
-      "prompt": "Best practice before eating any wild mushroom?",
-      "correct": "3",
-      "options": {
-        "0": "Ask a social media group for a quick ID",
-        "1": "Smell test only",
-        "2": "Eat a tiny piece and wait an hour",
-        "3": "Positive expert identification or do not eat"
-      },
-      "explain": "Only documented expert identification (or certified commercial supply) is acceptable. Partial tests kill people every year."
-    }
+    "title": "Device stress test",
+    "kicker": "Benchmark",
+    "note": "Lightweight CPU, memory, canvas, and DOM micro-benchmarks in your browser. Useful for comparing phones, laptops, or browser tabs—not a lab-grade suite.",
+    "deviceTitle": "Your device",
+    "deviceNote": "Read locally from navigator and screen APIs. Nothing is uploaded.",
+    "cores": "Logical cores",
+    "memory": "Reported RAM",
+    "memoryUnknown": "Not reported",
+    "platform": "Platform",
+    "dpr": "Pixel ratio",
+    "suiteTitle": "Run benchmarks",
+    "suiteNote": "Run all tests or pick one. Scores are relative (0–100 each) for quick comparison on this site.",
+    "runAll": "Run all",
+    "stop": "Stop",
+    "bench_cpu": "CPU primes",
+    "bench_memory": "Memory",
+    "bench_canvas": "Canvas / GPU",
+    "bench_dom": "DOM",
+    "running": "Running {test}…",
+    "runningGeneric": "Running…",
+    "resultsTitle": "Results",
+    "benchMeta": "{ms} ms · detail {detail}",
+    "pending": "Not run yet",
+    "totalLabel": "Total score",
+    "tier_low": "Entry tier — fine for light browsing and simple tools.",
+    "tier_mid": "Balanced tier — handles everyday media and dev utilities well.",
+    "tier_high": "Strong tier — smooth for heavier canvas, PDF, and video workflows.",
+    "tier_beast": "Beast tier — plenty of headroom for demanding browser tasks.",
+    "disclaimer": "Scores vary with battery, thermal throttling, background tabs, and browser. For entertainment and rough comparison only."
   },
   "urlParserPage": {
     "title": "URL parser",
@@ -858,10 +830,13 @@
     "note": "Body Mass Index from weight (kg) and height (cm). Educational only.",
     "weight": "Weight (kg)",
     "height": "Height (cm)",
-    "under": "Underweight range (BMI < 18.5)",
-    "normal": "Normal range (BMI 18.5–24.9)",
-    "over": "Overweight range (BMI 25–29.9)",
-    "obese": "Obese range (BMI ≥ 30)",
+    "under": "Underweight",
+    "normal": "Normal",
+    "over": "Overweight",
+    "obese": "Obese",
+    "resultTitle": "Your result",
+    "categoryLabel": "Category",
+    "idealWeight": "Healthy weight range (BMI 18.5–24.9)",
     "disclaimer": "Not medical advice. BMI ignores muscle mass, age, and other factors—see a clinician for health decisions."
   },
   "morsePage": {
@@ -875,16 +850,20 @@
   },
   "percentPage": {
     "title": "Percentage calculator",
-    "note": "Three common percent tasks—computed locally in your browser.",
+    "note": "Four common percent tasks—computed locally in your browser.",
     "mode_of": "X% of Y",
     "mode_is": "X is ?% of Y",
     "mode_change": "X + Y%",
+    "mode_delta": "Change from B→A",
     "hint_of": "Example: what is 20% of 150?",
     "hint_is": "Example: 30 is what percent of 150?",
     "hint_change": "Example: 100 increased by 15%",
+    "hint_delta": "Example: price went from 80 to 100 — what percent increase?",
     "valueA": "Value A",
     "valueB": "Value B",
-    "invalid": "Enter valid numbers (B must be non-zero for ratio mode)."
+    "invalid": "Enter valid numbers (B must be non-zero for ratio mode).",
+    "liveCalc": "Live update as you type",
+    "resultLabel": "Result"
   },
   "passwordAuditPage": {
     "title": "Password strength audit",

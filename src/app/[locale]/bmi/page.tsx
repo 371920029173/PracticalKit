@@ -1,62 +1,94 @@
 "use client";
 
+import { ToolPageShell, ToolSection, ToolStatGrid } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
-function bmiCategory(bmi: number, t: (k: string) => string): string {
-  if (bmi < 18.5) return t("under");
-  if (bmi < 25) return t("normal");
-  if (bmi < 30) return t("over");
-  return t("obese");
+function bmi(weightKg: number, heightCm: number) {
+  const h = heightCm / 100;
+  return weightKg / (h * h);
+}
+
+function category(b: number): "under" | "normal" | "over" | "obese" {
+  if (b < 18.5) return "under";
+  if (b < 25) return "normal";
+  if (b < 30) return "over";
+  return "obese";
 }
 
 export default function BmiPage() {
   const t = useTranslations("bmiPage");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
-  const [bmi, setBmi] = useState<number | null>(null);
+  const [result, setResult] = useState<number | null>(null);
 
   const run = useCallback(() => {
     const w = parseFloat(weight);
     const h = parseFloat(height);
-    if (!w || !h || h <= 0) {
-      setBmi(null);
+    if (Number.isNaN(w) || Number.isNaN(h) || h <= 0 || w <= 0) {
+      setResult(null);
       return;
     }
-    const meters = h / 100;
-    setBmi(Math.round((w / (meters * meters)) * 10) / 10);
+    setResult(Math.round(bmi(w, h) * 10) / 10);
   }, [weight, height]);
 
   const resetAndRun = useCallback(() => {
     setWeight("70");
     setHeight("175");
-    const meters = 1.75;
-    setBmi(Math.round((70 / (meters * meters)) * 10) / 10);
+    setResult(Math.round(bmi(70, 175) * 10) / 10);
   }, []);
 
+  const idealRange = useMemo(() => {
+    const h = parseFloat(height);
+    if (Number.isNaN(h) || h <= 0) return null;
+    const m = h / 100;
+    const low = Math.round(18.5 * m * m * 10) / 10;
+    const high = Math.round(24.9 * m * m * 10) / 10;
+    return { low, high };
+  }, [height]);
+
+  const cat = result != null ? category(result) : null;
+
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className="space-y-1 text-sm">
-          <span className="text-slate-700 dark:text-zinc-300">{t("weight")}</span>
-          <input className="tool-field w-full" type="number" min="1" value={weight} onChange={(e) => setWeight(e.target.value)} />
-        </label>
-        <label className="space-y-1 text-sm">
-          <span className="text-slate-700 dark:text-zinc-300">{t("height")}</span>
-          <input className="tool-field w-full" type="number" min="1" value={height} onChange={(e) => setHeight(e.target.value)} />
-        </label>
-      </div>
-      <ToolRunActions onRun={run} onResetAndRun={resetAndRun} busy={false} />
-      {bmi !== null ? (
-        <div className="glass-panel animate-fade-up rounded-2xl p-6 text-center">
-          <p className="text-4xl font-bold text-indigo-600 dark:text-indigo-400">{bmi}</p>
-          <p className="mt-2 text-sm font-medium text-slate-800 dark:text-zinc-200">{bmiCategory(bmi, t)}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
+      <ToolSection>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="space-y-1 text-sm">
+            <span className="text-slate-700 dark:text-zinc-300">{t("weight")}</span>
+            <input className="tool-field w-full" type="number" min="1" value={weight} onChange={(e) => setWeight(e.target.value)} />
+          </label>
+          <label className="space-y-1 text-sm">
+            <span className="text-slate-700 dark:text-zinc-300">{t("height")}</span>
+            <input className="tool-field w-full" type="number" min="1" value={height} onChange={(e) => setHeight(e.target.value)} />
+          </label>
         </div>
+        <div className="mt-3">
+          <ToolRunActions onRun={run} onResetAndRun={resetAndRun} busy={false} />
+        </div>
+      </ToolSection>
+
+      {result != null ? (
+        <ToolSection title={t("resultTitle")}>
+          <ToolStatGrid
+            items={[
+              { label: "BMI", value: result },
+              { label: t("categoryLabel"), value: cat ? t(cat) : "—" },
+              ...(idealRange
+                ? [{ label: t("idealWeight"), value: `${idealRange.low} – ${idealRange.high} kg` }]
+                : []),
+            ]}
+          />
+          <div className="tool-meter mt-4">
+            <div
+              className="tool-meter-fill"
+              style={{ width: `${Math.min(100, (result / 40) * 100)}%` }}
+            />
+          </div>
+        </ToolSection>
       ) : null}
-      <p className="text-xs text-amber-800 dark:text-amber-200">{t("disclaimer")}</p>
-    </div>
+
+      <p className="text-xs text-slate-500 dark:text-zinc-500">{t("disclaimer")}</p>
+    </ToolPageShell>
   );
 }

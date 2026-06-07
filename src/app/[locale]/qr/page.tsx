@@ -1,26 +1,29 @@
 "use client";
 
+import { ToolPageShell, ToolSection, ToolOutput } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import QRCode from "qrcode";
 import jsQR from "jsqr";
 
-const DEF_QR_TEXT = "https://example.com";
+const DEF_QR_TEXT = "https://practicalkithub.com/zh/";
 
 export default function QrPage() {
   const t = useTranslations("qr");
+  const tc = useTranslations("common");
   const [text, setText] = useState(DEF_QR_TEXT);
+  const [size, setSize] = useState(320);
   const [dataUrl, setDataUrl] = useState("");
   const [decodeOut, setDecodeOut] = useState("");
   const [scanFile, setScanFile] = useState<File | null>(null);
 
   async function gen() {
     try {
-      const url = await QRCode.toDataURL(text.trim(), { margin: 1, width: 320 });
+      const url = await QRCode.toDataURL(text.trim(), { margin: 1, width: size });
       setDataUrl(url);
     } catch (e) {
-      setDecodeOut(`QR generation failed: ${String(e)}`);
+      setDecodeOut(String(e));
     }
   }
 
@@ -34,36 +37,46 @@ export default function QrPage() {
       ctx.drawImage(bmp, 0, 0);
       const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const code = jsQR(data, width, height);
-      setDecodeOut(code?.data || "No QR found");
+      setDecodeOut(code?.data || t("noQr"));
     } catch (e) {
-      setDecodeOut(`Failed to decode image: ${String(e)}`);
+      setDecodeOut(String(e));
     }
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <section className="space-y-2">
-        <h2 className="text-sm text-zinc-500">{t("gen")}</h2>
-        <textarea
-          className="min-h-24 w-full rounded border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <ToolRunActions
-          onRun={() => void gen()}
-          onResetAndRun={() => {
-            setText(DEF_QR_TEXT);
-            void QRCode.toDataURL(DEF_QR_TEXT, { margin: 1, width: 256 }).then(setDataUrl);
-          }}
-        />
-        {dataUrl && (
+    <ToolPageShell title={t("title")} note={t("note")}>
+      <ToolSection title={t("gen")}>
+        <textarea className="tool-textarea min-h-24" value={text} onChange={(e) => setText(e.target.value)} />
+        <label className="mt-3 flex flex-wrap items-center gap-2 text-sm text-slate-700 dark:text-zinc-300">
+          <span>{t("size")}</span>
+          <select className="tool-select w-auto" value={size} onChange={(e) => setSize(Number(e.target.value))}>
+            <option value={256}>256px</option>
+            <option value={320}>320px</option>
+            <option value={512}>512px</option>
+          </select>
+        </label>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <ToolRunActions
+            onRun={() => void gen()}
+            onResetAndRun={() => {
+              setText(DEF_QR_TEXT);
+              setSize(320);
+              void QRCode.toDataURL(DEF_QR_TEXT, { margin: 1, width: 320 }).then(setDataUrl);
+            }}
+          />
+          {dataUrl ? (
+            <a className="btn-ghost text-sm" href={dataUrl} download="qrcode.png">
+              {tc("download")}
+            </a>
+          ) : null}
+        </div>
+        {dataUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={dataUrl} alt="qr" className="mt-2 max-w-xs border border-zinc-800 bg-white p-2" />
-        )}
-      </section>
-      <section className="space-y-2">
-        <h2 className="text-sm text-zinc-500">{t("scan")}</h2>
+          <img src={dataUrl} alt="QR" className="mt-4 max-w-xs rounded-xl border border-slate-200 bg-white p-3 dark:border-zinc-700" />
+        ) : null}
+      </ToolSection>
+
+      <ToolSection title={t("scan")}>
         <input
           type="file"
           accept="image/*"
@@ -71,19 +84,21 @@ export default function QrPage() {
             setScanFile(e.target.files?.[0] ?? null);
             setDecodeOut("");
           }}
-          className="text-sm"
+          className="tool-field w-full max-w-md text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-indigo-600 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-white"
         />
-        <ToolRunActions
-          onRun={() => {
-            if (scanFile) void onDecodeFile(scanFile);
-          }}
-          onResetAndRun={() => {
-            setScanFile(null);
-            setDecodeOut("");
-          }}
-        />
-        <pre className="rounded border border-zinc-800 bg-black/40 p-2 text-sm">{decodeOut}</pre>
-      </section>
-    </div>
+        <div className="mt-3">
+          <ToolRunActions
+            onRun={() => {
+              if (scanFile) void onDecodeFile(scanFile);
+            }}
+            onResetAndRun={() => {
+              setScanFile(null);
+              setDecodeOut("");
+            }}
+          />
+        </div>
+        <ToolOutput className="mt-4">{decodeOut || "—"}</ToolOutput>
+      </ToolSection>
+    </ToolPageShell>
   );
 }

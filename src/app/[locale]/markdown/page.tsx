@@ -33,7 +33,7 @@ export default function MarkdownPage() {
       />
       <div className="grid gap-4 lg:grid-cols-2">
         <textarea
-          className="min-h-[420px] w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-sm"
+          className="tool-textarea min-h-[420px]"
           value={src}
           onChange={(e) => setSrc(e.target.value)}
         />

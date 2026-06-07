@@ -50,7 +50,7 @@ export const TOOLS: ToolDef[] = [
   { segment: "ip-lookup", navKey: "ipLookup", category: "network", mode: "thirdParty", keywords: ["ip", "geo", "location"] },
   { segment: "user-agent", navKey: "userAgent", category: "network", mode: "local", keywords: ["browser", "ua"] },
   { segment: "dns-lookup", navKey: "dnsLookup", category: "network", mode: "thirdParty", keywords: ["dns", "domain", "a record", "mx"] },
-  { segment: "mushroom-quiz", navKey: "mushroomQuiz", category: "fun", mode: "local", keywords: ["poison", "mushroom", "quiz"] },
+  { segment: "mushroom-quiz", navKey: "mushroomQuiz", category: "fun", mode: "local", keywords: ["benchmark", "stress", "performance", "cpu", "gpu"] },
   { segment: "morse", navKey: "morse", category: "fun", mode: "local", keywords: ["morse", "dot dash", "telegraph"] },
   { segment: "bmi", navKey: "bmiCalc", category: "daily", mode: "local", keywords: ["bmi", "body mass", "weight"] },
   { segment: "percent", navKey: "percentCalc", category: "math", mode: "local", keywords: ["percentage", "percent", "ratio"] },

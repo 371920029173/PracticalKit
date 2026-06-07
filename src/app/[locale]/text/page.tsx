@@ -71,40 +71,38 @@ export default function TextPage() {
     <div className="space-y-4">
       <h1 className="tool-h1">{t("title")}</h1>
       <textarea
-        className="min-h-48 w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm"
+        className="tool-textarea min-h-48"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
       <ToolRunActions onRun={stats} onResetAndRun={resetAndRun} />
       <div className="flex flex-wrap gap-2 text-sm">
-        <button type="button" onClick={stats} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={stats} className="tool-chip tool-chip-off">
           {t("stats")}
         </button>
-        <button type="button" onClick={dedupe} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={dedupe} className="tool-chip tool-chip-off">
           {t("dedupe")}
         </button>
-        <button type="button" onClick={blanks} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={blanks} className="tool-chip tool-chip-off">
           {t("blank")}
         </button>
-        <button type="button" onClick={() => cases("upper")} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={() => cases("upper")} className="tool-chip tool-chip-off">
           UPPER
         </button>
-        <button type="button" onClick={() => cases("lower")} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={() => cases("lower")} className="tool-chip tool-chip-off">
           lower
         </button>
-        <button type="button" onClick={() => cases("title")} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={() => cases("title")} className="tool-chip tool-chip-off">
           Title
         </button>
-        <button type="button" onClick={() => han("tw")} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={() => han("tw")} className="tool-chip tool-chip-off">
           →繁
         </button>
-        <button type="button" onClick={() => han("cn")} className="rounded-lg bg-zinc-800 px-3 py-2">
+        <button type="button" onClick={() => han("cn")} className="tool-chip tool-chip-off">
           →简
         </button>
       </div>
-      <pre className="min-h-32 whitespace-pre-wrap rounded-lg border border-zinc-800 bg-black/40 p-3 text-sm text-zinc-200">
-        {out}
-      </pre>
+      <pre className="tool-pre-out min-h-32">{out || "—"}</pre>
     </div>
   );
 }

@@ -115,7 +115,7 @@ const SUGGESTION_BY_NAV_KEY: Record<string, string[]> = {
   textDiff: ["slug", "markdown"],
   baseConvert: ["hash", "code"],
   ipLookup: ["userAgent", "dnsLookup", "cidr"],
-  mushroomQuiz: ["random", "hash"],
+  mushroomQuiz: ["userAgent", "hash"],
 };
 
 function getSuggestions(items: RecentToolEntry[]): string[] {

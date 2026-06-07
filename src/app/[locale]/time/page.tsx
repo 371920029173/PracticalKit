@@ -71,30 +71,30 @@ export default function TimePage() {
         <button
           type="button"
           onClick={now}
-          className="rounded-lg bg-zinc-800 px-3 py-2 text-sm"
+          className="btn-ghost text-sm"
         >
           {t("now")}
         </button>
         <ToolRunActions onRun={runAll} onResetAndRun={resetAndRun} />
       </div>
       <section className="space-y-2">
-        <h2 className="text-sm font-medium text-zinc-400">{t("toDate")}</h2>
+        <h2 className="tool-section-title">{t("toDate")}</h2>
         <input
-          className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-sm"
+          className="tool-field w-full font-mono"
           value={ts}
           onChange={(e) => setTs(e.target.value)}
         />
-        <pre className="rounded border border-zinc-800 bg-black/30 p-2 text-sm">{out1}</pre>
+        <pre className="tool-pre-out">{out1 || "—"}</pre>
       </section>
       <section className="space-y-2">
-        <h2 className="text-sm font-medium text-zinc-400">{t("toTs")}</h2>
+        <h2 className="tool-section-title">{t("toTs")}</h2>
         <input
-          className="w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-sm"
+          className="tool-field w-full font-mono"
           value={iso}
           onChange={(e) => setIso(e.target.value)}
           placeholder="2026-04-07T12:00"
         />
-        <pre className="rounded border border-zinc-800 bg-black/30 p-2 text-sm">{out2}</pre>
+        <pre className="tool-pre-out">{out2 || "—"}</pre>
       </section>
     </div>
   );

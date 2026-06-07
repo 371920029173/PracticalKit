@@ -1,113 +1,281 @@
 "use client";
 
+import { ToolPageShell, ToolSection, ToolStatGrid } from "@/components/ToolPageShell";
+import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
-const QUESTION_IDS = ["q1", "q2", "q3", "q4", "q5", "q6"] as const;
+type BenchKey = "cpu" | "memory" | "canvas" | "dom";
+type BenchResult = { score: number; ms: number; detail: string };
 
-export default function MushroomQuizPage() {
-  const t = useTranslations("mushroomQuizPage");
-  const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
-  const [done, setDone] = useState(false);
+function tierFromScore(total: number): "low" | "mid" | "high" | "beast" {
+  if (total >= 280) return "beast";
+  if (total >= 200) return "high";
+  if (total >= 120) return "mid";
+  return "low";
+}
 
-  const qId = QUESTION_IDS[index];
-  const options = [0, 1, 2, 3] as const;
-  const correct = Number(t(`${qId}.correct`));
-
-  const progress = useMemo(
-    () => Math.round(((index + (picked !== null ? 1 : 0)) / QUESTION_IDS.length) * 100),
-    [index, picked],
-  );
-
-  const pick = useCallback(
-    (opt: number) => {
-      if (picked !== null || done) return;
-      setPicked(opt);
-      if (opt === correct) setScore((s) => s + 1);
-    },
-    [picked, done, correct],
-  );
-
-  const next = useCallback(() => {
-    if (index >= QUESTION_IDS.length - 1) {
-      setDone(true);
-      return;
+async function runCpuBench(): Promise<BenchResult> {
+  const start = performance.now();
+  let n = 0;
+  for (let i = 2; i < 180_000; i++) {
+    let prime = true;
+    for (let d = 2; d * d <= i; d++) {
+      if (i % d === 0) {
+        prime = false;
+        break;
+      }
     }
-    setIndex((i) => i + 1);
-    setPicked(null);
-  }, [index]);
+    if (prime) n++;
+  }
+  const ms = performance.now() - start;
+  const score = Math.min(100, Math.round(4200 / ms));
+  return { score, ms, detail: String(n) };
+}
 
-  const restart = useCallback(() => {
-    setIndex(0);
-    setScore(0);
-    setPicked(null);
-    setDone(false);
+async function runMemoryBench(): Promise<BenchResult> {
+  const start = performance.now();
+  const chunks: Uint8Array[] = [];
+  for (let i = 0; i < 48; i++) {
+    chunks.push(new Uint8Array(512 * 1024));
+    chunks[i]!.fill(i & 255);
+  }
+  let checksum = 0;
+  for (const c of chunks) checksum = (checksum + c[0]! + c.at(-1)!) & 0xffff;
+  const ms = performance.now() - start;
+  const score = Math.min(100, Math.round(900 / ms));
+  return { score, ms, detail: String(checksum) };
+}
+
+async function runCanvasBench(): Promise<BenchResult> {
+  const canvas = document.createElement("canvas");
+  canvas.width = 640;
+  canvas.height = 360;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return { score: 0, ms: 0, detail: "—" };
+
+  const start = performance.now();
+  for (let frame = 0; frame < 120; frame++) {
+    ctx.fillStyle = "#06060a";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < 900; i++) {
+      const x = (i * 17 + frame * 3) % canvas.width;
+      const y = (i * 31 + frame * 5) % canvas.height;
+      ctx.fillStyle = `hsla(${(i + frame) % 360},70%,60%,0.85)`;
+      ctx.beginPath();
+      ctx.arc(x, y, 2 + (i % 4), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  const ms = performance.now() - start;
+  const score = Math.min(100, Math.round(5200 / ms));
+  return { score, ms, detail: "120f" };
+}
+
+async function runDomBench(): Promise<BenchResult> {
+  const host = document.createElement("div");
+  host.setAttribute("aria-hidden", "true");
+  host.style.cssText = "position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none";
+  document.body.appendChild(host);
+  const start = performance.now();
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < 4000; i++) {
+    const el = document.createElement("span");
+    el.textContent = String(i % 10);
+    el.className = "tool-chip-off";
+    frag.appendChild(el);
+  }
+  host.appendChild(frag);
+  host.innerHTML = "";
+  document.body.removeChild(host);
+  const ms = performance.now() - start;
+  const score = Math.min(100, Math.round(1800 / ms));
+  return { score, ms, detail: "4k" };
+}
+
+const BENCH_ORDER: BenchKey[] = ["cpu", "memory", "canvas", "dom"];
+
+export default function MushroomBenchPage() {
+  const t = useTranslations("mushroomQuizPage");
+  const tc = useTranslations("common");
+  const [busy, setBusy] = useState(false);
+  const [active, setActive] = useState<BenchKey | "all" | null>(null);
+  const [results, setResults] = useState<Partial<Record<BenchKey, BenchResult>>>({});
+  const [progress, setProgress] = useState(0);
+  const cancelRef = useRef(false);
+
+  const deviceInfo = useMemo(
+    () => ({
+      cores: typeof navigator !== "undefined" ? navigator.hardwareConcurrency ?? "—" : "—",
+      memory:
+        typeof navigator !== "undefined" && "deviceMemory" in navigator
+          ? `${(navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? "—"} GB`
+          : t("memoryUnknown"),
+      platform: typeof navigator !== "undefined" ? navigator.platform : "—",
+      dpr: typeof window !== "undefined" ? String(window.devicePixelRatio) : "—",
+    }),
+    [t],
+  );
+
+  const totalScore = useMemo(
+    () => BENCH_ORDER.reduce((sum, key) => sum + (results[key]?.score ?? 0), 0),
+    [results],
+  );
+
+  const tier = useMemo(() => tierFromScore(totalScore), [totalScore]);
+
+  const runOne = useCallback(async (key: BenchKey) => {
+    switch (key) {
+      case "cpu":
+        return runCpuBench();
+      case "memory":
+        return runMemoryBench();
+      case "canvas":
+        return runCanvasBench();
+      case "dom":
+        return runDomBench();
+    }
   }, []);
 
-  if (done) {
-    return (
-      <div className="animate-fade-up space-y-4">
-        <h1 className="tool-h1">{t("title")}</h1>
-        <div className="glass-panel rounded-2xl p-6 text-center">
-          <p className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
-            {score}/{QUESTION_IDS.length}
-          </p>
-          <p className="mt-2 text-sm text-slate-600 dark:text-zinc-400">{t("resultLead")}</p>
-          <p className="mt-4 text-xs text-amber-800 dark:text-amber-200">{t("disclaimer")}</p>
-          <button type="button" className="btn-primary mt-6" onClick={restart}>
-            {t("retry")}
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const runSuite = useCallback(
+    async (keys: BenchKey[]) => {
+      cancelRef.current = false;
+      setBusy(true);
+      setProgress(0);
+      const next: Partial<Record<BenchKey, BenchResult>> = {};
+      for (let i = 0; i < keys.length; i++) {
+        if (cancelRef.current) break;
+        const key = keys[i]!;
+        setActive(key);
+        const result = await runOne(key);
+        next[key] = result;
+        setResults((prev) => ({ ...prev, [key]: result }));
+        setProgress(Math.round(((i + 1) / keys.length) * 100));
+        await new Promise((r) => setTimeout(r, 120));
+      }
+      setActive(null);
+      setBusy(false);
+    },
+    [runOne],
+  );
+
+  const runAll = useCallback(() => {
+    setResults({});
+    void runSuite(BENCH_ORDER);
+  }, [runSuite]);
+
+  const resetAndRun = useCallback(() => {
+    setResults({});
+    void runSuite(BENCH_ORDER);
+  }, [runSuite]);
+
+  const stop = useCallback(() => {
+    cancelRef.current = true;
+    setBusy(false);
+    setActive(null);
+  }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
-      <div className="h-1.5 overflow-hidden rounded-full bg-slate-200 dark:bg-zinc-800">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 transition-all duration-500"
-          style={{ width: `${progress}%` }}
+    <ToolPageShell title={t("title")} note={t("note")} kicker={t("kicker")}>
+      <ToolSection title={t("deviceTitle")} description={t("deviceNote")}>
+        <ToolStatGrid
+          items={[
+            { label: t("cores"), value: deviceInfo.cores },
+            { label: t("memory"), value: deviceInfo.memory },
+            { label: t("platform"), value: deviceInfo.platform },
+            { label: t("dpr"), value: deviceInfo.dpr },
+          ]}
         />
-      </div>
-      <p className="text-xs text-slate-500">
-        {t("progress", { current: index + 1, total: QUESTION_IDS.length })}
-      </p>
-      <div className="glass-panel animate-fade-up space-y-4 rounded-2xl p-6">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{t(`${qId}.prompt`)}</h2>
-        <ul className="grid gap-2 sm:grid-cols-2">
-          {options.map((opt) => {
-            const isCorrect = opt === correct;
-            const isPicked = picked === opt;
-            let cls = "tool-chip-off w-full text-left px-4 py-3";
-            if (picked !== null) {
-              if (isCorrect) cls = "w-full rounded-xl border border-emerald-400 bg-emerald-50 px-4 py-3 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-100";
-              else if (isPicked) cls = "w-full rounded-xl border border-rose-400 bg-rose-50 px-4 py-3 text-rose-900 dark:bg-rose-950/50 dark:text-rose-100";
-              else cls = "tool-chip-off w-full text-left px-4 py-3 opacity-60";
-            }
+      </ToolSection>
+
+      <ToolSection title={t("suiteTitle")} description={t("suiteNote")}>
+        <div className="flex flex-wrap gap-2">
+          <ToolRunActions onRun={runAll} onResetAndRun={resetAndRun} busy={busy} runLabel={t("runAll")} />
+          {busy ? (
+            <button type="button" className="btn-ghost text-sm" onClick={stop}>
+              {t("stop")}
+            </button>
+          ) : null}
+          {BENCH_ORDER.map((key) => (
+            <button
+              key={key}
+              type="button"
+              className="btn-ghost text-sm"
+              disabled={busy}
+              onClick={() => {
+                setResults((prev) => {
+                  const copy = { ...prev };
+                  delete copy[key];
+                  return copy;
+                });
+                setActive(key);
+                setBusy(true);
+                void runOne(key).then((result) => {
+                  setResults((prev) => ({ ...prev, [key]: result }));
+                  setActive(null);
+                  setBusy(false);
+                });
+              }}
+            >
+              {t(`bench_${key}`)}
+            </button>
+          ))}
+        </div>
+
+        {busy ? (
+          <div className="mt-5 space-y-2">
+            <div className="tool-progress-track">
+              <div className="tool-progress-bar" style={{ width: `${progress}%` }} />
+            </div>
+            <p className="text-xs text-slate-500 dark:text-zinc-500">
+              {active ? t("running", { test: t(`bench_${active}`) }) : t("runningGeneric")}
+            </p>
+          </div>
+        ) : null}
+      </ToolSection>
+
+      <ToolSection title={t("resultsTitle")}>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {BENCH_ORDER.map((key) => {
+            const row = results[key];
             return (
-              <li key={opt}>
-                <button type="button" className={`btn-motion ${cls}`} onClick={() => pick(opt)} disabled={picked !== null}>
-                  {t(`${qId}.options.${opt}`)}
-                </button>
-              </li>
+              <div key={key} className="tool-result-card">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-medium text-slate-900 dark:text-white">{t(`bench_${key}`)}</p>
+                  <span className="tool-score-pill">{row ? row.score : "—"}</span>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 dark:text-zinc-500">
+                  {row ? t("benchMeta", { ms: Math.round(row.ms), detail: row.detail }) : t("pending")}
+                </p>
+                <div className="tool-meter mt-3">
+                  <div className="tool-meter-fill" style={{ width: `${row?.score ?? 0}%` }} />
+                </div>
+              </div>
             );
           })}
-        </ul>
-        {picked !== null ? (
-          <div className="space-y-3 border-t border-slate-200 pt-4 dark:border-zinc-700">
-            <p className="text-sm leading-relaxed text-slate-700 dark:text-zinc-300">{t(`${qId}.explain`)}</p>
-            <button type="button" className="btn-primary text-sm" onClick={next}>
-              {index >= QUESTION_IDS.length - 1 ? t("finish") : t("next")}
+        </div>
+
+        {totalScore > 0 ? (
+          <div className="tool-score-hero mt-6">
+            <p className="tool-output-label">{t("totalLabel")}</p>
+            <p className="tool-score-total">{totalScore}</p>
+            <p className="mt-2 text-sm text-slate-600 dark:text-zinc-400">{t(`tier_${tier}`)}</p>
+            <button
+              type="button"
+              className="btn-ghost mt-4 text-sm"
+              onClick={() =>
+                void navigator.clipboard.writeText(
+                  `${t("title")}\n${t("totalLabel")}: ${totalScore}\n${t(`tier_${tier}`)}`,
+                )
+              }
+            >
+              {tc("copy")}
             </button>
           </div>
         ) : null}
-      </div>
-      <p className="text-xs text-amber-800 dark:text-amber-200">{t("disclaimer")}</p>
-    </div>
+      </ToolSection>
+
+      <p className="text-xs leading-relaxed text-slate-500 dark:text-zinc-500">{t("disclaimer")}</p>
+    </ToolPageShell>
   );
 }

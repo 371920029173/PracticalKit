@@ -45,7 +45,7 @@
     "baseConvert": "进制转换",
     "ipLookup": "IP 位置查询",
     "userAgent": "浏览器 UA",
-    "mushroomQuiz": "毒蘑菇测验",
+    "mushroomQuiz": "毒蘑菇性能测试",
     "dnsLookup": "DNS 查询",
     "morse": "摩斯电码",
     "bmiCalc": "BMI 计算",
@@ -227,7 +227,7 @@
       "rgbv3d": "解码 RGBV3D 数据并预览打包后的图像信息。",
       "ipLookup": "查看公网 IP、城市、运营商与时区（经第三方接口，页面已标明）。",
       "userAgent": "在本机读取浏览器 UA 与屏幕信息，不上传服务器。",
-      "mushroomQuiz": "毒蘑菇安全常识小测验，仅供教育，不能替代野外鉴定。",
+      "mushroomQuiz": "浏览器端 CPU、内存、Canvas、DOM 轻量压测，本地运行不上传。",
       "dnsLookup": "查询域名的 A/AAAA/MX/TXT 等记录（经 Cloudflare DNS，页面已标明）。",
       "morse": "文本与摩斯电码互转，纯浏览器本地处理。",
       "bmiCalc": "根据身高体重估算 BMI，并给出通俗区间提示。",
@@ -267,12 +267,15 @@
     "error": "出错了",
     "processing": "处理中…",
     "lang": "语言",
-    "themeLight": "浅色",
-    "themeDark": "深色",
+    "themeLight": "白天模式",
+    "themeDark": "黑夜模式",
     "menu": "菜单",
     "close": "关闭",
     "resetAndRun": "重置并运行",
     "new": "新"
+  },
+  "regionalFlair": {
+    "hint": "根据您的语言与地区呈现的小装饰：{badge}"
   },
   "aboutPage": {
     "title": "关于 PracticalKit",
@@ -440,11 +443,18 @@
   },
   "qr": {
     "title": "二维码",
+    "note": "在浏览器中生成二维码，或从图片解码——不上传服务器。",
     "gen": "生成",
-    "scan": "从图片解码"
+    "scan": "从图片解码",
+    "size": "输出尺寸",
+    "noQr": "未在此图片中检测到二维码。"
   },
   "units": {
     "title": "单位换算",
+    "from": "从",
+    "to": "到",
+    "value": "数值",
+    "swap": "交换单位",
     "length": "长度",
     "mass": "质量",
     "temp": "温度",
@@ -565,7 +575,14 @@
     "run": "计算",
     "digest": "十六进制摘要",
     "empty": "输入为空。",
-    "sampleText": "hello"
+    "sampleText": "hello",
+    "uppercase": "大写输出",
+    "charCount": "{count} 个字符",
+    "verifyTitle": "校验摘要",
+    "verifyNote": "粘贴期望的哈希值进行比对（十六进制，不区分大小写）。",
+    "verifyPlaceholder": "期望的 SHA 十六进制…",
+    "verifyMatch": "摘要一致。",
+    "verifyNoMatch": "摘要不一致。"
   },
   "jwtPage": {
     "title": "JWT 解码",
@@ -752,80 +769,35 @@
     "dpr": "设备像素比"
   },
   "mushroomQuizPage": {
-    "title": "毒蘑菇安全测验",
-    "note": "关于常见毒蘑菇误区的选择题，仅供科普。不是野外鉴定指南——切勿凭在线测验采食野生菌。",
-    "progress": "第 {current} / {total} 题",
-    "next": "下一题",
-    "finish": "查看得分",
-    "retry": "再测一次",
-    "resultLead": "得分如何？请回顾解析；有疑问时，不要采食或食用野生蘑菇。",
-    "disclaimer": "仅供教育。误认可致命。采食前请咨询专业菌类学者并遵守当地法规。",
-    "q1": {
-      "prompt": "红帽白点（类似毒蝇伞）的蘑菇，煮过后就一定安全？",
-      "correct": "1",
-      "options": {
-        "0": "对——高温能去掉所有毒素",
-        "1": "错——许多毒素煮不掉",
-        "2": "对——欧洲红色都可食",
-        "3": "错——除非配大蒜"
-      },
-      "explain": "加热不能可靠去除多种蘑菇毒素，靠颜色判断极其危险。"
-    },
-    "q2": {
-      "prompt": "小动物吃过的蘑菇，人也能吃吗？",
-      "correct": "1",
-      "options": {
-        "0": "能——动物比人懂",
-        "1": "不能——不同物种代谢不同",
-        "2": "能——松鼠吃过就行",
-        "3": "看鸟吃不吃"
-      },
-      "explain": "有些毒素对人有毒、对动物无害。动物取食不能作为可食依据。"
-    },
-    "q3": {
-      "prompt": "用银勺煮蘑菇变黑，就证明有毒？",
-      "correct": "1",
-      "options": {
-        "0": "对——民间常用法",
-        "1": "错——没有科学依据的老说法",
-        "2": "对——不锈钢除外",
-        "3": "错——仅适用于 Morel"
-      },
-      "explain": "银变黑是硫化物反应，不是可靠的验毒方法。"
-    },
-    "q4": {
-      "prompt": "野外哪种混淆最致命、最常见？",
-      "correct": "2",
-      "options": {
-        "0": "白蘑菇 vs 褐蘑菇",
-        "1": "香菇 vs 平菇",
-        "2": "可食 puffball vs 幼龄毒鹅膏",
-        "3": "鸡油菌 vs 玉米"
-      },
-      "explain": "幼龄毒鹅膏曾被误认为 puffball 而致死。必须专家鉴定。"
-    },
-    "q5": {
-      "prompt": "剥掉菌盖表皮，未知蘑菇就可安全食用？",
-      "correct": "1",
-      "options": {
-        "0": "对——毒在皮上",
-        "1": "错——毒素常遍布子实体",
-        "2": "对——所有有褶菌都行",
-        "3": "错——除非杏仁味"
-      },
-      "explain": "致命毒素常存在于整株菌体，剥皮不是安全步骤。"
-    },
-    "q6": {
-      "prompt": "食用野生蘑菇前最稳妥的做法？",
-      "correct": "3",
-      "options": {
-        "0": "发到社交群让人看图",
-        "1": "只闻味道",
-        "2": "先尝一小口等一小时",
-        "3": "有专家阳性鉴定，否则不吃"
-      },
-      "explain": "只有可靠专家鉴定（或正规渠道采购）才可食用，部分试毒每年仍致死亡。"
-    }
+    "title": "毒蘑菇性能测试",
+    "kicker": "压测",
+    "note": "在浏览器里跑 CPU、内存、Canvas、DOM 四项轻量基准，方便对比手机、笔记本或不同浏览器标签——不是实验室级套件。",
+    "deviceTitle": "设备信息",
+    "deviceNote": "从 navigator 与屏幕 API 本地读取，不上传。",
+    "cores": "逻辑核心",
+    "memory": "报告内存",
+    "memoryUnknown": "未报告",
+    "platform": "平台",
+    "dpr": "像素比",
+    "suiteTitle": "运行测试",
+    "suiteNote": "可一次全跑或单项测试。每项 0–100 分，便于在本站横向对比。",
+    "runAll": "全部运行",
+    "stop": "停止",
+    "bench_cpu": "CPU 质数",
+    "bench_memory": "内存",
+    "bench_canvas": "Canvas / GPU",
+    "bench_dom": "DOM",
+    "running": "正在运行 {test}…",
+    "runningGeneric": "运行中…",
+    "resultsTitle": "结果",
+    "benchMeta": "{ms} 毫秒 · 细节 {detail}",
+    "pending": "尚未运行",
+    "totalLabel": "总分",
+    "tier_low": "入门档——日常浏览和轻量工具够用。",
+    "tier_mid": "均衡档——常见媒体与开发小工具较流畅。",
+    "tier_high": "强劲档——PDF、Canvas、视频类任务更从容。",
+    "tier_beast": "野兽档——浏览器重活也有余量。",
+    "disclaimer": "分数会随电量、温控、后台标签和浏览器变化，仅供娱乐与粗略对比。"
   },
   "urlParserPage": {
     "title": "URL 解析",
@@ -858,10 +830,13 @@
     "note": "根据体重（kg）与身高（cm）估算 BMI，仅供参考。",
     "weight": "体重 (kg)",
     "height": "身高 (cm)",
-    "under": "偏瘦 (BMI < 18.5)",
-    "normal": "正常 (BMI 18.5–24.9)",
-    "over": "超重 (BMI 25–29.9)",
-    "obese": "肥胖 (BMI ≥ 30)",
+    "under": "偏瘦",
+    "normal": "正常",
+    "over": "超重",
+    "obese": "肥胖",
+    "resultTitle": "计算结果",
+    "categoryLabel": "分类",
+    "idealWeight": "健康体重区间 (BMI 18.5–24.9)",
     "disclaimer": "非医疗建议。BMI 未考虑肌肉量、年龄等因素，健康问题请咨询医生。"
   },
   "morsePage": {
@@ -875,16 +850,20 @@
   },
   "percentPage": {
     "title": "百分比计算器",
-    "note": "三种常见百分比运算，本地计算。",
+    "note": "四种常见百分比运算，本地计算。",
     "mode_of": "X% 的 Y",
     "mode_is": "X 是 Y 的百分之几",
     "mode_change": "X 增加 Y%",
+    "mode_delta": "从 B 到 A 的变化率",
     "hint_of": "例：150 的 20% 是多少？",
     "hint_is": "例：30 是 150 的百分之几？",
     "hint_change": "例：100 增加 15%",
+    "hint_delta": "例：从 80 涨到 100，涨幅多少？",
     "valueA": "数值 A",
     "valueB": "数值 B",
-    "invalid": "请输入有效数字（占比模式下 B 不能为 0）。"
+    "invalid": "请输入有效数字（占比模式下 B 不能为 0）。",
+    "liveCalc": "输入时实时计算",
+    "resultLabel": "结果"
   },
   "passwordAuditPage": {
     "title": "密码强度检测",
