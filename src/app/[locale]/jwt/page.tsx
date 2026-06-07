@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -62,8 +63,7 @@ export default function JwtPage() {
   }, [t]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">
         {t("note")}
       </p>
@@ -91,6 +91,6 @@ export default function JwtPage() {
           <pre className="tool-pre max-h-64 text-xs">{payload || "—"}</pre>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

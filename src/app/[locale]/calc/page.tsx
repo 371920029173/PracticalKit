@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -45,9 +46,7 @@ export default function CalcPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("sciNote")}</p>
+    <ToolPageShell title={t("title")} note={t("sciNote")}>
       <textarea
         className="tool-textarea min-h-28"
         value={expr}
@@ -57,6 +56,6 @@ export default function CalcPage() {
       <pre className="tool-pre-out text-lg text-emerald-800 dark:text-emerald-300">
         {out || "—"}
       </pre>
-    </div>
+    </ToolPageShell>
   );
 }

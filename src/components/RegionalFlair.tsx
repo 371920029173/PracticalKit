@@ -2,12 +2,11 @@
 
 import {
   applyFlairToDocument,
-  readCachedGeo,
   resolveFlair,
-  writeCachedGeo,
   type FlairDef,
-  type GeoSnapshot,
 } from "@/lib/regional-flair";
+import { fetchCountryCode } from "@/lib/geo-api";
+import { FlairBadgeIcon, flairBadgeLabel } from "@/components/FlairBadgeIcon";
 import { useTheme } from "@/components/ThemeProvider";
 import { useLocale, useTranslations } from "next-intl";
 import {
@@ -22,38 +21,18 @@ import {
 
 type RegionalFlairContextValue = {
   flair: FlairDef | null;
-  geo: GeoSnapshot | null;
+  countryCode: string | null;
   daypart: "day" | "night";
 };
 
 export const RegionalFlairContext = createContext<RegionalFlairContextValue>({
   flair: null,
-  geo: null,
+  countryCode: null,
   daypart: "day",
 });
 
-async function fetchGeo(): Promise<GeoSnapshot | null> {
-  const cached = readCachedGeo();
-  if (cached) return cached;
-  try {
-    const res = await fetch("https://ipwho.is/", { cache: "no-store" });
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      success?: boolean;
-      country_code?: string;
-      country?: string;
-    };
-    if (data.success === false || !data.country_code) return null;
-    const snap: GeoSnapshot = {
-      countryCode: data.country_code.toUpperCase(),
-      country: data.country,
-      ts: Date.now(),
-    };
-    writeCachedGeo(snap);
-    return snap;
-  } catch {
-    return null;
-  }
+async function fetchGeoCountry(): Promise<string | null> {
+  return fetchCountryCode();
 }
 
 function MapleLeaf({ className, style }: { className?: string; style?: CSSProperties }) {
@@ -147,17 +126,17 @@ export function RegionalFlairProvider({ children }: { children: ReactNode }) {
   const locale = useLocale();
   const { theme } = useTheme();
   const daypart = theme === "dark" ? "night" : "day";
-  const [geo, setGeo] = useState<GeoSnapshot | null>(null);
+  const [countryCode, setCountryCode] = useState<string | null>(null);
 
   const flair = useMemo(
-    () => resolveFlair(geo?.countryCode ?? null, locale),
-    [geo?.countryCode, locale],
+    () => resolveFlair(countryCode, locale),
+    [countryCode, locale],
   );
 
   useEffect(() => {
     let cancelled = false;
-    void fetchGeo().then((snap) => {
-      if (!cancelled) setGeo(snap);
+    void fetchGeoCountry().then((cc) => {
+      if (!cancelled) setCountryCode(cc);
     });
     return () => {
       cancelled = true;
@@ -169,7 +148,7 @@ export function RegionalFlairProvider({ children }: { children: ReactNode }) {
   }, [flair, daypart]);
 
   return (
-    <RegionalFlairContext.Provider value={{ flair, geo, daypart }}>
+    <RegionalFlairContext.Provider value={{ flair, countryCode, daypart }}>
       {flair ? (
         <>
           <div className="flair-ambient" aria-hidden />
@@ -189,10 +168,10 @@ export function RegionalFlairBadge() {
   return (
     <span
       className="flair-badge btn-motion"
-      title={t("hint", { badge: flair.badge })}
-      aria-label={t("hint", { badge: flair.badge })}
+      title={t("hint", { badge: flairBadgeLabel(flair.badge) })}
+      aria-label={t("hint", { badge: flairBadgeLabel(flair.badge) })}
     >
-      {flair.badge}
+      <FlairBadgeIcon kind={flair.badge} size="sm" />
     </span>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -37,9 +38,7 @@ export default function HtmlEntitiesPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <textarea
         className="tool-textarea min-h-32"
         value={text}
@@ -58,6 +57,6 @@ export default function HtmlEntitiesPage() {
       </div>
       <pre className="tool-pre-out font-mono text-sm">{out || "—"}</pre>
       <p className="text-xs text-slate-500 dark:text-zinc-500">{t("output")}</p>
-    </div>
+    </ToolPageShell>
   );
 }

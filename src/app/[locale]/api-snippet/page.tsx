@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -82,9 +83,7 @@ export default function ApiSnippetPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <div className="grid gap-3 md:grid-cols-2">
         <label className="text-sm">
           <span className="text-slate-700 dark:text-zinc-300">{t("url")}</span>
@@ -138,6 +137,6 @@ export default function ApiSnippetPage() {
           <pre className="tool-pre min-h-28 text-xs">{fetchCode || "—"}</pre>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

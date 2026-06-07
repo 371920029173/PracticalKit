@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -57,8 +58,7 @@ export default function RegexPage() {
   }, [t]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <div className="grid gap-3 md:grid-cols-2">
         <label className="block space-y-1 text-sm">
           <span className="tool-muted">{t("pattern")}</span>
@@ -87,6 +87,6 @@ export default function RegexPage() {
       </label>
       <ToolRunActions onRun={run} onResetAndRun={resetAndRun} />
       <pre className="tool-pre max-h-64 text-xs">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }

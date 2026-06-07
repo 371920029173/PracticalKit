@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -84,9 +85,7 @@ export default function RomanPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <div className="flex flex-wrap gap-2">
         {(["to", "from"] as const).map((m) => (
           <button
@@ -115,6 +114,6 @@ export default function RomanPage() {
       </div>
       {err ? <p className="text-sm text-rose-600">{t("invalid")}</p> : null}
       <pre className="tool-pre-out text-xl font-semibold">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }

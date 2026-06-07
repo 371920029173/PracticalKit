@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell, ToolSection } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { diffLines, diffWords } from "diff";
 import { useTranslations } from "next-intl";
@@ -34,9 +35,8 @@ export default function TextDiffPage() {
   }, [segments]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
+      <ToolSection>
       <div className="flex items-center gap-2">
         <button
           type="button"
@@ -79,6 +79,7 @@ export default function TextDiffPage() {
               </span>
             ))}
       </pre>
-    </div>
+      </ToolSection>
+    </ToolPageShell>
   );
 }

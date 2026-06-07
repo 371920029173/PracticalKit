@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -68,8 +69,7 @@ export default function TextPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <textarea
         className="tool-textarea min-h-48"
         value={text}
@@ -103,6 +103,6 @@ export default function TextPage() {
         </button>
       </div>
       <pre className="tool-pre-out min-h-32">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }

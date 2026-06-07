@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { diffLines } from "diff";
 import { useTranslations } from "next-intl";
@@ -77,9 +78,7 @@ export default function JsonDiffPage() {
   }, [t]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <label className="tool-muted">{t("a")}</label>
@@ -103,6 +102,6 @@ export default function JsonDiffPage() {
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}
       <pre className="tool-pre max-h-96 text-xs">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }

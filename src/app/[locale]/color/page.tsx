@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -71,8 +72,7 @@ export default function ColorPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <div className="flex flex-wrap items-center gap-4">
         <div
           className="h-24 w-40 rounded-xl border border-zinc-700 shadow-lg"
@@ -119,6 +119,6 @@ export default function ColorPage() {
         ))}
       </div>
       <p className="font-mono text-emerald-300">{preview}</p>
-    </div>
+    </ToolPageShell>
   );
 }

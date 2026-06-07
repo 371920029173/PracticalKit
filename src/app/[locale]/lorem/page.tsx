@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -43,9 +44,7 @@ export default function LoremPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <div className="flex flex-wrap gap-4">
         <label className="flex items-center gap-2 text-sm text-slate-700 dark:text-zinc-300">
           {t("paragraphs")}
@@ -88,6 +87,6 @@ export default function LoremPage() {
           {tc("copy")}
         </button>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

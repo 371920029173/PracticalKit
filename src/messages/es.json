@@ -474,11 +474,16 @@
     "symbols": "Símbolos"
   },
   "translate": {
-    "title": "Traducir (MyMemory)",
+    "title": "Traducir",
+    "note": "Pega texto y elige códigos de idioma (ISO 639-1). Probamos varios API gratuitos automáticamente.",
     "from": "De",
     "to": "A",
-    "disclaimer": "API de terceros — no secretos.",
-    "submit": "Traducir"
+    "inputTitle": "Entrada",
+    "outputTitle": "Traducción",
+    "disclaimer": "API de terceros — no envíes secretos ni datos privados.",
+    "submit": "Traducir",
+    "error": "Traducción fallida. Prueba con menos texto u otros códigos.",
+    "provider": "Fuente: {source} (tercero)."
   },
   "code": {
     "title": "Código",
@@ -486,9 +491,15 @@
     "diff": "Diff"
   },
   "money": {
-    "title": "FX",
-    "base": "Base",
-    "refresh": "Refrescar"
+    "title": "Tipos de cambio",
+    "note": "Tipos en vivo con fuente de respaldo automática.",
+    "base": "Moneda base",
+    "refresh": "Refrescar",
+    "inputTitle": "Ajustes",
+    "inputNote": "Código ISO de 3 letras (USD, EUR, CNY).",
+    "outputTitle": "Tipos de ejemplo",
+    "error": "No se pudieron obtener tipos. Revisa el código o inténtalo más tarde.",
+    "provider": "Fuente: {source} (tercero)."
   },
   "markdown": {
     "title": "Markdown",
@@ -727,7 +738,7 @@
   },
   "ipLookupPage": {
     "title": "Geolocalización IP",
-    "note": "IP pública y ubicación aproximada vía ipwho.is (tercero).",
+    "note": "IP pública y ubicación aproximada. El navegador prueba varios geo API con respaldo automático.",
     "ip": "IP",
     "country": "País",
     "region": "Región",
@@ -735,8 +746,8 @@
     "isp": "ISP",
     "timezone": "Zona horaria",
     "coords": "Coordenadas",
-    "error": "Error de consulta. Inténtalo más tarde.",
-    "provider": "Fuente: ipwho.is (tercero)."
+    "error": "Falló en todos los proveedores. Revisa la red o inténtalo más tarde.",
+    "provider": "Fuente: {source} (tercero). No usar para decisiones críticas."
   },
   "userAgentPage": {
     "title": "Inspector User-Agent",
@@ -784,7 +795,18 @@
   },
   "regionalFlair": { "hint": "Toque regional según idioma y ubicación: {badge}" },
   "urlParserPage": { "title": "Analizador URL", "note": "Solo en el navegador.", "placeholder": "https://example.com", "sample": "https://practicalkithub.com/es/pdf/", "invalid": "URL no válida", "href": "href", "origin": "origin", "protocol": "protocol", "hostname": "hostname", "port": "port", "pathname": "pathname", "search": "search", "hash": "hash", "params": "params" },
-  "dnsLookupPage": { "title": "Consulta DNS", "note": "API JSON de Cloudflare DNS.", "placeholder": "example.com", "sample": "cloudflare.com", "empty": "Introduce un dominio", "noRecords": "Sin registros", "error": "Error", "provider": "cloudflare-dns.com" },
+  "dnsLookupPage": {
+    "title": "Consulta DNS",
+    "note": "Consulta registros DNS. Prueba Cloudflare y Google public DNS JSON.",
+    "placeholder": "example.com",
+    "sample": "cloudflare.com",
+    "inputTitle": "Consulta",
+    "outputTitle": "Registros",
+    "empty": "Introduce un dominio",
+    "noRecords": "Sin registros",
+    "error": "Error",
+    "provider": "Resolver: {source} (tercero)."
+  },
   "bmiPage": { "title": "Calculadora IMC", "note": "Solo educativo.", "weight": "Peso (kg)", "height": "Altura (cm)", "under": "Bajo peso", "normal": "Normal", "over": "Sobrepeso", "obese": "Obesidad", "disclaimer": "No es consejo médico." },
   "morsePage": { "title": "Código Morse", "note": "Local.", "encode": "Texto → Morse", "decode": "Morse → texto", "textIn": "Texto", "morseIn": "Morse", "sample": "SOS" },
   "percentPage": { "title": "Porcentajes", "note": "Local.", "mode_of": "X% de Y", "mode_is": "X es ?% de Y", "mode_change": "X + Y%", "hint_of": "20% de 150", "hint_is": "30 de 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Entrada no válida" },

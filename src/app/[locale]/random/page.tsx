@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -51,8 +52,7 @@ export default function RandomPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
@@ -82,6 +82,6 @@ export default function RandomPage() {
         <ToolRunActions onRun={serials} onResetAndRun={resetSerialAndRun} />
       </div>
       <pre className="tool-pre-out font-mono text-sm">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }

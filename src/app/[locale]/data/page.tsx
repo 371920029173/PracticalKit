@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { DataTreeView } from "@/components/DataTreeView";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import Ajv from "ajv";
@@ -337,8 +338,7 @@ export default function DataPage() {
   const showResult = out.length > 0;
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <p className="tool-muted max-w-2xl">{t("privacyLine")}</p>
       <div className="flex flex-wrap gap-2">
         {(["json", "xml", "yaml"] as const).map((m) => (
@@ -555,6 +555,6 @@ export default function DataPage() {
           </pre>
         </div>
       ) : null}
-    </div>
+    </ToolPageShell>
   );
 }

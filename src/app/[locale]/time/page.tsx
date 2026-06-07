@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -65,8 +66,7 @@ export default function TimePage() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -96,6 +96,6 @@ export default function TimePage() {
         />
         <pre className="tool-pre-out">{out2 || "—"}</pre>
       </section>
-    </div>
+    </ToolPageShell>
   );
 }

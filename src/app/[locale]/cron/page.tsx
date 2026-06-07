@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -76,9 +77,7 @@ export default function CronPage() {
   }, [t]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <input
         value={expr}
         onChange={(e) => setExpr(e.target.value)}
@@ -106,6 +105,6 @@ export default function CronPage() {
           </ul>
         )}
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

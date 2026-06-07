@@ -484,11 +484,16 @@
     "symbols": "符号"
   },
   "translate": {
-    "title": "翻译（MyMemory 免费接口）",
+    "title": "翻译",
+    "note": "粘贴文本并选择语言代码（ISO 639-1）。会自动尝试多个免费接口。",
     "from": "源语言",
     "to": "目标语言",
-    "disclaimer": "第三方接口，勿提交机密内容。",
-    "submit": "翻译"
+    "inputTitle": "输入",
+    "outputTitle": "译文",
+    "disclaimer": "第三方接口，勿提交机密或隐私内容。",
+    "submit": "翻译",
+    "error": "翻译失败，请缩短文本或更换语言代码后重试。",
+    "provider": "数据来源：{source}（第三方）。"
   },
   "code": {
     "title": "代码工具",
@@ -496,9 +501,15 @@
     "diff": "对比"
   },
   "money": {
-    "title": "汇率（open.er-api.com）",
+    "title": "汇率查询",
+    "note": "实时汇率，若一个接口不可用会自动切换备用源。",
     "base": "基准货币",
-    "refresh": "刷新"
+    "refresh": "刷新",
+    "inputTitle": "设置",
+    "inputNote": "输入三位 ISO 货币代码（如 USD、EUR、CNY）。",
+    "outputTitle": "常用汇率",
+    "error": "获取失败，请检查货币代码或稍后重试。",
+    "provider": "数据来源：{source}（第三方）。"
   },
   "markdown": {
     "title": "Markdown",
@@ -744,7 +755,7 @@
   },
   "ipLookupPage": {
     "title": "IP 位置查询",
-    "note": "显示你的公网 IP 与大致地理位置。浏览器直接请求 ipwho.is，本站不代理该请求。",
+    "note": "显示你的公网 IP 与大致地理位置。浏览器会自动尝试多个 geo 接口并切换备用源。",
     "ip": "IP 地址",
     "country": "国家/地区",
     "region": "省/州",
@@ -752,8 +763,8 @@
     "isp": "运营商",
     "timezone": "时区",
     "coords": "经纬度",
-    "error": "查询失败，接口可能限流，请稍后再试。",
-    "provider": "数据来源：ipwho.is（第三方）。请勿用于安全关键决策。"
+    "error": "所有接口均查询失败，请检查网络或稍后再试。",
+    "provider": "数据来源：{source}（第三方）。请勿用于安全关键决策。"
   },
   "userAgentPage": {
     "title": "浏览器 UA 检测",
@@ -824,13 +835,15 @@
   },
   "dnsLookupPage": {
     "title": "DNS 查询",
-    "note": "查询域名 DNS 记录；浏览器直接请求 Cloudflare 公共 DNS JSON 接口。",
+    "note": "查询域名 DNS 记录；会依次尝试 Cloudflare 与 Google 公共 DNS JSON 接口。",
     "placeholder": "example.com",
     "sample": "cloudflare.com",
+    "inputTitle": "查询",
+    "outputTitle": "记录",
     "empty": "请输入域名。",
     "noRecords": "该类型无记录或域名不存在。",
     "error": "查询失败，请检查域名或稍后重试。",
-    "provider": "解析来源：cloudflare-dns.com（第三方）。"
+    "provider": "解析来源：{source}（第三方）。"
   },
   "bmiPage": {
     "title": "BMI 计算器",

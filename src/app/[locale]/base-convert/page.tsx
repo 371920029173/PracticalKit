@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell, ToolSection } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
@@ -67,9 +68,8 @@ export default function BaseConvertPage() {
   }, [t]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
+      <ToolSection>
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
         <textarea
           className="tool-textarea min-h-24"
@@ -100,6 +100,7 @@ export default function BaseConvertPage() {
           </div>
         ))}
       </div>
-    </div>
+      </ToolSection>
+    </ToolPageShell>
   );
 }

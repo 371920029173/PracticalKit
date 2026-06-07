@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -43,9 +44,7 @@ export default function LuhnPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <input
         className="tool-field w-full font-mono"
         inputMode="numeric"
@@ -66,6 +65,6 @@ export default function LuhnPage() {
         </div>
       ) : null}
       <p className="text-xs text-amber-800 dark:text-amber-200">{t("disclaimer")}</p>
-    </div>
+    </ToolPageShell>
   );
 }

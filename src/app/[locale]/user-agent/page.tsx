@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
@@ -40,9 +41,7 @@ export default function UserAgentPage() {
   }, [run]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <ToolRunActions onRun={run} onResetAndRun={resetAndRun} busy={false} />
       {ran ? (
         <>
@@ -86,6 +85,6 @@ export default function UserAgentPage() {
           </button>
         </>
       ) : null}
-    </div>
+    </ToolPageShell>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -67,8 +68,7 @@ export default function PasswordPage() {
     score <= 1 ? "Weak" : score <= 3 ? "Medium" : score === 4 ? "Strong" : "Very strong";
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <label className="flex items-center gap-3 text-sm">
         <span className="text-zinc-400">{t("len")}</span>
         <input
@@ -109,6 +109,6 @@ export default function PasswordPage() {
       <pre className="rounded-lg border border-zinc-800 bg-black/40 p-3 font-mono text-sm text-emerald-300">
         {out || "—"}
       </pre>
-    </div>
+    </ToolPageShell>
   );
 }

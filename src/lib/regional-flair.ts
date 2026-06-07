@@ -1,4 +1,20 @@
-export type FlairId = "ca" | "us" | "cn" | "tw" | "fr" | "es" | "ru" | "gb" | "au" | "jp" | "kr";
+export type FlairId =
+  | "ca"
+  | "us"
+  | "cn"
+  | "tw"
+  | "hk"
+  | "sg"
+  | "fr"
+  | "fr-be"
+  | "fr-ch"
+  | "es"
+  | "es-latam"
+  | "ru"
+  | "gb"
+  | "au"
+  | "jp"
+  | "kr";
 
 export type Daypart = "day" | "night";
 
@@ -10,35 +26,45 @@ export type FlairPalette = {
   accentSoft: string;
 };
 
+export type FlairBadgeKind =
+  | "maple"
+  | "us"
+  | "lantern"
+  | "blossom"
+  | "fr"
+  | "es"
+  | "aurora"
+  | "gb"
+  | "au"
+  | "jp"
+  | "kr";
+
 export type FlairDef = {
   id: FlairId;
-  countries?: string[];
+  countries: string[];
   locales?: string[];
-  badge: string;
+  badge: FlairBadgeKind;
   decoration: "maple" | "stars" | "lantern" | "blossom" | "tricolor" | "sunset" | "aurora" | "mist" | "outback" | "sakura" | "hangul";
 };
 
 export const FLAIR_DEFS: FlairDef[] = [
-  { id: "ca", countries: ["CA"], locales: ["en", "fr"], badge: "🍁", decoration: "maple" },
-  { id: "us", countries: ["US"], locales: ["en"], badge: "★", decoration: "stars" },
-  { id: "cn", countries: ["CN"], locales: ["zh"], badge: "灯", decoration: "lantern" },
-  { id: "tw", countries: ["TW", "HK", "MO", "SG"], locales: ["zh"], badge: "🌸", decoration: "blossom" },
-  { id: "fr", countries: ["FR", "BE", "CH", "LU", "MC"], locales: ["fr"], badge: "🇫🇷", decoration: "tricolor" },
-  { id: "es", countries: ["ES", "MX", "AR", "CO", "CL", "PE", "VE"], locales: ["es"], badge: "☀", decoration: "sunset" },
-  { id: "ru", countries: ["RU", "BY", "KZ"], locales: ["ru"], badge: "❄", decoration: "aurora" },
-  { id: "gb", countries: ["GB", "IE"], locales: ["en"], badge: "🫖", decoration: "mist" },
-  { id: "au", countries: ["AU", "NZ"], locales: ["en"], badge: "🌿", decoration: "outback" },
-  { id: "jp", countries: ["JP"], badge: "🌸", decoration: "sakura" },
-  { id: "kr", countries: ["KR"], badge: "◈", decoration: "hangul" },
+  { id: "ca", countries: ["CA"], locales: ["en", "fr"], badge: "maple", decoration: "maple" },
+  { id: "us", countries: ["US"], locales: ["en"], badge: "us", decoration: "stars" },
+  { id: "cn", countries: ["CN"], locales: ["zh"], badge: "lantern", decoration: "lantern" },
+  { id: "tw", countries: ["TW"], locales: ["zh"], badge: "blossom", decoration: "blossom" },
+  { id: "hk", countries: ["HK", "MO"], locales: ["zh"], badge: "blossom", decoration: "blossom" },
+  { id: "sg", countries: ["SG"], locales: ["zh"], badge: "blossom", decoration: "blossom" },
+  { id: "fr", countries: ["FR"], locales: ["fr"], badge: "fr", decoration: "tricolor" },
+  { id: "fr-be", countries: ["BE", "LU", "MC"], locales: ["fr"], badge: "fr", decoration: "tricolor" },
+  { id: "fr-ch", countries: ["CH"], locales: ["fr"], badge: "fr", decoration: "tricolor" },
+  { id: "es", countries: ["ES"], locales: ["es"], badge: "es", decoration: "sunset" },
+  { id: "es-latam", countries: ["MX", "AR", "CO", "CL", "PE", "VE"], locales: ["es"], badge: "es", decoration: "sunset" },
+  { id: "ru", countries: ["RU", "BY", "KZ"], locales: ["ru"], badge: "aurora", decoration: "aurora" },
+  { id: "gb", countries: ["GB", "IE"], locales: ["en"], badge: "gb", decoration: "mist" },
+  { id: "au", countries: ["AU", "NZ"], locales: ["en"], badge: "au", decoration: "outback" },
+  { id: "jp", countries: ["JP"], locales: ["ja", "en", "zh"], badge: "jp", decoration: "sakura" },
+  { id: "kr", countries: ["KR"], locales: ["ko", "en"], badge: "kr", decoration: "hangul" },
 ];
-
-/** Locale-only fallbacks when country is unknown or unmatched. */
-const LOCALE_FALLBACK: Partial<Record<string, FlairId>> = {
-  zh: "cn",
-  fr: "fr",
-  es: "es",
-  ru: "ru",
-};
 
 export const FLAIR_PALETTES: Record<FlairId, Record<Daypart, FlairPalette>> = {
   ca: {
@@ -105,6 +131,38 @@ export const FLAIR_PALETTES: Record<FlairId, Record<Daypart, FlairPalette>> = {
       accentSoft: "rgba(249, 168, 212, 0.1)",
     },
   },
+  hk: {
+    day: {
+      meshA: "rgba(244, 114, 182, 0.1)",
+      meshB: "rgba(255, 255, 255, 0.35)",
+      meshC: "rgba(16, 185, 129, 0.06)",
+      accent: "#db2777",
+      accentSoft: "rgba(219, 39, 119, 0.1)",
+    },
+    night: {
+      meshA: "rgba(190, 24, 93, 0.08)",
+      meshB: "rgba(129, 140, 248, 0.06)",
+      meshC: "rgba(52, 211, 153, 0.04)",
+      accent: "#f9a8d4",
+      accentSoft: "rgba(249, 168, 212, 0.1)",
+    },
+  },
+  sg: {
+    day: {
+      meshA: "rgba(244, 114, 182, 0.1)",
+      meshB: "rgba(255, 255, 255, 0.35)",
+      meshC: "rgba(16, 185, 129, 0.06)",
+      accent: "#db2777",
+      accentSoft: "rgba(219, 39, 119, 0.1)",
+    },
+    night: {
+      meshA: "rgba(190, 24, 93, 0.08)",
+      meshB: "rgba(129, 140, 248, 0.06)",
+      meshC: "rgba(52, 211, 153, 0.04)",
+      accent: "#f9a8d4",
+      accentSoft: "rgba(249, 168, 212, 0.1)",
+    },
+  },
   fr: {
     day: {
       meshA: "rgba(37, 99, 235, 0.07)",
@@ -121,7 +179,55 @@ export const FLAIR_PALETTES: Record<FlairId, Record<Daypart, FlairPalette>> = {
       accentSoft: "rgba(147, 197, 253, 0.1)",
     },
   },
+  "fr-be": {
+    day: {
+      meshA: "rgba(37, 99, 235, 0.07)",
+      meshB: "rgba(255, 255, 255, 0.45)",
+      meshC: "rgba(220, 38, 38, 0.06)",
+      accent: "#1d4ed8",
+      accentSoft: "rgba(29, 78, 216, 0.1)",
+    },
+    night: {
+      meshA: "rgba(30, 64, 175, 0.1)",
+      meshB: "rgba(255, 255, 255, 0.04)",
+      meshC: "rgba(185, 28, 28, 0.06)",
+      accent: "#93c5fd",
+      accentSoft: "rgba(147, 197, 253, 0.1)",
+    },
+  },
+  "fr-ch": {
+    day: {
+      meshA: "rgba(37, 99, 235, 0.07)",
+      meshB: "rgba(255, 255, 255, 0.45)",
+      meshC: "rgba(220, 38, 38, 0.06)",
+      accent: "#1d4ed8",
+      accentSoft: "rgba(29, 78, 216, 0.1)",
+    },
+    night: {
+      meshA: "rgba(30, 64, 175, 0.1)",
+      meshB: "rgba(255, 255, 255, 0.04)",
+      meshC: "rgba(185, 28, 28, 0.06)",
+      accent: "#93c5fd",
+      accentSoft: "rgba(147, 197, 253, 0.1)",
+    },
+  },
   es: {
+    day: {
+      meshA: "rgba(234, 88, 12, 0.1)",
+      meshB: "rgba(250, 204, 21, 0.08)",
+      meshC: "rgba(220, 38, 38, 0.05)",
+      accent: "#ea580c",
+      accentSoft: "rgba(234, 88, 12, 0.12)",
+    },
+    night: {
+      meshA: "rgba(124, 45, 18, 0.12)",
+      meshB: "rgba(234, 179, 8, 0.05)",
+      meshC: "rgba(220, 38, 38, 0.04)",
+      accent: "#fdba74",
+      accentSoft: "rgba(253, 186, 116, 0.1)",
+    },
+  },
+  "es-latam": {
     day: {
       meshA: "rgba(234, 88, 12, 0.1)",
       meshB: "rgba(250, 204, 21, 0.08)",
@@ -250,23 +356,16 @@ export function writeCachedGeo(geo: GeoSnapshot) {
 
 export function resolveFlair(countryCode: string | null, locale: string): FlairDef | null {
   const cc = countryCode?.toUpperCase() ?? null;
+  if (!cc) return null;
 
-  if (cc) {
-    const countryFirst = FLAIR_DEFS.filter((d) => d.countries?.includes(cc));
-    if (countryFirst.length) {
-      const withLocale = countryFirst.find((d) => !d.locales || d.locales.includes(locale));
-      if (withLocale) return withLocale;
-      return countryFirst[0] ?? null;
-    }
-  }
+  const matches = FLAIR_DEFS.filter(
+    (d) => d.countries.includes(cc) && (!d.locales || d.locales.includes(locale)),
+  );
 
-  const localeOnly = FLAIR_DEFS.find((d) => d.locales?.includes(locale) && !d.countries);
-  if (localeOnly) return localeOnly;
+  if (!matches.length) return null;
+  if (matches.length === 1) return matches[0]!;
 
-  const fallbackId = LOCALE_FALLBACK[locale];
-  if (fallbackId) return FLAIR_DEFS.find((d) => d.id === fallbackId) ?? null;
-
-  return null;
+  return matches.sort((a, b) => a.countries.length - b.countries.length)[0] ?? null;
 }
 
 export function applyFlairToDocument(flair: FlairDef | null, daypart: Daypart) {

@@ -5,6 +5,7 @@ import {
   decodeRgbV3d,
   encodeRgbLossless,
 } from "@rgbv3d/core";
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -191,10 +192,7 @@ export default function ImagePage() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="tool-h1">
-        {t("title")}
-      </h1>
+    <ToolPageShell title={t("title")}>
       {busy && (
         <p className="text-sm text-amber-700 dark:text-amber-300">
           {busy}…
@@ -284,6 +282,6 @@ export default function ImagePage() {
           {ocrText}
         </pre>
       </section>
-    </div>
+    </ToolPageShell>
   );
 }

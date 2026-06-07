@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { diffLines } from "diff";
@@ -46,8 +47,7 @@ export default function CodePage() {
       : "";
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
@@ -130,6 +130,6 @@ export default function CodePage() {
           <pre className="tool-pre max-h-80 text-xs">{diffOut}</pre>
         </>
       )}
-    </div>
+    </ToolPageShell>
   );
 }

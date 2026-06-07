@@ -1,13 +1,18 @@
 "use client";
 
+import { ToolPageShell, ToolSection, ToolOutput } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
+import { fetchExchangeRates } from "@/lib/exchange-api";
 import { useTranslations } from "next-intl";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+
+const SAMPLE = ["EUR", "GBP", "JPY", "CNY", "RUB", "CAD", "AUD", "CHF"];
 
 export default function MoneyPage() {
   const t = useTranslations("money");
   const [base, setBase] = useState("USD");
   const [data, setData] = useState<Record<string, number> | null>(null);
+  const [source, setSource] = useState("");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,76 +20,65 @@ export default function MoneyPage() {
     setLoading(true);
     setErr("");
     try {
-      const res = await fetch(
-        `https://open.er-api.com/v6/latest/${encodeURIComponent(base.trim() || "USD")}`
-      );
-      const j = (await res.json()) as {
-        result?: string;
-        rates?: Record<string, number>;
-        "error-type"?: string;
-      };
-      if (j.result !== "success" || !j.rates) {
-        throw new Error(j["error-type"] || j.result || "bad response");
-      }
-      setData(j.rates);
-    } catch (e) {
-      setErr(String(e));
+      const result = await fetchExchangeRates(base);
+      setData(result.rates);
+      setSource(result.source);
+    } catch {
+      setErr(t("error"));
       setData(null);
+      setSource("");
     } finally {
       setLoading(false);
     }
-  }, [base]);
+  }, [base, t]);
 
   const resetAndRun = useCallback(async () => {
     setBase("USD");
     setErr("");
     setData(null);
+    setSource("");
     setLoading(true);
     try {
-      const res = await fetch(
-        "https://open.er-api.com/v6/latest/USD"
-      );
-      const j = (await res.json()) as {
-        result?: string;
-        rates?: Record<string, number>;
-      };
-      if (j.result !== "success" || !j.rates) throw new Error("bad response");
-      setData(j.rates);
-    } catch (e) {
-      setErr(String(e));
-      setData(null);
+      const result = await fetchExchangeRates("USD");
+      setData(result.rates);
+      setSource(result.source);
+    } catch {
+      setErr(t("error"));
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t]);
 
-  const sample = data
-    ? Object.entries(data)
-        .filter(([k]) => ["EUR", "GBP", "JPY", "CNY", "RUB"].includes(k))
-        .map(([k, v]) => `${k}: ${v}`)
-        .join("\n")
-    : "";
+  const sample = useMemo(() => {
+    if (!data) return "";
+    return SAMPLE.filter((k) => data[k] != null)
+      .map((k) => `${k}: ${data[k]}`)
+      .join("\n");
+  }, [data]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <div className="flex flex-wrap items-end gap-2">
-        <label className="text-sm">
-          <span className="tool-muted">{t("base")}</span>
-          <input
-            className="tool-field mt-1 font-mono uppercase"
-            value={base}
-            onChange={(e) => setBase(e.target.value)}
-          />
-        </label>
-        <ToolRunActions
-          onRun={refresh}
-          onResetAndRun={resetAndRun}
-          busy={loading}
-        />
-      </div>
-      {err && <p className="text-sm text-red-600 dark:text-red-400">{err}</p>}
-      <pre className="tool-pre max-h-80 text-xs">{sample || "—"}</pre>
-    </div>
+    <ToolPageShell title={t("title")} note={t("note")}>
+      <ToolSection title={t("inputTitle")} description={t("inputNote")}>
+        <div className="flex flex-wrap items-end gap-2">
+          <label className="text-sm">
+            <span className="tool-muted">{t("base")}</span>
+            <input
+              className="tool-field mt-1 font-mono uppercase"
+              value={base}
+              onChange={(e) => setBase(e.target.value.toUpperCase())}
+              spellCheck={false}
+            />
+          </label>
+          <ToolRunActions onRun={refresh} onResetAndRun={resetAndRun} busy={loading} />
+        </div>
+        {err ? <p className="mt-3 text-sm text-rose-600 dark:text-rose-400">{err}</p> : null}
+      </ToolSection>
+      <ToolSection title={t("outputTitle")}>
+        <ToolOutput mono>{sample || "—"}</ToolOutput>
+        {source ? (
+          <p className="mt-3 text-xs text-slate-500 dark:text-zinc-500">{t("provider", { source })}</p>
+        ) : null}
+      </ToolSection>
+    </ToolPageShell>
   );
 }

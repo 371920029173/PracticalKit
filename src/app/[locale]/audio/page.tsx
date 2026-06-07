@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -113,11 +114,7 @@ export default function AudioPage() {
   ];
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">
-        {t("title")}
-      </h1>
-      <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <label className="block text-sm text-slate-700 dark:text-zinc-300">
         {t("pick")}
         <input
@@ -159,6 +156,6 @@ export default function AudioPage() {
       <pre className="max-h-48 overflow-auto rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-400">
         {log}
       </pre>
-    </div>
+    </ToolPageShell>
   );
 }

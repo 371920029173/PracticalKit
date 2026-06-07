@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -72,9 +73,7 @@ export default function CountdownPage() {
   const done = remaining === 0;
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       {!running && remaining == null ? (
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="space-y-1 text-sm">
@@ -111,6 +110,6 @@ export default function CountdownPage() {
           {t("reset")}
         </button>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

@@ -484,11 +484,16 @@
     "symbols": "Symbols"
   },
   "translate": {
-    "title": "Translate (MyMemory free API)",
+    "title": "Translate",
+    "note": "Paste text and pick language codes (ISO 639-1). We try multiple free APIs automatically.",
     "from": "From",
     "to": "To",
-    "disclaimer": "Third-party API — do not send secrets.",
-    "submit": "Translate"
+    "inputTitle": "Input",
+    "outputTitle": "Translation",
+    "disclaimer": "Third-party API — do not send secrets or private data.",
+    "submit": "Translate",
+    "error": "Translation failed. Try shorter text or different language codes.",
+    "provider": "Source: {source} (third party)."
   },
   "code": {
     "title": "Code tools",
@@ -496,9 +501,15 @@
     "diff": "Diff"
   },
   "money": {
-    "title": "FX (open.er-api.com demo)",
-    "base": "Base",
-    "refresh": "Refresh"
+    "title": "FX rates",
+    "note": "Live exchange rates with automatic fallback if one provider is down.",
+    "base": "Base currency",
+    "refresh": "Refresh",
+    "inputTitle": "Settings",
+    "inputNote": "Enter a 3-letter ISO currency code (e.g. USD, EUR, CNY).",
+    "outputTitle": "Sample rates",
+    "error": "Could not fetch rates. Check the currency code or try again.",
+    "provider": "Data source: {source} (third party)."
   },
   "markdown": {
     "title": "Markdown",
@@ -744,7 +755,7 @@
   },
   "ipLookupPage": {
     "title": "IP geolocation lookup",
-    "note": "Shows your public IP and approximate location. Your browser calls ipwho.is directly—we do not proxy the request.",
+    "note": "Shows your public IP and approximate location. Your browser tries several geo APIs with automatic fallback.",
     "ip": "IP address",
     "country": "Country",
     "region": "Region",
@@ -752,8 +763,8 @@
     "isp": "ISP / org",
     "timezone": "Timezone",
     "coords": "Coordinates",
-    "error": "Lookup failed. The provider may be rate-limited—try again shortly.",
-    "provider": "Data provider: ipwho.is (third party). Do not use for security-critical decisions."
+    "error": "Lookup failed on all providers. Check your network or try again shortly.",
+    "provider": "Data source: {source} (third party). Do not use for security-critical decisions."
   },
   "userAgentPage": {
     "title": "User agent inspector",
@@ -824,13 +835,15 @@
   },
   "dnsLookupPage": {
     "title": "DNS lookup",
-    "note": "Resolves DNS records for a domain. Your browser queries Cloudflare’s public DNS JSON API directly.",
+    "note": "Resolves DNS records for a domain. Tries Cloudflare and Google public DNS JSON APIs.",
     "placeholder": "example.com",
     "sample": "cloudflare.com",
+    "inputTitle": "Query",
+    "outputTitle": "Records",
     "empty": "Enter a domain name.",
     "noRecords": "No records returned for that type (or NXDOMAIN).",
     "error": "Lookup failed. Check the domain or try again.",
-    "provider": "Resolver: cloudflare-dns.com (third party). Results are indicative, not authoritative for all TLDs."
+    "provider": "Resolver: {source} (third party). Results are indicative, not authoritative for all TLDs."
   },
   "bmiPage": {
     "title": "BMI calculator",

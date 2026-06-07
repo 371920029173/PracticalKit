@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -101,8 +102,7 @@ export default function UnitsPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <div className="flex flex-wrap gap-2">
         {tabs.map(({ k, lab }) => (
           <button
@@ -166,6 +166,6 @@ export default function UnitsPage() {
         {converted} {rows[toIdx]?.unit}
       </div>
       <ToolRunActions onRun={copyResult} onResetAndRun={resetAndRun} />
-    </div>
+    </ToolPageShell>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
@@ -68,9 +69,7 @@ export default function TimezonePage() {
   const zones = useMemo(() => ZONES, []);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <label className="block space-y-1 text-sm">
         <span className="text-slate-700 dark:text-zinc-300">{t("datetime")}</span>
         <input className="tool-field w-full font-mono" value={when} onChange={(e) => setWhen(e.target.value)} />
@@ -106,6 +105,6 @@ export default function TimezonePage() {
         ) : null}
       </div>
       <pre className="tool-pre-out whitespace-pre-wrap">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }

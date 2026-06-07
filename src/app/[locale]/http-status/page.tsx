@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
@@ -121,8 +122,7 @@ export default function HttpStatusPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <p className="text-sm text-slate-600 dark:text-zinc-400">{t("note")}</p>
       <p className="tool-muted max-w-2xl">{t("privacyLine")}</p>
       <div className="flex flex-wrap items-center gap-2">
@@ -220,6 +220,6 @@ export default function HttpStatusPage() {
           </div>
         )}
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTheme } from "@/components/ThemeProvider";
 import { useTranslations } from "next-intl";
@@ -120,9 +121,7 @@ export default function FunctionPlotPage() {
   }, [draw, theme]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <input
           value={expr}
@@ -166,6 +165,6 @@ export default function FunctionPlotPage() {
       <div className="overflow-auto rounded-xl border border-slate-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-900">
         <canvas ref={canvasRef} width={900} height={420} className="w-full max-w-full" />
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -50,9 +51,7 @@ export default function UrlParserPage() {
   const fields = ["href", "origin", "protocol", "hostname", "port", "pathname", "search", "hash", "params"] as const;
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <input
         className="tool-field w-full font-mono"
         value={input}
@@ -77,6 +76,6 @@ export default function UrlParserPage() {
           {tc("copy")}
         </button>
       ) : null}
-    </div>
+    </ToolPageShell>
   );
 }

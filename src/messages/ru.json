@@ -474,11 +474,16 @@
     "symbols": "Символы"
   },
   "translate": {
-    "title": "Перевод (MyMemory)",
+    "title": "Перевод",
+    "note": "Вставьте текст и укажите коды языков (ISO 639-1). Автоматически пробуем несколько бесплатных API.",
     "from": "Из",
     "to": "В",
-    "disclaimer": "Сторонний API — без секретов.",
-    "submit": "Перевести"
+    "inputTitle": "Ввод",
+    "outputTitle": "Перевод",
+    "disclaimer": "Сторонний API — не отправляйте секреты и личные данные.",
+    "submit": "Перевести",
+    "error": "Перевод не удался. Сократите текст или смените коды языков.",
+    "provider": "Источник: {source} (сторонний)."
   },
   "code": {
     "title": "Код",
@@ -486,9 +491,15 @@
     "diff": "Diff"
   },
   "money": {
-    "title": "Курсы FX",
-    "base": "База",
-    "refresh": "Обновить"
+    "title": "Курсы валют",
+    "note": "Актуальные курсы с автоматическим резервным источником.",
+    "base": "Базовая валюта",
+    "refresh": "Обновить",
+    "inputTitle": "Настройки",
+    "inputNote": "Трёхбуквенный код ISO (USD, EUR, CNY).",
+    "outputTitle": "Примеры курсов",
+    "error": "Не удалось получить курсы. Проверьте код или повторите позже.",
+    "provider": "Источник: {source} (сторонний)."
   },
   "markdown": {
     "title": "Markdown",
@@ -727,7 +738,7 @@
   },
   "ipLookupPage": {
     "title": "Геолокация IP",
-    "note": "Публичный IP и примерное местоположение. Браузер обращается к ipwho.is напрямую.",
+    "note": "Публичный IP и примерное местоположение. Браузер пробует несколько geo API с резервными источниками.",
     "ip": "IP",
     "country": "Страна",
     "region": "Регион",
@@ -735,8 +746,8 @@
     "isp": "Провайдер",
     "timezone": "Часовой пояс",
     "coords": "Координаты",
-    "error": "Ошибка запроса. Попробуйте позже.",
-    "provider": "Источник: ipwho.is (третья сторона)."
+    "error": "Все источники недоступны. Проверьте сеть или повторите позже.",
+    "provider": "Источник: {source} (третья сторона). Не используйте для критичных решений."
   },
   "userAgentPage": {
     "title": "User-Agent",
@@ -784,7 +795,18 @@
   },
   "regionalFlair": { "hint": "Региональный акцент для вашего языка и региона: {badge}" },
   "urlParserPage": { "title": "Разбор URL", "note": "Локально в браузере.", "placeholder": "https://example.com", "sample": "https://practicalkithub.com/en/pdf/", "invalid": "Некорректный URL", "href": "href", "origin": "origin", "protocol": "protocol", "hostname": "hostname", "port": "port", "pathname": "pathname", "search": "search", "hash": "hash", "params": "params" },
-  "dnsLookupPage": { "title": "DNS lookup", "note": "Через Cloudflare DNS JSON.", "placeholder": "example.com", "sample": "cloudflare.com", "empty": "Введите домен", "noRecords": "Нет записей", "error": "Ошибка", "provider": "cloudflare-dns.com" },
+  "dnsLookupPage": {
+    "title": "DNS lookup",
+    "note": "Запрос DNS-записей. Пробуем Cloudflare и Google public DNS JSON.",
+    "placeholder": "example.com",
+    "sample": "cloudflare.com",
+    "inputTitle": "Запрос",
+    "outputTitle": "Записи",
+    "empty": "Введите домен",
+    "noRecords": "Нет записей",
+    "error": "Ошибка",
+    "provider": "Резолвер: {source} (сторонний)."
+  },
   "bmiPage": { "title": "BMI", "note": "Образовательно.", "weight": "Вес (кг)", "height": "Рост (см)", "under": "Недостаток", "normal": "Норма", "over": "Избыток", "obese": "Ожирение", "disclaimer": "Не медсовет." },
   "morsePage": { "title": "Морзе", "note": "Локально.", "encode": "Текст → Morse", "decode": "Morse → текст", "textIn": "Текст", "morseIn": "Morse", "sample": "SOS" },
   "percentPage": { "title": "Проценты", "note": "Локально.", "mode_of": "X% от Y", "mode_is": "X это ?% от Y", "mode_change": "X + Y%", "hint_of": "20% от 150", "hint_is": "30 от 150", "hint_change": "100 + 15%", "valueA": "A", "valueB": "B", "invalid": "Некорректный ввод" },

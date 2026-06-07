@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -22,8 +23,7 @@ export default function MarkdownPage() {
   const [renderKey, setRenderKey] = useState(0);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
+    <ToolPageShell title={t("title")}>
       <ToolRunActions
         onRun={() => setRenderKey((k) => k + 1)}
         onResetAndRun={() => {
@@ -47,6 +47,6 @@ export default function MarkdownPage() {
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{src}</ReactMarkdown>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

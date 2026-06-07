@@ -1,5 +1,6 @@
 "use client";
 
+import { ToolPageShell } from "@/components/ToolPageShell";
 import { ToolRunActions } from "@/components/ToolRunActions";
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
@@ -82,9 +83,7 @@ export default function CidrPage() {
   }, [t]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="tool-h1">{t("title")}</h1>
-      <p className="tool-muted">{t("note")}</p>
+    <ToolPageShell title={t("title")} note={t("note")}>
       <input
         className="tool-field max-w-md font-mono"
         value={input}
@@ -96,6 +95,6 @@ export default function CidrPage() {
         <p className="text-sm text-red-600 dark:text-red-400">{err}</p>
       )}
       <pre className="tool-pre-out font-mono text-sm">{out || "—"}</pre>
-    </div>
+    </ToolPageShell>
   );
 }
